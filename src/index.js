@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { Helmet } from 'react-helmet';
 import DashboardCore from '@splunk/dashboard-core';
 import definition from './definition.json';
 import preset from './preset';
@@ -25,7 +26,10 @@ function processDefinition(def) {
 ReactDOM.render(
     <ThemeProvider>
         <GlobalStyle />
-        <Suspense fallback={<h1>LOADING</h1>}>
+        <Helmet>
+            <title>{definition.title || 'Dashboard'}</title>
+        </Helmet>
+        <Suspense fallback={null}>
             <DashboardWrapper>
                 <DashboardCore preset={preset} definition={processDefinition(definition)} height="100vh" />
             </DashboardWrapper>

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import PublicDataSource from './datasource';
+import CdnDataSource from './datasource';
 import { applyTheme } from './theme';
 
 const lazyViz = fn => {
@@ -16,10 +16,10 @@ const lazyViz = fn => {
 const PRESET = {
     layouts: {
         grid: lazyViz(() => import('@splunk/dashboard-layouts/GridLayoutViewer')),
-        absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayoutViewer'))
+        absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayout'))
     },
     dataSources: {
-        'ds.search': PublicDataSource
+        'ds.cdn': CdnDataSource
     },
     visualizations: {
         'viz.table': lazyViz(() => import('@splunk/dashboard-visualizations/Table')),

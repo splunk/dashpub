@@ -1,34 +1,52 @@
 import DataSource from '@splunk/datasources/DataSource';
 import DataSet from '@splunk/datasource-utils/DataSet';
-// import { Observable } from 'rxjs';
 
 export default class PublicDataSource extends DataSource {
     constructor(options = {}, context = {}) {
         super(options, context);
-        console.log('new DS(%o, %o)', options, context);
         if (!this.options.query && !this.options.sid) {
             throw Error('query string or sid is required!');
         }
-    }
-
-    async setup() {
-        console.log('DS setup()');
-        return null;
+        this.uri = options.uri;
+        this.vizOptions = options.vizOptions;
+        this.meta = options.meta;
     }
 
     request(requestParams = {}) {
-        console.log('DS.request', requestParams);
-
         return observer => {
-            console.log('SUBSCRIBE', observer);
+            let abortController = new AbortController();
+            let aborted = false;
 
-            observer.next({
-                data: DataSet.fromJSONCols([], [])
-            });
-
-            return () => {
-                console.log('UNSUBSCRIBE');
+            const abort = () => {
+                aborted = true;
+                abortController.abort();
             };
+
+            (async () => {
+                while (!aborted) {
+                    try {
+                        const res = await fetch(this.uri);
+                        if (res.status > 299) {
+                            throw new Error(`HTTP Status ${res.status}`);
+                        }
+                        const data = await res.json();
+
+                        observer.next({
+                            data: DataSet.fromJSONCols(data.fields, data.columns),
+                            meta: {},
+                            vizOptions: this.vizOptions
+                        });
+                    } catch (e) {
+                        observer.error({
+                            level: 'error',
+                            message: e.message || 'Unexpected error'
+                        });
+                    }
+                    await new Promise(r => setTimeout(r, 10000));
+                }
+            })();
+
+            return abort;
         };
     }
 
