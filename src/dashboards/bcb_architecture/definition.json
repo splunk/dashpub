@@ -1,0 +1,4851 @@
+{
+  "visualizations": {
+    "viz_0nvBG2Et": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_twUfubsT": {
+      "type": "viz.text",
+      "options": {
+        "content": "User Wallet",
+        "fontSize": 14,
+        "color": "#cccccc",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_3OXzzxi2": {
+      "type": "viz.text",
+      "options": {
+        "content": "Public XDAI Validators and Nodes",
+        "fontSize": 20,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_YoVqmsbE": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/4e3bc219b04540593337_5d7fee0d48891f13e933f955.svg"
+      }
+    },
+    "viz_eydAsGhJ": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/4e3bc219b04540593337_5d7fee0d48891f13e933f955.svg"
+      }
+    },
+    "viz_f5xh5nWA": {
+      "type": "viz.text",
+      "options": {
+        "content": " Auth API",
+        "fontSize": 14,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_BBs1Nyui": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": "ms"
+      },
+      "dataSources": {
+        "primary": "ds_5mNcUOLf"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 2000,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 1000,
+                "value": "#ff7152",
+                "to": 2000
+              },
+              {
+                "from": 800,
+                "value": "#fc9850",
+                "to": 1000
+              },
+              {
+                "from": 700,
+                "value": "#f4df7a",
+                "to": 800
+              },
+              {
+                "value": "#53a051",
+                "to": 700
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk_app_aws/cloudfront_access_logs",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_WnSKwKJX": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_l0dAAr7R": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/b4959c09e282a90ddf4d_5d7ff1d348891f13e933f957.svg"
+      }
+    },
+    "viz_gm1WyLey": {
+      "type": "viz.text",
+      "options": {
+        "content": "CloudFront CDN",
+        "fontSize": 14,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_nSDSqbnc": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_RRjm7iOx": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 4,
+        "strokeWidth": 4,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_bwZKzqgI": {
+      "type": "viz.text",
+      "options": {
+        "content": "XDAI Ledger Txns",
+        "fontSize": 16,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_ikTQF6X9": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.2
+      }
+    },
+    "viz_ZcBKOVl2": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.3
+      }
+    },
+    "viz_G5ncgWuM": {
+      "type": "viz.text",
+      "options": {
+        "content": "Buttercup Bucks Txns",
+        "fontSize": 16,
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_J40ekaYX": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.3
+      }
+    },
+    "viz_O3YGnwrB": {
+      "type": "viz.text",
+      "options": {
+        "content": "Infrastructure Health\n",
+        "fontSize": 16,
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_bI9izBct": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.3
+      }
+    },
+    "viz_ZFpOlYa9": {
+      "type": "viz.text",
+      "options": {
+        "content": "Store Health",
+        "fontSize": 16,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_0FLjZTcB": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.3
+      }
+    },
+    "viz_YyhqzjLy": {
+      "type": "viz.text",
+      "options": {
+        "content": "Mobile App Health ",
+        "fontSize": 16,
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_pRKOjFXj": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_mTylAWTH"
+      },
+      "options": {
+        "unit": "",
+        "backgroundColor": "#0877a6"
+      }
+    },
+    "viz_dtaMbO0f": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_qs66EtJM"
+      },
+      "options": {
+        "backgroundColor": "#53a051"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk-dashboard-app/bcb_store_3_k1tjjvxi",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_FBhAbs0E": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_XyIqGnDn"
+      },
+      "options": {
+        "backgroundColor": "#53a051"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/search/resource_utilization_by_node",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_fFkoq5QP": {
+      "type": "viz.text",
+      "options": {
+        "content": "Splunk Blockchain - AWS",
+        "fontSize": 20,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_JvBxDOID": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_trg2izDE": {
+      "type": "viz.text",
+      "options": {
+        "content": "BCB Pony Cash Mobile App",
+        "fontSize": 20,
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_V1FNA0Zc": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": true,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_9nbUtdg3": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_kf8KBqGC": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true,
+        "src": "/assets/422d1cb35a8a42c1a3ec_5d8110d148891f13e933f95d.jpg"
+      }
+    },
+    "viz_0zGDNs5G": {
+      "type": "viz.text",
+      "options": {
+        "content": "Rainfocus API",
+        "fontSize": 14,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_VwOuZEmJ": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_PgZ4M997": {
+      "type": "viz.text",
+      "options": {
+        "content": "OXY Splunk",
+        "fontSize": 14,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_FGQDEZQv": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true,
+        "src": "/assets/2615d99d54fa5d0b10dd_5d8111a448891f13e933f95e.png"
+      }
+    },
+    "viz_9FZ88n1M": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_nv2Cm7FW": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/a63d2c2d6bf23d0569dd_5d38e4d448891f680832e496.svg",
+        "color": "#708794"
+      }
+    },
+    "viz_XyVWjUWU": {
+      "type": "viz.text",
+      "options": {
+        "content": "  Token RDS",
+        "fontSize": 14,
+        "color": "#cccccc",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_31ZJ9BIe": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 0,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "fromArrow": true,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_m9Rs5BPI": {
+      "type": "viz.text",
+      "options": {
+        "content": "    DLT Splunk Instance",
+        "fontSize": 14,
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_uB5LvIZl": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#708794",
+        "stroke": "#53a051"
+      }
+    },
+    "viz_sI5qijh8": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_vVUU23Sw": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": "",
+        "backgroundColor": "#0877a6"
+      },
+      "dataSources": {
+        "primary": "ds_6z6fVbtq"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 100,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 70,
+                "to": 100,
+                "value": "#ff7152"
+              },
+              {
+                "from": 50,
+                "to": 70,
+                "value": "#fc9850"
+              },
+              {
+                "from": 30,
+                "to": 50,
+                "value": "#f4df7a"
+              },
+              {
+                "value": "#53a051",
+                "to": 30
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk_app_aws/rds",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_J78kMYos": {
+      "type": "viz.text",
+      "options": {
+        "content": "9997",
+        "color": "#294e70",
+        "fontSize": 10
+      }
+    },
+    "viz_MqAwRMEZ": {
+      "type": "viz.text",
+      "options": {
+        "content": "Index and Forward",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Sans",
+        "color": "#294e70"
+      }
+    },
+    "viz_IisQwESX": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/210a1665429c54ea821c_5d81573748891f13e933f960.svg"
+      }
+    },
+    "viz_0R3ENLTn": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": true,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_MeNCc2xs": {
+      "type": "viz.text",
+      "options": {
+        "content": "Daily Active Users",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_3nltO893": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_nZny7sHw"
+      },
+      "options": {
+        "backgroundColor": "#708794"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/bcb_mobile_app_health",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_SX8X3OfD": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_RFbsbm4f": {
+      "type": "viz.text",
+      "options": {
+        "content": " X Node #2",
+        "fontSize": 14,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_mxs0YBXd": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_ANMsLz16": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_tY66fj74": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 4,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": false,
+        "strokeColor": "#ccc"
+      }
+    },
+    "viz_aug8u1Kz": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 0,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_Jao7osoa": {
+      "type": "viz.text",
+      "options": {
+        "content": "Logging/Metrics",
+        "fontSize": 12,
+        "color": "#294e70"
+      }
+    },
+    "viz_S2PpAcxz": {
+      "type": "viz.text",
+      "options": {
+        "content": "RPC SSL \n8545",
+        "color": "#0877a6",
+        "fontSize": 12
+      }
+    },
+    "viz_GuopgF44": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_X5ZLiZ7s": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": true,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_6qseT95j": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_1mKeiS8s"
+      },
+      "options": {
+        "backgroundColor": "#53a051"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/resource_utilization_by_node",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_MEGZLd4b": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": true,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_QgPbRvIa": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_OGXahkmr": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_vgXDI2nv": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_r1CCaWZw": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_Dy5vFPDJ": {
+      "type": "viz.text",
+      "options": {
+        "content": "Legend",
+        "color": "#ffffff",
+        "fontFamily": "Splunk Platform Mono",
+        "fontSize": 20
+      }
+    },
+    "viz_TveEsdx7": {
+      "type": "viz.text",
+      "options": {
+        "content": "Distributed Ledger Data",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Sans",
+        "color": "#294e70"
+      }
+    },
+    "viz_q2pIrStl": {
+      "type": "viz.text",
+      "options": {
+        "content": "  A",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_L8lO2wMa": {
+      "type": "viz.text",
+      "options": {
+        "content": "B",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_ytiBMKAY": {
+      "type": "viz.text",
+      "options": {
+        "content": "C",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_dbRmODgi": {
+      "type": "viz.text",
+      "options": {
+        "content": "Ethereum “full nodes” that Splunk is running to connect to the xDai sidechain network. These nodes connect to a random set of peers to download a copy of the blockchain. These nodes also help distribute copies of the blockchain to its peers. We use them to gather analytics and monitor our transactions in order to ensure the network is behaving as we expect.\n",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_23YB4XzJ": {
+      "type": "viz.text",
+      "options": {
+        "content": "A",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_PcQabHKP": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_cZyg7Lth": {
+      "type": "viz.text",
+      "options": {
+        "content": "The Cloudfront CDN serves all the front end assets (images, CSS, JS) for the Buttercup Bucks mobile wallet.",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_yBAMKo3f": {
+      "type": "viz.text",
+      "options": {
+        "content": "B",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_JXIBiNIB": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_w5HhBLar": {
+      "type": "viz.text",
+      "options": {
+        "content": "This is an AWS lambda function that receives telemetry data from the Buttercup Bucks mobile wallet and forwards it to the Splunk instance so we can monitor usage and performance.\n",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_3D3VlbEO": {
+      "type": "viz.text",
+      "options": {
+        "content": "C",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_hcswAblj": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_56XUSKxR": {
+      "type": "viz.text",
+      "options": {
+        "content": "This AWS lambda function authenticates your .conf19 user credentials and loads the Buttercup Bucks wallet with your private key.\n",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_q5e9gGKd": {
+      "type": "viz.text",
+      "options": {
+        "content": "D",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_Na0gkf2P": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_mfHY70Vz": {
+      "type": "viz.text",
+      "options": {
+        "content": "Cryptocurrency addresses are public / private keypairs. This means that if the private key is ever lost, all balance associated with the public address is also unrecoverable. In order to make the user experience more seamless for Buttercup Bucks, we keep a copy of private keys for each user in an RDS database so they can be recovered. Cryptocurrency is permissionless! You can move your tokens to your own address that we don’t have the private key for at your own risk! The pony.cash wallet does not support this in the UI, but the crypto-saavy can figure out a way....\n",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_fG3C2p8h": {
+      "type": "viz.text",
+      "options": {
+        "content": "E",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_Wlh8PUq7": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_J725EV0s": {
+      "type": "viz.text",
+      "options": {
+        "content": "Rainfocus is the conference registration API. It is used by the Auth Lambda (D) to authenticate your mobile wallet.\n",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_3SigGiGG": {
+      "type": "viz.text",
+      "options": {
+        "content": "F",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_kDbJh7af": {
+      "type": "viz.table",
+      "options": {
+        "backgroundColor": "transparent",
+        "headerBackgroundColor": "transparent",
+        "headerTextColor": "#cccccc",
+        "rowBackgroundColorOdd": "transparent",
+        "rowBackgroundColorEven": "transparent"
+      },
+      "dataSources": {
+        "primary": "ds_r4l04WB7"
+      }
+    },
+    "viz_yBQYwc1q": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_nXTzqbJJ": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_IHxjEVxf": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_tE5NpjVS": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_R75oWtoK": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_Q01WG4Vw": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_kkrdCJMY": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_OKxfw3Ni": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_KedHEfrz": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_Omy3HfkS": {
+      "type": "viz.text",
+      "options": {
+        "content": "Giveth",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_5e0Swi2H": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_AelCoTEE": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_5zxqo4YG": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_K7shFP6h": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_gf3J7GZI": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_0ofRWoJe": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_5dyW4ImS": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_7tKg4cTp": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_uKMrklwE": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_YqJlVO4X": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_faV7lXi4": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_jV49rWLt": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_7tcsJzEi": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_XqSwvdOt": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_V7e31xaC": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_huauiNt1": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_dPyjxMer": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_7Dstxw73": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_MIGmGjO0": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_Tx6ImXOZ": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_xscuWTwl": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_dXOtPwJj": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_3A2JHdRy": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_w1rERS6b": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_Rl1mkKUQ": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_i5YOKoad": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_1k9dGZgL": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_szpCtRWo": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_mcB3DKri": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_zwIgt4G5": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_5iY62h2v": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_K9S5Qgmv": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_nAXnzpqy": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_g9HdvRDN": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_F2jUchQQ": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_dOWB6VAl": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_32NGHen3": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_VUj3G5EU": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_5LzuhQwO": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_gvL6LdiT": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_QcVTPxhi": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_RPBXnAyk": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_HI8VswAY": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_twG5OYge": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_hMPqQw69": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_3uXNK6bU": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_aVZyx1a5": {
+      "type": "viz.ellipse",
+      "options": {
+        "fill": "transparent",
+        "stroke": "#5a4575",
+        "strokeWidth": 10,
+        "strokeDasharray": 1
+      }
+    },
+    "viz_Y9fEaFEL": {
+      "type": "viz.text",
+      "options": {
+        "content": "Lab10",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_82fVtuon": {
+      "type": "viz.text",
+      "options": {
+        "content": "MakerDAO",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_hCMbDhTh": {
+      "type": "viz.text",
+      "options": {
+        "content": "MetaCartel",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_PHEhzJyM": {
+      "type": "viz.text",
+      "options": {
+        "content": "POA Network",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_UuvIYvPt": {
+      "type": "viz.text",
+      "options": {
+        "content": "Portis",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_FH1WqyEh": {
+      "type": "viz.text",
+      "options": {
+        "content": "Protofire",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_YyZjDzgY": {
+      "type": "viz.text",
+      "options": {
+        "content": "Burner Wallet",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_EoSZLlcw": {
+      "type": "viz.text",
+      "options": {
+        "content": "Syncnode",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_maEUAboz": {
+      "type": "viz.text",
+      "options": {
+        "content": "Ztake.org",
+        "fontSize": 18,
+        "color": "#0877a6"
+      }
+    },
+    "viz_lzb5fWbk": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_c69h1T24": {
+      "type": "viz.text",
+      "options": {
+        "content": " X Node #1",
+        "fontSize": 14,
+        "color": "#cccccc",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_nTIMJepA": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_B9Ky27OV"
+      },
+      "options": {
+        "backgroundColor": "#53a051"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/resource_utilization_by_node",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_zTfAuqMB": {
+      "type": "viz.text",
+      "options": {
+        "content": " D",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_Bq14Tyyz": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": false,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_vGMgPxZD": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": false,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_p4k67BwP": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_YZucjWVc": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_9V00DuDH": {
+      "type": "viz.text",
+      "options": {
+        "content": " E",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_o9EXuTSj": {
+      "type": "viz.text",
+      "options": {
+        "content": " F",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_vnQgiL8j": {
+      "type": "viz.text",
+      "options": {
+        "content": "G",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_tICc90Ga": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_Yuj3185I": {
+      "type": "viz.text",
+      "options": {
+        "content": "Pony.cash is a mobile wallet that stores your private key in order to sign and send transactions of Buttercup Bucks with a slick user interface. It is similar to a regular mobile app, except that instead of only being able to talk to one server, it can talk to any blockchain node to send and receive transactions. This is how a decentralized web 3.0 applications will work.",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_6MafjEFm": {
+      "type": "viz.text",
+      "options": {
+        "content": "G",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_RG8edYek": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_jY8VXdTh": {
+      "type": "viz.text",
+      "options": {
+        "content": "This is a list of the validators on the public xDai blockchain network. These nodes are responsible for producing and signing blocks -- they provide a similar service to the miners on the Bitcoin network. All your transactions must be approved by 2/3rds of these validators in order to be finalized on the xDai network. Unlike Bitcoin, the validators are required to be publicly known and authenticated in this network, this enables cheaper and faster transactions but less decentralization.",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_dezAYhqK": {
+      "type": "viz.text",
+      "options": {
+        "content": "H",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_7WLxVCqp": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeOpacity": 1,
+        "stroke": "transparent",
+        "fill": "#708794",
+        "fillOpacity": 0.3
+      }
+    },
+    "viz_VXfrPi3Y": {
+      "type": "viz.text",
+      "options": {
+        "content": "Security Posture",
+        "fontSize": 16,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#ffffff"
+      }
+    },
+    "viz_CUgKnpnU": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_2ssbEz7I"
+      },
+      "options": {
+        "backgroundColor": "#708794"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/bcb_security_posture",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_9xAndS9f": {
+      "type": "viz.text",
+      "options": {
+        "content": "H",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_bFVTr1N4": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": false,
+        "src": "/assets/2409bf35f5c5a7b95fc7_5d9b927b48891f02602159a7.png"
+      }
+    },
+    "viz_yxgGgEJB": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_vwQsntfX": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_ThBr2n1b"
+      },
+      "options": {
+        "sparklinePosition": "below",
+        "unit": ""
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 5,
+                "value": "#dc4e41"
+              },
+              {
+                "from": 2,
+                "value": "#ec9960",
+                "to": 5
+              },
+              {
+                "value": "#666666",
+                "to": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "viz_CbZmZMCg": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 3,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": false,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_LCahaWEh": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeDasharray": 4,
+        "toArrow": false,
+        "strokeWidth": 1,
+        "fromArrow": true,
+        "strokeColor": "#cccccc"
+      }
+    },
+    "viz_WorDTodE": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": false,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_Lx8b9al9": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": false,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_dFxB3j0f": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_DmONGFit": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": false,
+        "src": "/assets/86dc46b434d69cee6704_5da4bc7e48891f0260217226.png"
+      }
+    },
+    "viz_NAv0kK88": {
+      "type": "viz.text",
+      "options": {
+        "content": "Auth Latency",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_qqOrbV5Q": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": "ms",
+        "showTrendIndicator": false
+      },
+      "dataSources": {
+        "primary": "ds_3ujlVtCU"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 2000,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 1000,
+                "value": "#ff7152",
+                "to": 2000
+              },
+              {
+                "from": 800,
+                "value": "#fc9850",
+                "to": 1000
+              },
+              {
+                "from": 700,
+                "value": "#f4df7a",
+                "to": 800
+              },
+              {
+                "value": "#53a051",
+                "to": 700
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/bcb_mobile_app_health",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_Tl6jxcju": {
+      "type": "viz.text",
+      "options": {
+        "content": "Blockchain Txns",
+        "fontSize": 12,
+        "color": "#294e70"
+      }
+    },
+    "viz_giOefsOe": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": false,
+        "src": "/assets/a6d0b8c77a20dcc11a46_5da4fe3548891f026021734d.png"
+      }
+    },
+    "viz_k4tFNNot": {
+      "type": "abslayout.line",
+      "options": {
+        "fromArrow": true,
+        "toArrow": false,
+        "strokeWidth": 2,
+        "strokeColor": "#708794"
+      }
+    },
+    "viz_QeBg8AtE": {
+      "type": "viz.text",
+      "options": {
+        "content": "block diff",
+        "fontSize": 10,
+        "color": "#708794",
+        "rotation": 0
+      }
+    },
+    "viz_PjToUrS2": {
+      "type": "viz.text",
+      "options": {
+        "content": "Telemetry: On",
+        "fontSize": 16,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#53a051"
+      }
+    },
+    "viz_B6ok3neF": {
+      "type": "viz.line",
+      "options": {
+        "backgroundColor": "transparent",
+        "foregroundColor": "transparent",
+        "fontColor": "transparent",
+        "axisTitleX.visibility": "collapsed",
+        "axisTitleY.visibility": "collapsed",
+        "seriesColors": "[0xcccccc]",
+        "legend.placement": "none",
+        "lineDashStyle": "shortDash"
+      },
+      "dataSources": {
+        "primary": "ds_lgDz7q7p"
+      }
+    },
+    "viz_fpA5AQGt": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_0xAegI4D"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 10,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 7,
+                "value": "#ff7152",
+                "to": 10
+              },
+              {
+                "from": 5,
+                "value": "#fc9850",
+                "to": 7
+              },
+              {
+                "from": 3,
+                "value": "#f4df7a",
+                "to": 5
+              },
+              {
+                "value": "#53a051",
+                "to": 3
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/bcb_mobile_app_health",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_Lz5EnrFP": {
+      "type": "viz.text",
+      "options": {
+        "content": "Auth Errors",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_ypR8Livf": {
+      "type": "viz.text",
+      "options": {
+        "content": "Over the Past 60m",
+        "fontFamily": "Splunk Platform Sans",
+        "color": "#708794"
+      }
+    },
+    "viz_TpofX5W7": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": "ms"
+      },
+      "dataSources": {
+        "primary": "ds_WK5LOx9c"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 2000,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 1000,
+                "value": "#ff7152",
+                "to": 2000
+              },
+              {
+                "from": 800,
+                "value": "#fc9850",
+                "to": 1000
+              },
+              {
+                "from": 700,
+                "value": "#f4df7a",
+                "to": 800
+              },
+              {
+                "from": 500,
+                "value": "#b6c75a",
+                "to": 700
+              },
+              {
+                "value": "#53a051",
+                "to": 500
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk_app_aws/lambda_usage",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_tp6OqS6j": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": "ms"
+      },
+      "dataSources": {
+        "primary": "ds_yiHInhoT"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 2000,
+                "value": "#cb3b43"
+              },
+              {
+                "from": 1000,
+                "value": "#ff7152",
+                "to": 2000
+              },
+              {
+                "from": 800,
+                "value": "#fc9850",
+                "to": 1000
+              },
+              {
+                "from": 700,
+                "value": "#f4df7a",
+                "to": 800
+              },
+              {
+                "from": 500,
+                "value": "#b6c75a",
+                "to": 700
+              },
+              {
+                "value": "#53a051",
+                "to": 500
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk_app_aws/lambda_usage",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_LdYKO25U": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_6iTkhMck"
+      },
+      "options": {
+        "unit": "",
+        "backgroundColor": "#0877a6",
+        "showTrendIndicator": true,
+        "showSparkline": true,
+        "sparklinePosition": "below"
+      }
+    },
+    "viz_hFwtI4ax": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_VUmK5LA5"
+      },
+      "options": {
+        "backgroundColor": "#666"
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/bcb/resource_utilization_by_node",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_dOtMshCh": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/95d38e39adbbdbc2b430_5cf93ffa48891f69664f0612.svg"
+      }
+    },
+    "viz_bOB4K19t": {
+      "type": "viz.text",
+      "options": {
+        "content": " X Node #3",
+        "fontSize": 14,
+        "color": "#cccccc",
+        "fontFamily": "Splunk Platform Mono"
+      }
+    },
+    "viz_YuDZGqNv": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#000000"
+      }
+    },
+    "viz_c8LZS8Qx": {
+      "type": "viz.text",
+      "options": {
+        "content": "Splunk>Trust",
+        "color": "#ffffff",
+        "fontSize": 11,
+        "fontFamily": "Comic Sans MS"
+      }
+    },
+    "viz_U3V7oNDi": {
+      "type": "viz.singlevalue",
+      "options": {
+        "unit": ""
+      },
+      "dataSources": {
+        "primary": "ds_AHTQnUdB"
+      },
+      "encoding": {
+        "fill": {
+          "field": "primary[0]",
+          "format": {
+            "type": "rangevalue",
+            "ranges": [
+              {
+                "from": 100,
+                "value": "#53a051"
+              },
+              {
+                "from": 90,
+                "value": "#b6c75a",
+                "to": 100
+              },
+              {
+                "from": 80,
+                "value": "#f4df7a",
+                "to": 90
+              },
+              {
+                "from": 70,
+                "value": "#ec9960",
+                "to": 80
+              },
+              {
+                "value": "#dc4e41",
+                "to": 70
+              }
+            ]
+          }
+        }
+      },
+      "eventHandlers": [
+        {
+          "type": "drilldown.customUrl",
+          "options": {
+            "url": "https://multichain.splunkdlt.com:8000/en-US/app/splunk_app_aws/cloudfront_access_logs",
+            "newTab": true
+          }
+        }
+      ]
+    },
+    "viz_JZBUFfek": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeWidth": 3
+      }
+    },
+    "viz_hyq0XRC5": {
+      "type": "viz.rectangle",
+      "options": {
+        "strokeDasharray": 2,
+        "fill": "#708794",
+        "strokeWidth": 2,
+        "fillOpacity": 0.1
+      }
+    },
+    "viz_jyqXi3Xz": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_yLr64D9i"
+      },
+      "options": {
+        "showSparkline": false,
+        "showTrendIndicator": false,
+        "backgroundColor": "transparent",
+        "color": "#dc4e41",
+        "numberPrecision": 0,
+        "unit": "$",
+        "unitPosition": "before"
+      }
+    },
+    "viz_fknZ0M8C": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_NJKjz5Gj"
+      },
+      "options": {
+        "showSparkline": false,
+        "showTrendIndicator": false,
+        "backgroundColor": "transparent",
+        "color": "#53a051",
+        "numberPrecision": 2,
+        "unit": "$",
+        "unitPosition": "before"
+      }
+    },
+    "viz_e0eLbUVm": {
+      "type": "viz.text",
+      "options": {
+        "content": "Current XDAI Blockchain \n    Transaction Cost",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_dYdDhdt2": {
+      "type": "viz.text",
+      "options": {
+        "content": "Traditional Payment System \n     Transaction Cost",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_bBKrXdKD": {
+      "type": "viz.text",
+      "options": {
+        "content": "I",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_8Uv4tNZI": {
+      "type": "viz.text",
+      "options": {
+        "content": "I",
+        "color": "#dc4e41",
+        "fontSize": 14
+      }
+    },
+    "viz_F97HRhI0": {
+      "type": "viz.rectangle",
+      "options": {
+        "fill": "#ffffff",
+        "fillOpacity": 0.05,
+        "strokeDasharray": 9,
+        "stroke": "#0877a6",
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_bBubCuQ5": {
+      "type": "viz.text",
+      "options": {
+        "content": "A typical credit card transaction fee is $0.10 plus 1.5% of the transaction value. On this blockchain network there is no central authority that collects the fees, instead the nodes are incentivized to validate transactions in return for a small payment. This shows a comparison of what the fees are on this network in USD vs what it would cost on a traditional payment network.",
+        "fontSize": 10,
+        "color": "#708794"
+      }
+    },
+    "viz_hqUleVSM": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794",
+        "strokeWidth": 4,
+        "strokeDasharray": 10,
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_iGJwCflw": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_fH0RTxC3"
+      },
+      "options": {
+        "showSparkline": false,
+        "showTrendIndicator": false,
+        "backgroundColor": "transparent",
+        "color": "#0877a6",
+        "numberPrecision": 0,
+        "unit": "x",
+        "unitPosition": "after"
+      }
+    },
+    "viz_Sfs7k5VQ": {
+      "type": "viz.text",
+      "options": {
+        "content": "Savings Multiplier",
+        "fontSize": 12,
+        "fontFamily": "Splunk Platform Mono",
+        "color": "#cccccc"
+      }
+    },
+    "viz_xEVwg34i": {
+      "type": "viz.text",
+      "options": {
+        "content": "Built by blockchain@splunk.com - Reach out to us and learn how Splunk can unblock Blockchain\n",
+        "fontSize": 18,
+        "color": "#708794"
+      }
+    }
+  },
+  "dataSources": {
+    "ds_mTylAWTH": {
+      "type": "ds.cdn",
+      "name": "xdai_txn_timechart",
+      "options": {
+        "query": "| cdn k1hhfhu1w53g",
+        "uri": "/api/data/k1hhfhu1w53g"
+      }
+    },
+    "ds_6iTkhMck": {
+      "type": "ds.cdn",
+      "name": "xdai_bcb_txn_count",
+      "options": {
+        "query": "| cdn vz4avy3uiup9",
+        "uri": "/api/data/vz4avy3uiup9"
+      }
+    },
+    "ds_XyIqGnDn": {
+      "type": "ds.cdn",
+      "name": "sv_static_infra",
+      "options": {
+        "query": "| cdn bpe0vyyvuh88",
+        "uri": "/api/data/bpe0vyyvuh88"
+      }
+    },
+    "ds_qs66EtJM": {
+      "type": "ds.cdn",
+      "name": "sv_static_store",
+      "options": {
+        "query": "| cdn 5i3g1773zvaj",
+        "uri": "/api/data/5i3g1773zvaj"
+      }
+    },
+    "ds_r4l04WB7": {
+      "type": "ds.cdn",
+      "name": "xdai_validators_table",
+      "options": {
+        "query": "| cdn 141lg3nc4qi0",
+        "uri": "/api/data/141lg3nc4qi0"
+      }
+    },
+    "ds_2ssbEz7I": {
+      "type": "ds.cdn",
+      "name": "sv_static_security",
+      "options": {
+        "query": "| cdn i5apv4379vga",
+        "uri": "/api/data/i5apv4379vga"
+      }
+    },
+    "ds_5mNcUOLf": {
+      "type": "ds.cdn",
+      "name": "bcb_cloudfront_latency",
+      "options": {
+        "query": "| cdn 13m5j06m41xk",
+        "uri": "/api/data/13m5j06m41xk"
+      }
+    },
+    "ds_nZny7sHw": {
+      "type": "ds.cdn",
+      "name": "bcb_dau",
+      "options": {
+        "query": "| cdn xocmbqw0wjgy",
+        "uri": "/api/data/xocmbqw0wjgy"
+      }
+    },
+    "ds_3ujlVtCU": {
+      "type": "ds.cdn",
+      "name": "bcb_mobile_latency",
+      "options": {
+        "query": "| cdn 04l1qobjcf5b",
+        "uri": "/api/data/04l1qobjcf5b"
+      }
+    },
+    "ds_S4e2hFMG": {
+      "type": "ds.cdn",
+      "name": "bcb_infura_blockdif",
+      "options": {
+        "query": "| cdn dtsa8lqd9f5h",
+        "uri": "/api/data/dtsa8lqd9f5h"
+      }
+    },
+    "ds_lgDz7q7p": {
+      "type": "ds.cdn",
+      "name": "bcb_telem_timechart",
+      "options": {
+        "query": "| cdn uepi3uqpi00k",
+        "uri": "/api/data/uepi3uqpi00k"
+      }
+    },
+    "ds_AHTQnUdB": {
+      "type": "ds.cdn",
+      "name": "bcb_mobile_health",
+      "options": {
+        "query": "| cdn c3vko8tceymo",
+        "uri": "/api/data/c3vko8tceymo"
+      }
+    },
+    "ds_0xAegI4D": {
+      "type": "ds.cdn",
+      "name": "bcb_auth_errors",
+      "options": {
+        "query": "| cdn ewt7wzyc4n7h",
+        "uri": "/api/data/ewt7wzyc4n7h"
+      }
+    },
+    "ds_6z6fVbtq": {
+      "type": "ds.cdn",
+      "name": "bcb_rds_health",
+      "options": {
+        "query": "| cdn r376do5p7z8e",
+        "uri": "/api/data/r376do5p7z8e"
+      }
+    },
+    "ds_1mKeiS8s": {
+      "type": "ds.cdn",
+      "name": "bcb_xdai_node2",
+      "options": {
+        "query": "| cdn z3v2vanmi7n5",
+        "uri": "/api/data/z3v2vanmi7n5"
+      }
+    },
+    "ds_B9Ky27OV": {
+      "type": "ds.cdn",
+      "name": "bcb_xdai_node1",
+      "options": {
+        "query": "| cdn 1nps8hfl01y8",
+        "uri": "/api/data/1nps8hfl01y8"
+      }
+    },
+    "ds_WK5LOx9c": {
+      "type": "ds.cdn",
+      "name": "bcb_lambda_api",
+      "options": {
+        "query": "| cdn ob1l23w8epaq",
+        "uri": "/api/data/ob1l23w8epaq"
+      }
+    },
+    "ds_yiHInhoT": {
+      "type": "ds.cdn",
+      "name": "bcb_lambda_userwallet",
+      "options": {
+        "query": "| cdn lbwmc6hr0vsx",
+        "uri": "/api/data/lbwmc6hr0vsx"
+      }
+    },
+    "ds_ThBr2n1b": {
+      "type": "ds.cdn",
+      "name": "static_infura_for_now",
+      "options": {
+        "query": "| cdn tg7hymvvaxv0",
+        "uri": "/api/data/tg7hymvvaxv0"
+      }
+    },
+    "ds_VUmK5LA5": {
+      "type": "ds.cdn",
+      "name": "bcb_xdai_node3",
+      "options": {
+        "query": "| cdn 1nps8hfl01y8",
+        "uri": "/api/data/1nps8hfl01y8"
+      }
+    },
+    "ds_yLr64D9i": {
+      "type": "ds.cdn",
+      "name": "payment_txn_fee",
+      "options": {
+        "query": "| cdn 0pvc8ntj7q7s",
+        "uri": "/api/data/0pvc8ntj7q7s"
+      }
+    },
+    "ds_NJKjz5Gj": {
+      "type": "ds.cdn",
+      "name": "payment_txn_fee_blockchain",
+      "options": {
+        "query": "| cdn 4iwgzj47jodz",
+        "uri": "/api/data/4iwgzj47jodz"
+      }
+    },
+    "ds_fH0RTxC3": {
+      "type": "ds.cdn",
+      "name": "payment_ratio",
+      "options": {
+        "query": "| cdn vyurlndtrqyh",
+        "uri": "/api/data/vyurlndtrqyh"
+      }
+    }
+  },
+  "inputs": {},
+  "layout": {
+    "type": "absolute",
+    "options": {
+      "width": 1800,
+      "height": 1080,
+      "backgroundColor": "#666",
+      "display": "auto-scale",
+      "backgroundImage": {
+        "src": "/assets/07f5bc6f45e7e058d34d_5da4afb348891f0260217202.png",
+        "x": 0,
+        "y": 0,
+        "sizeType": "cover"
+      }
+    },
+    "structure": [
+      {
+        "item": "viz_nSDSqbnc",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 53,
+            "y": 141
+          },
+          "to": {
+            "x": 1737,
+            "y": 139
+          }
+        }
+      },
+      {
+        "item": "viz_RRjm7iOx",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 98,
+            "y": 152
+          },
+          "to": {
+            "x": 1691,
+            "y": 149
+          }
+        }
+      },
+      {
+        "item": "viz_V1FNA0Zc",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1077,
+            "y": 389
+          },
+          "to": {
+            "item": "viz_9nbUtdg3",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_31ZJ9BIe",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tp6OqS6j",
+            "port": "s"
+          },
+          "to": {
+            "x": 950,
+            "y": 690
+          }
+        }
+      },
+      {
+        "item": "viz_sI5qijh8",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1359,
+            "y": 286
+          },
+          "to": {
+            "item": "viz_giOefsOe",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_0R3ENLTn",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1059,
+            "y": 693
+          },
+          "to": {
+            "item": "viz_TpofX5W7",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_mxs0YBXd",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 841,
+            "y": 691
+          },
+          "to": {
+            "x": 840,
+            "y": 510
+          }
+        }
+      },
+      {
+        "item": "viz_ANMsLz16",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_uB5LvIZl",
+            "port": "w"
+          },
+          "to": {
+            "x": 705,
+            "y": 285
+          }
+        }
+      },
+      {
+        "item": "viz_tY66fj74",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 409,
+            "y": 335
+          },
+          "to": {
+            "x": 1197,
+            "y": 334
+          }
+        }
+      },
+      {
+        "item": "viz_aug8u1Kz",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_uB5LvIZl",
+            "port": "s"
+          },
+          "to": {
+            "x": 960,
+            "y": 334
+          }
+        }
+      },
+      {
+        "item": "viz_GuopgF44",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 665,
+            "y": 336
+          },
+          "to": {
+            "item": "viz_lzb5fWbk",
+            "port": "n"
+          }
+        }
+      },
+      {
+        "item": "viz_X5ZLiZ7s",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1086,
+            "y": 413
+          },
+          "to": {
+            "x": 1160,
+            "y": 439
+          }
+        }
+      },
+      {
+        "item": "viz_MEGZLd4b",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 746,
+            "y": 692
+          },
+          "to": {
+            "item": "viz_6qseT95j",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_QgPbRvIa",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 745,
+            "y": 334
+          },
+          "to": {
+            "x": 745,
+            "y": 380
+          }
+        }
+      },
+      {
+        "item": "viz_OGXahkmr",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 840,
+            "y": 334
+          },
+          "to": {
+            "x": 840,
+            "y": 380
+          }
+        }
+      },
+      {
+        "item": "viz_vgXDI2nv",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 955,
+            "y": 333
+          },
+          "to": {
+            "item": "viz_YoVqmsbE",
+            "port": "n"
+          }
+        }
+      },
+      {
+        "item": "viz_5e0Swi2H",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 180,
+            "y": 475
+          },
+          "to": {
+            "x": 225,
+            "y": 500
+          }
+        }
+      },
+      {
+        "item": "viz_AelCoTEE",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          }
+        }
+      },
+      {
+        "item": "viz_5zxqo4YG",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_K7shFP6h",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_gf3J7GZI",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_0ofRWoJe",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_5dyW4ImS",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_7tKg4cTp",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_uKMrklwE",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_YqJlVO4X",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_faV7lXi4",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          }
+        }
+      },
+      {
+        "item": "viz_jV49rWLt",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_7tcsJzEi",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_XqSwvdOt",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_V7e31xaC",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_huauiNt1",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_dPyjxMer",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_yBQYwc1q",
+            "port": "e"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_7Dstxw73",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_MIGmGjO0",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_Tx6ImXOZ",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_xscuWTwl",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_dXOtPwJj",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_3A2JHdRy",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_w1rERS6b",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_Rl1mkKUQ",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          },
+          "to": {
+            "item": "viz_IHxjEVxf",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_i5YOKoad",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_1k9dGZgL",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_szpCtRWo",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 350,
+            "y": 475
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_mcB3DKri",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_zwIgt4G5",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_5iY62h2v",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          },
+          "to": {
+            "item": "viz_Q01WG4Vw",
+            "port": "e"
+          }
+        }
+      },
+      {
+        "item": "viz_K9S5Qgmv",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_nAXnzpqy",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_g9HdvRDN",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_F2jUchQQ",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_dOWB6VAl",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_kkrdCJMY",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_32NGHen3",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_VUj3G5EU",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_5LzuhQwO",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_gvL6LdiT",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_OKxfw3Ni",
+            "port": "s"
+          }
+        }
+      },
+      {
+        "item": "viz_QcVTPxhi",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_RPBXnAyk",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_HI8VswAY",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          },
+          "to": {
+            "item": "viz_KedHEfrz",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_twG5OYge",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_hMPqQw69",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_nXTzqbJJ",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_R75oWtoK",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_3uXNK6bU",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_9FZ88n1M",
+            "port": "n"
+          },
+          "to": {
+            "item": "viz_tE5NpjVS",
+            "port": "w"
+          }
+        }
+      },
+      {
+        "item": "viz_Bq14Tyyz",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 706,
+            "y": 286
+          },
+          "to": {
+            "x": 706,
+            "y": 405
+          }
+        }
+      },
+      {
+        "item": "viz_vGMgPxZD",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 720,
+            "y": 404
+          },
+          "to": {
+            "x": 692,
+            "y": 404
+          }
+        }
+      },
+      {
+        "item": "viz_p4k67BwP",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1058,
+            "y": 335
+          },
+          "to": {
+            "x": 1058,
+            "y": 380
+          }
+        }
+      },
+      {
+        "item": "viz_YZucjWVc",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1199,
+            "y": 334
+          },
+          "to": {
+            "x": 1199,
+            "y": 400
+          }
+        }
+      },
+      {
+        "item": "viz_CbZmZMCg",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 610,
+            "y": 235
+          },
+          "to": {
+            "x": 520,
+            "y": 235
+          }
+        }
+      },
+      {
+        "item": "viz_LCahaWEh",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 567,
+            "y": 333
+          },
+          "to": {
+            "x": 567,
+            "y": 236
+          }
+        }
+      },
+      {
+        "item": "viz_WorDTodE",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_JvBxDOID",
+            "port": "w"
+          },
+          "to": {
+            "x": 566,
+            "y": 820
+          }
+        }
+      },
+      {
+        "item": "viz_Lx8b9al9",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 566,
+            "y": 406
+          },
+          "to": {
+            "x": 566,
+            "y": 819
+          }
+        }
+      },
+      {
+        "item": "viz_dFxB3j0f",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 529,
+            "y": 405
+          },
+          "to": {
+            "x": 566,
+            "y": 405
+          }
+        }
+      },
+      {
+        "item": "viz_k4tFNNot",
+        "type": "line",
+        "position": {
+          "from": {
+            "item": "viz_WnSKwKJX",
+            "port": "w"
+          },
+          "to": {
+            "x": 566,
+            "y": 405
+          }
+        }
+      },
+      {
+        "item": "viz_JZBUFfek",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 629,
+            "y": 510
+          },
+          "to": {
+            "x": 1110,
+            "y": 510
+          }
+        }
+      },
+      {
+        "item": "viz_hyq0XRC5",
+        "type": "block",
+        "position": {
+          "x": 1250,
+          "y": 690,
+          "w": 190,
+          "h": 260
+        }
+      },
+      {
+        "item": "viz_WnSKwKJX",
+        "type": "block",
+        "position": {
+          "x": 600,
+          "y": 190,
+          "w": 700,
+          "h": 430
+        }
+      },
+      {
+        "item": "viz_JvBxDOID",
+        "type": "block",
+        "position": {
+          "x": 600,
+          "y": 690,
+          "w": 620,
+          "h": 260
+        }
+      },
+      {
+        "item": "viz_uB5LvIZl",
+        "type": "block",
+        "position": {
+          "x": 890,
+          "y": 260,
+          "w": 140,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_ikTQF6X9",
+        "type": "block",
+        "position": {
+          "x": 340,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_0nvBG2Et",
+        "type": "block",
+        "position": {
+          "x": 30,
+          "y": 190,
+          "w": 500,
+          "h": 810
+        }
+      },
+      {
+        "item": "viz_twUfubsT",
+        "type": "block",
+        "position": {
+          "x": 910,
+          "y": 420,
+          "w": 90,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_3OXzzxi2",
+        "type": "block",
+        "position": {
+          "x": 110,
+          "y": 150,
+          "w": 340,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_YoVqmsbE",
+        "type": "block",
+        "position": {
+          "x": 920,
+          "y": 380,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_eydAsGhJ",
+        "type": "block",
+        "position": {
+          "x": 1020,
+          "y": 380,
+          "w": 80,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_f5xh5nWA",
+        "type": "block",
+        "position": {
+          "x": 1020,
+          "y": 420,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_BBs1Nyui",
+        "type": "block",
+        "position": {
+          "x": 790,
+          "y": 460,
+          "w": 100,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_l0dAAr7R",
+        "type": "block",
+        "position": {
+          "x": 800,
+          "y": 380,
+          "w": 80,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_gm1WyLey",
+        "type": "block",
+        "position": {
+          "x": 790,
+          "y": 420,
+          "w": 120,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_bwZKzqgI",
+        "type": "block",
+        "position": {
+          "x": 360,
+          "y": 0,
+          "w": 140,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_ZcBKOVl2",
+        "type": "block",
+        "position": {
+          "x": 540,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_G5ncgWuM",
+        "type": "block",
+        "position": {
+          "x": 550,
+          "y": 0,
+          "w": 160,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_J40ekaYX",
+        "type": "block",
+        "position": {
+          "x": 740,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_O3YGnwrB",
+        "type": "block",
+        "position": {
+          "x": 740,
+          "y": 0,
+          "w": 170,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_bI9izBct",
+        "type": "block",
+        "position": {
+          "x": 940,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_ZFpOlYa9",
+        "type": "block",
+        "position": {
+          "x": 980,
+          "y": 0,
+          "w": 120,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_0FLjZTcB",
+        "type": "block",
+        "position": {
+          "x": 1140,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_YyhqzjLy",
+        "type": "block",
+        "position": {
+          "x": 1160,
+          "y": 0,
+          "w": 140,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_pRKOjFXj",
+        "type": "block",
+        "position": {
+          "x": 350,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_dtaMbO0f",
+        "type": "block",
+        "position": {
+          "x": 950,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_FBhAbs0E",
+        "type": "block",
+        "position": {
+          "x": 750,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_fFkoq5QP",
+        "type": "block",
+        "position": {
+          "x": 820,
+          "y": 150,
+          "w": 250,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_trg2izDE",
+        "type": "block",
+        "position": {
+          "x": 810,
+          "y": 690,
+          "w": 270,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_9nbUtdg3",
+        "type": "block",
+        "position": {
+          "x": 1360,
+          "y": 350,
+          "w": 80,
+          "h": 80
+        }
+      },
+      {
+        "item": "viz_kf8KBqGC",
+        "type": "block",
+        "position": {
+          "x": 1370,
+          "y": 360,
+          "w": 60,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_0zGDNs5G",
+        "type": "block",
+        "position": {
+          "x": 1350,
+          "y": 420,
+          "w": 110,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_VwOuZEmJ",
+        "type": "block",
+        "position": {
+          "x": 1360,
+          "y": 240,
+          "w": 80,
+          "h": 80
+        }
+      },
+      {
+        "item": "viz_PgZ4M997",
+        "type": "block",
+        "position": {
+          "x": 1360,
+          "y": 310,
+          "w": 90,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_FGQDEZQv",
+        "type": "block",
+        "position": {
+          "x": 1370,
+          "y": 250,
+          "w": 60,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_9FZ88n1M",
+        "type": "block",
+        "position": {
+          "x": 200,
+          "y": 500,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_nv2Cm7FW",
+        "type": "block",
+        "position": {
+          "x": 1160,
+          "y": 400,
+          "w": 80,
+          "h": 80
+        }
+      },
+      {
+        "item": "viz_XyVWjUWU",
+        "type": "block",
+        "position": {
+          "x": 1150,
+          "y": 470,
+          "w": 80,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_m9Rs5BPI",
+        "type": "block",
+        "position": {
+          "x": 860,
+          "y": 210,
+          "w": 170,
+          "h": 58
+        }
+      },
+      {
+        "item": "viz_vVUU23Sw",
+        "type": "block",
+        "position": {
+          "x": 1140,
+          "y": 510,
+          "w": 120,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_J78kMYos",
+        "type": "block",
+        "position": {
+          "x": 1320,
+          "y": 250,
+          "w": 50,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_MqAwRMEZ",
+        "type": "block",
+        "position": {
+          "x": 1100,
+          "y": 250,
+          "w": 120,
+          "h": 42
+        }
+      },
+      {
+        "item": "viz_IisQwESX",
+        "type": "block",
+        "position": {
+          "x": 650,
+          "y": 720,
+          "w": 170,
+          "h": 210
+        }
+      },
+      {
+        "item": "viz_MeNCc2xs",
+        "type": "block",
+        "position": {
+          "x": 820,
+          "y": 840,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_3nltO893",
+        "type": "block",
+        "position": {
+          "x": 820,
+          "y": 760,
+          "w": 120,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_RFbsbm4f",
+        "type": "block",
+        "position": {
+          "x": 700,
+          "y": 420,
+          "w": 90,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_Jao7osoa",
+        "type": "block",
+        "position": {
+          "x": 760,
+          "y": 300,
+          "w": 120,
+          "h": 42
+        }
+      },
+      {
+        "item": "viz_S2PpAcxz",
+        "type": "block",
+        "position": {
+          "x": 680,
+          "y": 620,
+          "w": 60,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_6qseT95j",
+        "type": "block",
+        "position": {
+          "x": 710,
+          "y": 460,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_SX8X3OfD",
+        "type": "block",
+        "position": {
+          "x": 710,
+          "y": 380,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_r1CCaWZw",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 190,
+          "w": 320,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_Dy5vFPDJ",
+        "type": "block",
+        "position": {
+          "x": 1590,
+          "y": 150,
+          "w": 150,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_TveEsdx7",
+        "type": "block",
+        "position": {
+          "x": 720,
+          "y": 250,
+          "w": 150,
+          "h": 42
+        }
+      },
+      {
+        "item": "viz_q2pIrStl",
+        "type": "block",
+        "position": {
+          "x": 620,
+          "y": 360,
+          "w": 40,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_L8lO2wMa",
+        "type": "block",
+        "position": {
+          "x": 800,
+          "y": 360,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_ytiBMKAY",
+        "type": "block",
+        "position": {
+          "x": 910,
+          "y": 360,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_dbRmODgi",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 190,
+          "w": 300,
+          "h": 80
+        }
+      },
+      {
+        "item": "viz_23YB4XzJ",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 180,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_PcQabHKP",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 310,
+          "w": 320,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_cZyg7Lth",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 310,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_yBAMKo3f",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 300,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_JXIBiNIB",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 370,
+          "w": 320,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_w5HhBLar",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 370,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_3D3VlbEO",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 360,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_hcswAblj",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 450,
+          "w": 320,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_56XUSKxR",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 450,
+          "w": 290,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_q5e9gGKd",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 440,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_Na0gkf2P",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 520,
+          "w": 320,
+          "h": 140
+        }
+      },
+      {
+        "item": "viz_mfHY70Vz",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 520,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_fG3C2p8h",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 510,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_Wlh8PUq7",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 670,
+          "w": 320,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_J725EV0s",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 670,
+          "w": 280,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_3SigGiGG",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 660,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_kDbJh7af",
+        "type": "block",
+        "position": {
+          "x": 20,
+          "y": 610,
+          "w": 510,
+          "h": 450
+        }
+      },
+      {
+        "item": "viz_yBQYwc1q",
+        "type": "block",
+        "position": {
+          "x": 130,
+          "y": 450,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_nXTzqbJJ",
+        "type": "block",
+        "position": {
+          "x": 280,
+          "y": 500,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_IHxjEVxf",
+        "type": "block",
+        "position": {
+          "x": 110,
+          "y": 380,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_tE5NpjVS",
+        "type": "block",
+        "position": {
+          "x": 350,
+          "y": 450,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_R75oWtoK",
+        "type": "block",
+        "position": {
+          "x": 370,
+          "y": 380,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_Q01WG4Vw",
+        "type": "block",
+        "position": {
+          "x": 130,
+          "y": 310,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_kkrdCJMY",
+        "type": "block",
+        "position": {
+          "x": 200,
+          "y": 260,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_OKxfw3Ni",
+        "type": "block",
+        "position": {
+          "x": 280,
+          "y": 260,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_KedHEfrz",
+        "type": "block",
+        "position": {
+          "x": 350,
+          "y": 310,
+          "w": 50,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_Omy3HfkS",
+        "type": "block",
+        "position": {
+          "x": 70,
+          "y": 290,
+          "w": 100,
+          "h": 24
+        }
+      },
+      {
+        "item": "viz_aVZyx1a5",
+        "type": "block",
+        "position": {
+          "x": 340,
+          "y": 300,
+          "w": 70,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_Y9fEaFEL",
+        "type": "block",
+        "position": {
+          "x": 50,
+          "y": 380,
+          "w": 100,
+          "h": 24
+        }
+      },
+      {
+        "item": "viz_82fVtuon",
+        "type": "block",
+        "position": {
+          "x": 50,
+          "y": 480,
+          "w": 100,
+          "h": 24
+        }
+      },
+      {
+        "item": "viz_hCMbDhTh",
+        "type": "block",
+        "position": {
+          "x": 130,
+          "y": 540,
+          "w": 100,
+          "h": 24
+        }
+      },
+      {
+        "item": "viz_PHEhzJyM",
+        "type": "block",
+        "position": {
+          "x": 300,
+          "y": 540,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_UuvIYvPt",
+        "type": "block",
+        "position": {
+          "x": 390,
+          "y": 480,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_FH1WqyEh",
+        "type": "block",
+        "position": {
+          "x": 420,
+          "y": 380,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_YyZjDzgY",
+        "type": "block",
+        "position": {
+          "x": 410,
+          "y": 290,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_EoSZLlcw",
+        "type": "block",
+        "position": {
+          "x": 120,
+          "y": 230,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_maEUAboz",
+        "type": "block",
+        "position": {
+          "x": 320,
+          "y": 230,
+          "w": 110,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_lzb5fWbk",
+        "type": "block",
+        "position": {
+          "x": 630,
+          "y": 380,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_c69h1T24",
+        "type": "block",
+        "position": {
+          "x": 620,
+          "y": 420,
+          "w": 100,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_nTIMJepA",
+        "type": "block",
+        "position": {
+          "x": 630,
+          "y": 460,
+          "w": 70,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_zTfAuqMB",
+        "type": "block",
+        "position": {
+          "x": 1000,
+          "y": 360,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_9V00DuDH",
+        "type": "block",
+        "position": {
+          "x": 1240,
+          "y": 390,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_o9EXuTSj",
+        "type": "block",
+        "position": {
+          "x": 1340,
+          "y": 340,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_vnQgiL8j",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 690,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_tICc90Ga",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 730,
+          "w": 320,
+          "h": 100
+        }
+      },
+      {
+        "item": "viz_Yuj3185I",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 730,
+          "w": 290,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_6MafjEFm",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 720,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_RG8edYek",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 840,
+          "w": 320,
+          "h": 130
+        }
+      },
+      {
+        "item": "viz_jY8VXdTh",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 840,
+          "w": 290,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_dezAYhqK",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 830,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_7WLxVCqp",
+        "type": "block",
+        "position": {
+          "x": 1340,
+          "y": 40,
+          "w": 180,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_VXfrPi3Y",
+        "type": "block",
+        "position": {
+          "x": 1360,
+          "y": 0,
+          "w": 141,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_CUgKnpnU",
+        "type": "block",
+        "position": {
+          "x": 1350,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_9xAndS9f",
+        "type": "block",
+        "position": {
+          "x": 40,
+          "y": 190,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_bFVTr1N4",
+        "type": "block",
+        "position": {
+          "x": 440,
+          "y": 200,
+          "w": 80,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_vwQsntfX",
+        "type": "block",
+        "position": {
+          "x": 440,
+          "y": 220,
+          "w": 80,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_yxgGgEJB",
+        "type": "block",
+        "position": {
+          "x": 420,
+          "y": 220,
+          "w": 40,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_DmONGFit",
+        "type": "block",
+        "position": {
+          "x": 690,
+          "y": 760,
+          "w": 90,
+          "h": 140
+        }
+      },
+      {
+        "item": "viz_NAv0kK88",
+        "type": "block",
+        "position": {
+          "x": 970,
+          "y": 840,
+          "w": 100,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_qqOrbV5Q",
+        "type": "block",
+        "position": {
+          "x": 950,
+          "y": 760,
+          "w": 120,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_Tl6jxcju",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 800,
+          "w": 60,
+          "h": 24
+        }
+      },
+      {
+        "item": "viz_giOefsOe",
+        "type": "block",
+        "position": {
+          "x": 890,
+          "y": 260,
+          "w": 140,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_QeBg8AtE",
+        "type": "block",
+        "position": {
+          "x": 450,
+          "y": 250,
+          "w": 80,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_PjToUrS2",
+        "type": "block",
+        "position": {
+          "x": 950,
+          "y": 910,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_B6ok3neF",
+        "type": "block",
+        "position": {
+          "x": 790,
+          "y": 870,
+          "w": 430,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_fpA5AQGt",
+        "type": "block",
+        "position": {
+          "x": 1080,
+          "y": 760,
+          "w": 120,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_Lz5EnrFP",
+        "type": "block",
+        "position": {
+          "x": 1100,
+          "y": 840,
+          "w": 100,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_ypR8Livf",
+        "type": "block",
+        "position": {
+          "x": 80,
+          "y": 40,
+          "w": 210,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_TpofX5W7",
+        "type": "block",
+        "position": {
+          "x": 1010,
+          "y": 460,
+          "w": 100,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_tp6OqS6j",
+        "type": "block",
+        "position": {
+          "x": 900,
+          "y": 460,
+          "w": 100,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_LdYKO25U",
+        "type": "block",
+        "position": {
+          "x": 550,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_hFwtI4ax",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 220,
+          "w": 80,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_dOtMshCh",
+        "type": "block",
+        "position": {
+          "x": 680,
+          "y": 220,
+          "w": 40,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_bOB4K19t",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 250,
+          "w": 110,
+          "h": 40
+        }
+      },
+      {
+        "item": "viz_YuDZGqNv",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 200,
+          "w": 80,
+          "h": 20
+        }
+      },
+      {
+        "item": "viz_c8LZS8Qx",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 190,
+          "w": 84,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_U3V7oNDi",
+        "type": "block",
+        "position": {
+          "x": 1150,
+          "y": 50,
+          "w": 160,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_jyqXi3Xz",
+        "type": "block",
+        "position": {
+          "x": 1260,
+          "y": 700,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_fknZ0M8C",
+        "type": "block",
+        "position": {
+          "x": 1260,
+          "y": 780,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_e0eLbUVm",
+        "type": "block",
+        "position": {
+          "x": 1270,
+          "y": 820,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_dYdDhdt2",
+        "type": "block",
+        "position": {
+          "x": 1260,
+          "y": 740,
+          "w": 170,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_bBKrXdKD",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 980,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_8Uv4tNZI",
+        "type": "block",
+        "position": {
+          "x": 1230,
+          "y": 680,
+          "w": 20,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_F97HRhI0",
+        "type": "block",
+        "position": {
+          "x": 1470,
+          "y": 980,
+          "w": 320,
+          "h": 90
+        }
+      },
+      {
+        "item": "viz_bBubCuQ5",
+        "type": "block",
+        "position": {
+          "x": 1490,
+          "y": 970,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_hqUleVSM",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 1263,
+            "y": 870
+          },
+          "to": {
+            "x": 1427,
+            "y": 871
+          }
+        }
+      },
+      {
+        "item": "viz_iGJwCflw",
+        "type": "block",
+        "position": {
+          "x": 1250,
+          "y": 870,
+          "w": 190,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_Sfs7k5VQ",
+        "type": "block",
+        "position": {
+          "x": 1290,
+          "y": 910,
+          "w": 170,
+          "h": 70
+        }
+      },
+      {
+        "item": "viz_xEVwg34i",
+        "type": "block",
+        "position": {
+          "x": 500,
+          "y": 1040,
+          "w": 910,
+          "h": 20
+        }
+      }
+    ]
+  },
+  "title": "BCB Architecture"
+}

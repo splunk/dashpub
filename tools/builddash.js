@@ -5,20 +5,19 @@ const { writeFile, mkdirp, remove } = require('fs-extra');
 const path = require('path');
 require('dotenv').config();
 
-async function main() {
-    const app = 'splunk-dashboard-app';
-    const dash = await loadDashboard('bcb_token_analytics_k1838q8v', app);
+const COMPONENT_CODE = `\
+import React from 'react';
+import Dashboard from '../../dashboard';
+import definition from './definition.json';
 
-    // cleanup
-    await remove(path.join(__dirname, '../public/assets'));
-    await remove(path.join(__dirname, '../api/data'));
+export default function() {
+    return <Dashboard definition={definition} />;
+}
+`;
 
-    // create required dirs
-    await mkdirp(path.join(__dirname, '../public/assets'));
-    await mkdirp(path.join(__dirname, '../api/data'));
-
+async function generateDashboard({ name, targetName = name, app }) {
+    const dash = await loadDashboard(name, app);
     const newDash = await generateCdnDataSources(dash);
-
     for (const viz of Object.values(newDash.visualizations)) {
         try {
             if (viz.type === 'viz.singlevalueicon') {
@@ -36,7 +35,37 @@ async function main() {
         newDash.layout.options.backgroundImage.src = await downloadImage(newDash.layout.options.backgroundImage.src, 'images', app);
     }
 
-    await writeFile(path.join(__dirname, '../src/definition.json'), Buffer.from(JSON.stringify(newDash, null, 2), 'utf-8'));
+    const dir = path.join(__dirname, '../src/dashboards', targetName);
+
+    await mkdirp(dir);
+    await writeFile(path.join(dir, 'definition.json'), Buffer.from(JSON.stringify(newDash, null, 2), 'utf-8'));
+    await writeFile(path.join(dir, 'index.js'), COMPONENT_CODE, 'utf-8');
+}
+
+async function main() {
+    const app = 'splunk-dashboard-app';
+
+    // cleanup
+    await remove(path.join(__dirname, '../public/assets'));
+    await remove(path.join(__dirname, '../api/data'));
+    await remove(path.join(__dirname, '../src/dashboards'));
+
+    // create required dirs
+    await mkdirp(path.join(__dirname, '../public/assets'));
+    await mkdirp(path.join(__dirname, '../api/data'));
+
+    const dashboards = ['bcb_token_analytics_k1838q8v', 'bcb_architecture_k0mw0wvq'];
+
+    for (const dashboard of dashboards) {
+        await generateDashboard({
+            name: dashboard,
+            targetName: dashboard
+                .split('_')
+                .slice(0, -1)
+                .join('_'),
+            app
+        });
+    }
 }
 
 main().catch(e => {

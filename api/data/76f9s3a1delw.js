@@ -9,5 +9,6 @@ export default makeDataFn(
         refresh: 215,
         query: 'index=xdainew to="0x4B78a47532D9e966574D30189B3dE734A232A78a" \n| timechart span=30m count'
     },
-    'splunk-dashboard-app'
+    'splunk-dashboard-app',
+    '76f9s3a1delw'
 );

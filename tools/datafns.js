@@ -3,12 +3,13 @@ const path = require('path');
 const crypto = require('crypto');
 const { spawn } = require('child_process');
 
-const createDataFnCode = queryOptions => `\
+const createDataFnCode = (queryOptions, id) => `\
     import { makeDataFn } from '../../lib/datafn';
 
     export default makeDataFn(
         ${JSON.stringify(queryOptions, null, 2)},
-        'splunk-dashboard-app'
+        'splunk-dashboard-app',
+        ${JSON.stringify(id)}
     );
 `;
 
@@ -73,7 +74,7 @@ function parseRefreshTime(refresh, defaultValue = 400) {
 
 async function generateCdnDataSource([key, ds]) {
     const id = makeId(ds.options);
-    const code = createDataFnCode({ ...ds.options, refresh: parseRefreshTime(ds.options.refresh) });
+    const code = createDataFnCode({ ...ds.options, refresh: parseRefreshTime(ds.options.refresh) }, id);
     const filename = `${id}.js`;
     await writeFile(path.join(__dirname, '../api/data', filename), code);
     await new Promise((resolve, reject) => {

@@ -2,8 +2,9 @@ import DataSource from '@splunk/datasources/DataSource';
 import DataSet from '@splunk/datasource-utils/DataSet';
 
 export default class PublicDataSource extends DataSource {
-    constructor(options = {}, context = {}) {
+    constructor(options = {}, context = {}, ...rest) {
         super(options, context);
+        console.log('PublicDataSource', options, context, ...rest);
         if (!this.options.query && !this.options.sid) {
             throw Error('query string or sid is required!');
         }
@@ -12,7 +13,8 @@ export default class PublicDataSource extends DataSource {
         this.meta = options.meta;
     }
 
-    request(requestParams = {}) {
+    request(...args) {
+        console.log(this.uri, args);
         return observer => {
             let abortController = new AbortController();
             let aborted = false;
@@ -30,7 +32,7 @@ export default class PublicDataSource extends DataSource {
                             throw new Error(`HTTP Status ${res.status}`);
                         }
                         const data = await res.json();
-
+                        console.log(data);
                         observer.next({
                             data: DataSet.fromJSONCols(data.fields, data.columns),
                             meta: {},
@@ -46,12 +48,10 @@ export default class PublicDataSource extends DataSource {
                 }
             })();
 
-            return abort;
+            return () => {
+                console.log('Terminating datasource subscription for', this.uri);
+                abort();
+            };
         };
-    }
-
-    async teardown() {
-        console.log('DS.teardown');
-        return null;
     }
 }

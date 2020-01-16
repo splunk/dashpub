@@ -7,8 +7,3 @@ export const GlobalStyle = createGlobalStyle`
         background: #666;
     }
 `;
-
-export const DashboardWrapper = styled.div`
-    min-width: 500px;
-    width: 100vw;
-`;

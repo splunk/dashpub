@@ -19,7 +19,8 @@ const PRESET = {
         absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayout'))
     },
     dataSources: {
-        'ds.cdn': CdnDataSource
+        'ds.cdn': CdnDataSource,
+        'ds.search': CdnDataSource
     },
     visualizations: {
         'viz.table': lazyViz(() => import('@splunk/dashboard-visualizations/Table')),
