@@ -31,13 +31,15 @@ function parseDataUri(dataUri) {
 const seenImages = {};
 
 async function downloadImage(src, assetType, app) {
+    if (!src) {
+        return src;
+    }
     if (src in seenImages) {
         return seenImages[src];
     }
     const [type, id] = src.split('://');
 
     if (type === 'splunk-enterprise-kvstore') {
-        console.log('Downloading image', id);
         const imgData = await splunkd(
             'GET',
             `/servicesNS/nobody/${encodeURIComponent(app)}/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(id)}`

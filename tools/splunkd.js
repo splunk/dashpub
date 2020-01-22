@@ -2,7 +2,6 @@ const fetch = require('node-fetch');
 const { XmlDocument } = require('xmldoc');
 
 const splunkd = (method, path, body) => {
-    console.log('SPLUNK', method, path);
     return fetch(`${process.env.SPLUNKD_URL}${path}`, {
         method,
         headers: {

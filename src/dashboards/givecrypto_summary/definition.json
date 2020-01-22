@@ -1,0 +1,669 @@
+{
+  "layout": {
+    "type": "absolute",
+    "options": {
+      "height": 1700,
+      "width": 1300
+    },
+    "structure": [
+      {
+        "item": "viz_b1hjytV4",
+        "type": "block",
+        "position": {
+          "x": 10,
+          "y": 30,
+          "w": 50,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_I3g4k2OI",
+        "type": "block",
+        "position": {
+          "x": 300,
+          "y": 570,
+          "w": 750,
+          "h": 670
+        }
+      },
+      {
+        "item": "viz_BZmLu6id",
+        "type": "block",
+        "position": {
+          "x": 50,
+          "y": 180,
+          "w": 550,
+          "h": 340
+        }
+      },
+      {
+        "item": "viz_MkqCkvzJ",
+        "type": "block",
+        "position": {
+          "x": 60,
+          "y": 30,
+          "w": 90,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_HwzO7gTK",
+        "type": "block",
+        "position": {
+          "x": 10,
+          "y": 0,
+          "w": 160,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_in8jMGc5",
+        "type": "block",
+        "position": {
+          "x": 440,
+          "y": 0,
+          "w": 320,
+          "h": 150
+        }
+      },
+      {
+        "item": "viz_JFYGp1pr",
+        "type": "block",
+        "position": {
+          "x": 620,
+          "y": 170,
+          "w": 150,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_gPtc6Gat",
+        "type": "block",
+        "position": {
+          "x": 820,
+          "y": 170,
+          "w": 150,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_7YhF0Kqx",
+        "type": "block",
+        "position": {
+          "x": 1040,
+          "y": 170,
+          "w": 150,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_IgQTYusP",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 210,
+          "w": 150,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_ckSOAd33",
+        "type": "block",
+        "position": {
+          "x": 820,
+          "y": 210,
+          "w": 150,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_V1iGi8Dn",
+        "type": "block",
+        "position": {
+          "x": 1020,
+          "y": 210,
+          "w": 150,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_P7aKJXPa",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 215,
+            "y": 534
+          },
+          "to": {
+            "x": 1020,
+            "y": 532
+          }
+        }
+      },
+      {
+        "item": "viz_2CX0TAS0",
+        "type": "block",
+        "position": {
+          "x": 560,
+          "y": 300,
+          "w": 610,
+          "h": 200
+        }
+      },
+      {
+        "item": "viz_ITvUJVrd",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 230,
+          "w": 1300,
+          "h": 920
+        }
+      },
+      {
+        "item": "viz_0EawpFdH",
+        "type": "block",
+        "position": {
+          "x": 360,
+          "y": 740,
+          "w": 30,
+          "h": 30
+        }
+      },
+      {
+        "item": "viz_TH5P6sgU",
+        "type": "block",
+        "position": {
+          "x": 620,
+          "y": 330,
+          "w": 230,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_5nKGylKz",
+        "type": "block",
+        "position": {
+          "x": 220,
+          "y": 1380,
+          "w": 370,
+          "h": 280
+        }
+      },
+      {
+        "item": "viz_lkFSopOn",
+        "type": "block",
+        "position": {
+          "x": 370,
+          "y": 1580,
+          "w": 120,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_4cuzjiIU",
+        "type": "block",
+        "position": {
+          "x": 610,
+          "y": 1310,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_eFDvvjz6",
+        "type": "block",
+        "position": {
+          "x": 490,
+          "y": 1380,
+          "w": 370,
+          "h": 280
+        }
+      },
+      {
+        "item": "viz_7IVgV0cT",
+        "type": "block",
+        "position": {
+          "x": 760,
+          "y": 1380,
+          "w": 370,
+          "h": 280
+        }
+      },
+      {
+        "item": "viz_qWoGOQES",
+        "type": "block",
+        "position": {
+          "x": 800,
+          "y": 620,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_g204s1Yd",
+        "type": "block",
+        "position": {
+          "x": 260,
+          "y": 840,
+          "w": 300,
+          "h": 50
+        }
+      },
+      {
+        "item": "viz_xtFGU4xU",
+        "type": "block",
+        "position": {
+          "x": 950,
+          "y": 1040,
+          "w": 160,
+          "h": 60
+        }
+      },
+      {
+        "item": "viz_VLiVXLL1",
+        "type": "block",
+        "position": {
+          "x": 270,
+          "y": 890,
+          "w": 240,
+          "h": 120
+        }
+      },
+      {
+        "item": "viz_IJoIkNXe",
+        "type": "block",
+        "position": {
+          "x": 780,
+          "y": 660,
+          "w": 240,
+          "h": 120
+        }
+      },
+      {
+        "item": "viz_fYV2NmS3",
+        "type": "block",
+        "position": {
+          "x": 880,
+          "y": 1080,
+          "w": 240,
+          "h": 120
+        }
+      },
+      {
+        "item": "viz_hD6q8I5t",
+        "type": "line",
+        "position": {
+          "from": {
+            "x": 232,
+            "y": 1284
+          },
+          "to": {
+            "x": 1037,
+            "y": 1282
+          }
+        }
+      },
+      {
+        "item": "viz_uYnF1SER",
+        "type": "block",
+        "position": {
+          "x": 170,
+          "y": 0,
+          "w": 150,
+          "h": 150
+        }
+      }
+    ]
+  },
+  "title": "GiveCrypto Summary",
+  "visualizations": {
+    "viz_b1hjytV4": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/e30de8bd196a8a13c239_5cf9404348891f69664f0614.svg"
+      }
+    },
+    "viz_I3g4k2OI": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true,
+        "src": "/assets/aed83a5ef1f232a2b558_5dd2ac2c48891f712f534fc0.png"
+      }
+    },
+    "viz_BZmLu6id": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true,
+        "src": "/assets/bcd6b4aacef3fae36c15_5dd2ac3a48891f712f534fc1.png"
+      }
+    },
+    "viz_MkqCkvzJ": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_7wAl71T4"
+      },
+      "options": {
+        "sparklinePosition": "below",
+        "trendDisplayMode": "absolute",
+        "showTrendIndicator": false
+      }
+    },
+    "viz_HwzO7gTK": {
+      "type": "viz.text",
+      "options": {
+        "content": "Live Ethereum Transactions",
+        "fontSize": 10,
+        "fontFamily": "Splunk Platform Sans"
+      }
+    },
+    "viz_in8jMGc5": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true,
+        "src": "/assets/9a1af317b5688549947e_5dd2ae1b48891f712f534fcb.png"
+      }
+    },
+    "viz_JFYGp1pr": {
+      "type": "viz.text",
+      "options": {
+        "content": "Total Recipients",
+        "fontSize": 18
+      }
+    },
+    "viz_gPtc6Gat": {
+      "type": "viz.text",
+      "options": {
+        "content": "    Ambassadors",
+        "fontSize": 18
+      }
+    },
+    "viz_7YhF0Kqx": {
+      "type": "viz.text",
+      "options": {
+        "content": "     Stores",
+        "fontSize": 18
+      }
+    },
+    "viz_IgQTYusP": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_tsmUVfLY"
+      }
+    },
+    "viz_ckSOAd33": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_ZKbP2QLo_ds_tsmUVfLY"
+      }
+    },
+    "viz_V1iGi8Dn": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_KY7Ig9AR_ds_ZKbP2QLo_ds_tsmUVfLY"
+      }
+    },
+    "viz_P7aKJXPa": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794",
+        "strokeDasharray": 20,
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_2CX0TAS0": {
+      "type": "viz.area",
+      "options": {
+        "backgroundColor": "transparent",
+        "foregroundColor": "#cccccc",
+        "fontColor": "#333333",
+        "axisTitleX.visibility": "collapsed",
+        "axisTitleY.visibility": "collapsed",
+        "seriesColors": "[0x666666]",
+        "legend.placement": "none"
+      },
+      "dataSources": {
+        "primary": "ds_DXkspdda"
+      }
+    },
+    "viz_ITvUJVrd": {
+      "type": "viz.singlevalueicon",
+      "options": {
+        "showValue": false,
+        "icon": "/assets/94e6441f8ab92af1647a_5d977ff248891f0260214e6b.svg",
+        "iconOpacity": 0.05
+      }
+    },
+    "viz_0EawpFdH": {
+      "type": "viz.ellipse",
+      "options": {
+        "fill": "#dc4e41",
+        "fillOpacity": 0.3,
+        "stroke": "transparent"
+      }
+    },
+    "viz_TH5P6sgU": {
+      "type": "viz.text",
+      "options": {
+        "content": "GiveCrypto Transactions",
+        "fontSize": 18
+      }
+    },
+    "viz_5nKGylKz": {
+      "type": "viz.singlevalueradial",
+      "options": {
+        "unit": "$",
+        "numberPrecision": 1,
+        "backgroundColor": "transparent",
+        "radialBackgroundColor": "#666666",
+        "radialStrokeColor": "#3399ff",
+        "rangeValues": [
+          0,
+          3,
+          10
+        ],
+        "rangeColors": [
+          "#333333",
+          "#333333",
+          "#333333"
+        ],
+        "unitPosition": "before"
+      },
+      "dataSources": {
+        "primary": "ds_mWnXKXTB"
+      }
+    },
+    "viz_lkFSopOn": {
+      "type": "viz.text",
+      "options": {
+        "content": "million",
+        "fontSize": 22
+      }
+    },
+    "viz_4cuzjiIU": {
+      "type": "viz.text",
+      "options": {
+        "content": "Goals"
+      }
+    },
+    "viz_eFDvvjz6": {
+      "type": "viz.singlevalueradial",
+      "options": {
+        "unit": "$",
+        "numberPrecision": 1,
+        "backgroundColor": "transparent",
+        "radialBackgroundColor": "#666666",
+        "radialStrokeColor": "#3399ff",
+        "rangeValues": [
+          0,
+          3,
+          10
+        ],
+        "rangeColors": [
+          "#333333",
+          "#333333",
+          "#333333"
+        ],
+        "unitPosition": "before"
+      },
+      "dataSources": {
+        "primary": "ds_KY7Ig9AR_ds_ZKbP2QLo_ds_tsmUVfLY"
+      }
+    },
+    "viz_7IVgV0cT": {
+      "type": "viz.singlevalueradial",
+      "options": {
+        "unit": "$",
+        "numberPrecision": 1,
+        "backgroundColor": "transparent",
+        "radialBackgroundColor": "#666666",
+        "radialStrokeColor": "#3399ff",
+        "rangeValues": [
+          0,
+          3,
+          10
+        ],
+        "rangeColors": [
+          "#333333",
+          "#333333",
+          "#333333"
+        ],
+        "unitPosition": "before"
+      },
+      "dataSources": {}
+    },
+    "viz_qWoGOQES": {
+      "type": "viz.text",
+      "options": {
+        "content": "Store Transactions"
+      }
+    },
+    "viz_g204s1Yd": {
+      "type": "viz.text",
+      "options": {
+        "content": "Peer2Peer Transactions"
+      }
+    },
+    "viz_xtFGU4xU": {
+      "type": "viz.text",
+      "options": {
+        "content": "Cashouts"
+      }
+    },
+    "viz_VLiVXLL1": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_UzIn6UBR"
+      }
+    },
+    "viz_IJoIkNXe": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_f3UyafDy"
+      }
+    },
+    "viz_fYV2NmS3": {
+      "type": "viz.singlevalue",
+      "dataSources": {
+        "primary": "ds_F9MfJFaH"
+      }
+    },
+    "viz_hD6q8I5t": {
+      "type": "abslayout.line",
+      "options": {
+        "strokeColor": "#708794",
+        "strokeDasharray": 20,
+        "strokeOpacity": 0.5
+      }
+    },
+    "viz_uYnF1SER": {
+      "type": "viz.img",
+      "options": {
+        "preserveAspectRatio": true
+      }
+    }
+  },
+  "dataSources": {
+    "ds_7wAl71T4": {
+      "type": "ds.cdn",
+      "name": "eth_txn_count",
+      "options": {
+        "query": "| cdn esuljgc3aezb",
+        "uri": "/api/data/esuljgc3aezb"
+      }
+    },
+    "ds_tsmUVfLY": {
+      "type": "ds.cdn",
+      "name": "static_991",
+      "options": {
+        "query": "| cdn ub7m12ioec9n",
+        "uri": "/api/data/ub7m12ioec9n"
+      }
+    },
+    "ds_ZKbP2QLo_ds_tsmUVfLY": {
+      "type": "ds.cdn",
+      "name": "static_41",
+      "options": {
+        "query": "| cdn etpla2yfklur",
+        "uri": "/api/data/etpla2yfklur"
+      }
+    },
+    "ds_KY7Ig9AR_ds_ZKbP2QLo_ds_tsmUVfLY": {
+      "type": "ds.cdn",
+      "name": "static_23",
+      "options": {
+        "query": "| cdn 7ed2ru73fs41",
+        "uri": "/api/data/7ed2ru73fs41"
+      }
+    },
+    "ds_DXkspdda": {
+      "type": "ds.cdn",
+      "name": "total_txn_activity",
+      "options": {
+        "query": "| cdn mpcpirrvakpw",
+        "uri": "/api/data/mpcpirrvakpw"
+      }
+    },
+    "ds_mWnXKXTB": {
+      "type": "ds.cdn",
+      "name": "static_4pt2",
+      "options": {
+        "query": "| cdn ps91hz49d7i2",
+        "uri": "/api/data/ps91hz49d7i2"
+      }
+    },
+    "ds_UzIn6UBR": {
+      "type": "ds.cdn",
+      "name": "p2p_txns",
+      "options": {
+        "query": "| cdn ezxbktymk22y",
+        "uri": "/api/data/ezxbktymk22y"
+      }
+    },
+    "ds_f3UyafDy": {
+      "type": "ds.cdn",
+      "name": "store_txns",
+      "options": {
+        "query": "| cdn 6bsnj4hh3gdd",
+        "uri": "/api/data/6bsnj4hh3gdd"
+      }
+    },
+    "ds_F9MfJFaH": {
+      "type": "ds.cdn",
+      "name": "cashout_txns",
+      "options": {
+        "query": "| cdn 86evms0vsldq",
+        "uri": "/api/data/86evms0vsldq"
+      }
+    },
+    "ds_JzxEuDNc": {
+      "type": "ds.cdn",
+      "name": "recent_transactions",
+      "options": {
+        "query": "| cdn 079qq4ajgxyr",
+        "uri": "/api/data/079qq4ajgxyr"
+      }
+    }
+  }
+}

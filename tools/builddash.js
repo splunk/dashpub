@@ -54,15 +54,17 @@ async function main() {
     await mkdirp(path.join(__dirname, '../public/assets'));
     await mkdirp(path.join(__dirname, '../api/data'));
 
-    const dashboards = ['bcb_token_analytics_k1838q8v', 'bcb_architecture_k0mw0wvq'];
+    const dashboards = ['bcb_token_analytics_k1838q8v', 'bcb_architecture_k0mw0wvq', 'givecrypto_summary_k34hq225'];
 
     for (const dashboard of dashboards) {
+        const targetName = dashboard
+            .split('_')
+            .slice(0, -1)
+            .join('_');
+        console.log(`Processing dashboard ${dashboard} => http://localhost:3000/${targetName}`);
         await generateDashboard({
             name: dashboard,
-            targetName: dashboard
-                .split('_')
-                .slice(0, -1)
-                .join('_'),
+            targetName,
             app
         });
     }

@@ -4,7 +4,7 @@ import { themes as reactUIThemes } from '@splunk/react-ui/themes';
 import { themes as dashboardCoreThemes } from '@splunk/dashboard-core';
 import { mergeThemes } from '@splunk/dashboard-themes/helper';
 
-const themeKey = 'enterpriseDark';
+const themeKey = 'enterpriseLight';
 let theme = mergeThemes(dashboardCoreThemes[themeKey], reactUIThemes[themeKey]);
 
 const themeChangeCallbacks = new Set();

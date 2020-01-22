@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import NotFound from './404';
+import Loading from './loading';
 import { GlobalStyle } from './styles.js';
 import ThemeProvider from './theme';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const loadDashboard = require.context('./dashboards', true, /\/index\.js$/, 'lazy');
 
@@ -16,14 +18,17 @@ ReactDOM.render(
                     const path = `/${k.split('/')[1]}`;
                     return (
                         <Route key={k} path={path}>
-                            <Suspense fallback={<div>Loading {path}</div>}>
+                            <Suspense fallback={<Loading />}>
                                 <Dash />
                             </Suspense>
                         </Route>
                     );
                 })}
+                <Route path="/" exact>
+                    <Redirect to="/givecrypto_summary" />
+                </Route>
                 <Route>
-                    <h1>404</h1>
+                    <NotFound />
                 </Route>
             </Switch>
         </Router>
