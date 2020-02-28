@@ -1,7 +1,0 @@
-{
-    "env": {
-        "SPLUNKD_URL": "https://multichain.splunkdlt.com:8089",
-        "SPLUNKD_USER": "spuchbauer",
-        "SPLUNKD_PASSWORD": "@multichain-password"
-    }
-}
