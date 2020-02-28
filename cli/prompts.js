@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fetch = require('node-fetch');
+const { validateAuth } = require('./splunkd');
 
 const noValidateHttpsAgent = new (require('https').Agent)({
     rejectUnauthorized: false,
@@ -70,12 +71,12 @@ const splunkdUrl = () =>
         })
         .then(({ splunkdurl }) => splunkdurl);
 
-const splunkdUsername = () =>
+const splunkdUsername = (defaultUser = 'admin') =>
     inquirer
         .prompt({
             name: 'username',
             message: 'Splunk user:',
-            default: 'admin',
+            default: defaultUser,
         })
         .then(({ username }) => username);
 
@@ -88,7 +89,7 @@ const splunkdPassword = (url, user) =>
             default: 'changeme',
             async validate(pwd) {
                 try {
-                    // todo
+                    await validateAuth({ url, user, password: pwd });
                 } catch (e) {
                     throw new Error(`Failed to validate password: ${e.message}`);
                 }
@@ -103,7 +104,9 @@ const selectDashboards = dashboards =>
             type: 'checkbox-plus',
             name: 'dashboards',
             message: 'Select one or more dashboards you want to publish',
-            // choices: dashboards.map(({ name, label, checked }) => ({ name: `${label} [${name}]`, short: label, value: name, checked })),
+            pageSize: 10,
+            highlight: true,
+            searchable: true,
             source: async (selected, input) => {
                 const search = (input || '').toLowerCase();
                 const matching = dashboards.filter(d => d.name.toLowerCase().includes(search) || d.label.toLowerCase().includes(search));

@@ -50,6 +50,7 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
 }
 
 async function generate(app, dashboards, splunkdInfo, projectFolder) {
+    console.log(`Generating ${dashboards.length} dashboards...`);
     // cleanup
     await remove(path.join(projectFolder, 'public/assets'));
     await remove(path.join(projectFolder, 'api/data/_datasources.json'));

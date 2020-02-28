@@ -1,26 +1,37 @@
 #!/usr/bin/env node
 
-const fs = require('fs-extra');
-const path = require('path');
 const { initNewProject, generateDashboards } = require('./init');
+const { getPackageJson } = require('./pkgjson');
+const { ensureAuth, updatePassword } = require('./auth');
 
 require('dotenv').config();
 
 const usage = () => {
-    console.error(`Usage: udfpub (init|update) [...options]`);
+    console.error(`Usage: udfpub (init|update|auth) [...options]`);
     process.exit(1);
 };
 
 async function main([cmd]) {
     if (cmd === 'init') {
         await initNewProject();
+    } else if (cmd === 'auth') {
+        await loadProject();
+        await updatePassword();
     } else if (cmd === 'update') {
-        const dir = process.cwd();
-        const pkg = JSON.parse(await fs.readFile(path.join(dir, 'package.json'), 'utf-8'));
-        await generateDashboards(pkg.udfpub.dashboards, {}, dir);
+        const project = await loadProject();
+        const splunkdInfo = await ensureAuth();
+        await generateDashboards(project.dashboards, splunkdInfo, process.cwd());
     } else {
         usage();
     }
+}
+
+async function loadProject() {
+    const pkg = await getPackageJson();
+    if (!pkg.udfpub) {
+        throw new Error('This project does not seem to UDFPUB-generated. Missing udfpub section in package.json');
+    }
+    return pkg.udfpub;
 }
 
 main(process.argv.slice(2)).catch(e => {

@@ -9,6 +9,11 @@ const qualifiedSearchString = query => (query.trim().startsWith('|') ? query : `
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const MIN_REFRESH_TIME = 30;
+const agent = process.env.SPLUNKD_URL.startsWith('https')
+    ? new (require('https').Agent)({
+          rejectUnauthorized: false,
+      })
+    : undefined;
 
 export default async (req, res) => {
     const id = req.query.dsid;
@@ -22,6 +27,7 @@ export default async (req, res) => {
     }
 
     const log = require('debug')(`debug:${id}`);
+    log.enabled = true;
     const { search, app } = DATASOURCES[id];
     const refresh = Math.min(MIN_REFRESH_TIME, search.refresh || 0);
 
@@ -38,12 +44,13 @@ export default async (req, res) => {
             },
             body: qs.stringify({
                 output_mode: 'json',
-                earliest_time: search.queryParameters.earliest,
-                latest_time: search.queryParameters.latest,
+                earliest_time: (search.queryParameters || {}).earliest,
+                latest_time: (search.queryParameters || {}).latest,
                 search: qualifiedSearchString(search.query),
                 reuse_max_seconds_ago: refresh,
                 timeout: refresh * 2,
             }),
+            agent,
         });
 
         if (r.status > 299) {
@@ -62,6 +69,7 @@ export default async (req, res) => {
                             'base64'
                         )}`,
                     },
+                    agent,
                 }
             ).then(r => r.json());
 
@@ -89,6 +97,7 @@ export default async (req, res) => {
                     'base64'
                 )}`,
             },
+            agent,
         }).then(r => r.json());
 
         log('Retrieved count=%d results from job sid=%s for data fn id=%s', data.columns.length, sid, id);

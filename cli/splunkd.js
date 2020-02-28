@@ -70,9 +70,19 @@ const listDashboards = async (
         }));
 };
 
+async function validateAuth({ url, user, password }) {
+    try {
+        await splunkd('GET', '/services/server/info', { url, username: user, password });
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 module.exports = {
     splunkd,
     loadDashboard,
     listDashboards,
+    validateAuth,
     qs,
 };
