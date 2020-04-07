@@ -21,7 +21,7 @@ export default async (req, res) => {
 
     if (id == null || !(id in DATASOURCES)) {
         debug('ERROR: No datasource with ID %o found', id);
-        res.status(404);
+        res.setHeader('cache-control', `s-maxage=3600`);
         res.json({ error: 'Datasource not found' });
         return;
     }

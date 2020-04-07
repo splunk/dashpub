@@ -1,33 +1,26 @@
 import DataSource from '@splunk/datasources/DataSource';
 import DataSet from '@splunk/datasource-utils/DataSet';
 
-class DataSourceManager {
-    dataSources = new Set();
-    subscribers = new Set();
-
-    register = ds => {
-        this.dataSources.add(ds);
-    };
-
-    unregister = ds => {
-        this.dataSources.delete(ds);
-    };
-
-    subscribe = callback => {
-        this.subscribers.add(callback);
-        return () => {
-            this.subscribers.delete(callback);
+async function waitForRefresh(regularInterval, backgroundInterval) {
+    if (document.visibilityState == null || document.visibilityState === 'visible') {
+        return new Promise(resolve => setTimeout(resolve, regularInterval));
+    }
+    return new Promise(resolve => {
+        let done, timer;
+        const cb = () => {
+            if (document.visibilityState === 'visible') {
+                done();
+            }
         };
-    };
-
-    trigger = () => {
-        if (!this.subscribers.size) {
-            return;
-        }
-    };
+        document.addEventListener('visibilitychange', cb);
+        done = () => {
+            clearTimeout(timer);
+            document.removeEventListener('visibilitychange', cb);
+            resolve();
+        };
+        timer = setTimeout(done, backgroundInterval);
+    });
 }
-
-export const dataSourceManager = new DataSourceManager();
 
 export default class PublicDataSource extends DataSource {
     state = { type: 'init' };
@@ -41,14 +34,7 @@ export default class PublicDataSource extends DataSource {
 
     request(...args) {
         return observer => {
-            dataSourceManager.register(this);
-            let abortController = new AbortController();
             let aborted = false;
-
-            const abort = () => {
-                aborted = true;
-                abortController.abort();
-            };
 
             (async () => {
                 let initial = true;
@@ -59,6 +45,9 @@ export default class PublicDataSource extends DataSource {
                             throw new Error(`HTTP Status ${res.status}`);
                         }
                         const data = await res.json();
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
                         observer.next({
                             data: DataSet.fromJSONCols(data.fields, data.columns),
                             meta: {},
@@ -82,13 +71,12 @@ export default class PublicDataSource extends DataSource {
                         });
                     }
                     initial = false;
-                    await new Promise(r => setTimeout(r, 10000));
+                    await waitForRefresh(30 * 1000, 600 * 1000);
                 }
             })();
 
             return () => {
-                dataSourceManager.unregister(this);
-                abort();
+                aborted = true;
             };
         };
     }

@@ -3,16 +3,19 @@ const crypto = require('crypto');
 const makeId = ds => {
     const h = crypto.createHash('sha256');
     h.write(ds.query);
-    if (ds.queryOptions) {
-        if (ds.queryOptions.earliest) {
-            h.write(ds.queryOptions.earliest);
+    if (ds.queryParameters) {
+        if (ds.queryParameters.earliest) {
+            h.write(ds.queryParameters.earliest);
         }
-        if (ds.queryOptions.latest) {
-            h.write(ds.queryOptions.latest);
+        if (ds.queryParameters.latest) {
+            h.write(ds.queryParameters.latest);
         }
-        if (ds.queryOptions.refresh) {
-            h.write(ds.queryOptions.refresh);
-        }
+    }
+    if (ds.refresh) {
+        h.write(ds.refresh);
+    }
+    if (ds.postprocess) {
+        h.write(ds.postprocess);
     }
     h.end();
     const s = h.digest('hex').slice(0, 24);
@@ -59,26 +62,26 @@ function parseRefreshTime(refresh, defaultValue = 400) {
     return defaultValue;
 }
 
-async function generateCdnDataSource([key, ds], projectDir) {
-    const id = makeId(ds.options);
-    // const code = createDataFnCode(, id);
-    // const filename = `${id}.js`;
-    // await writeFile(path.join(projectDir, 'api/data', filename), code);
-    // await new Promise((resolve, reject) => {
-    //     const p = spawn('yarn', ['prettier', '--write', path.join('api/data', filename)]);
-    //     p.on('close', code => {
-    //         if (code === 0) {
-    //             resolve();
-    //         } else {
-    //             reject(new Error(`prettier process exited with code ${code}`));
-    //         }
-    //     });
-    // });
+async function generateCdnDataSource([key, ds], allDataSources) {
+    let settings = ds.options;
+
+    if (ds.type === 'ds.chain') {
+        const base = allDataSources[ds.options.extend];
+        if (!base) {
+            throw new Error(`Unable to find base search ${ds.options.extend} for data source ${key}`);
+        }
+        settings = {
+            ...base.options,
+            postprocess: ds.options.query,
+        };
+    }
+
+    const id = makeId(settings);
 
     const dataSourceManifest = [
         id,
         {
-            search: { ...ds.options, refresh: parseRefreshTime(ds.options.refresh) },
+            search: { ...settings, refresh: parseRefreshTime(ds.options.refresh) },
             app: 'splunk-dashboard-app',
             id,
         },
@@ -99,7 +102,7 @@ async function generateCdnDataSource([key, ds], projectDir) {
 }
 
 async function generateCdnDataSources(def, projectDir) {
-    const results = await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, projectDir)));
+    const results = await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
 
     const dsManifest = Object.fromEntries(results.map(r => r[0]));
     const dataSourceDefinition = Object.fromEntries(results.map(r => r[1]));
