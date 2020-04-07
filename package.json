@@ -1,6 +1,6 @@
 {
     "name": "@splunkdlt/udfpub",
-    "version": "0.0.1-alpha2",
+    "version": "0.0.1-alpha3",
     "bin": {
         "udfpub": "./cli/cli.js"
     },
