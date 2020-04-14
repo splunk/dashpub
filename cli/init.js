@@ -42,11 +42,7 @@ Next steps:
 `;
 
 async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
-    try {
-        await generate(SPLUNK_UDF_APP, selectedDashboards, splunkdInfo, destFolder);
-    } catch (e) {
-        console.error(e);
-    }
+    await generate(SPLUNK_UDF_APP, selectedDashboards, splunkdInfo, destFolder);
 }
 
 async function initNewProject() {
