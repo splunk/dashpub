@@ -39,6 +39,10 @@ async function downloadImage(src, assetType, app, splunkdInfo, projectDir) {
     }
     const [type, id] = src.split('://');
 
+    if (type === 'https' || type === 'http') {
+        return src;
+    }
+
     if (type === 'splunk-enterprise-kvstore') {
         const imgData = await splunkd(
             'GET',

@@ -24,13 +24,18 @@ const splunkd = (
         agent: url.startsWith('https:') ? noValidateHttpsAgent : undefined,
     }).then(res => {
         if (res.status > 299) {
-            throw new Error(`Splunkd responded with HTTP status ${res.status}`);
+            throw new Error(`Splunkd responded with HTTP status ${res.status} requesting ${path}`);
         }
         return res.json();
     });
 };
 
-const extractDashboardDefinition = xmlSrc => JSON.parse(new XmlDocument(xmlSrc).childNamed('definition').val);
+const extractDashboardDefinition = xmlSrc => {
+    const doc = new XmlDocument(xmlSrc);
+    const def = JSON.parse(doc.childNamed('definition').val);
+    const theme = doc.attr['theme'];
+    return theme ? { ...def, theme } : def;
+};
 
 const loadDashboard = (
     name,
