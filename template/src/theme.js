@@ -1,30 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { themes as reactUIThemes } from '@splunk/react-ui/themes';
-import { themes as dashboardCoreThemes } from '@splunk/dashboard-core';
 import { mergeThemes } from '@splunk/dashboard-themes/helper';
 
-const themeKey = 'enterpriseLight';
-let theme = mergeThemes(dashboardCoreThemes[themeKey], reactUIThemes[themeKey]);
+const mergedThemes = {
+    enterpriseDark: mergeThemes(reactUIThemes['enterpriseDark']),
+    enterprise: mergeThemes(reactUIThemes['enterprise']),
+};
 
 const themeChangeCallbacks = new Set();
-
 export function applyTheme(themes) {
-    theme = mergeThemes(theme, themes[themeKey]);
-    themeChangeCallbacks.forEach(cb => cb());
+    for (const themeKey of Object.keys(mergedThemes)) {
+        mergedThemes[themeKey] = mergeThemes(mergedThemes[themeKey], themes[themeKey]);
+    }
+    themeChangeCallbacks.forEach((cb) => cb());
 }
 
-export default function Theme({ children }) {
+if (process.browser) {
+    import('@splunk/dashboard-core')
+        .then((core) => {
+            applyTheme(core.themes);
+        })
+        .catch((e) => {
+            console.error('Failed to apply dashboard core theme', e);
+        });
+}
+
+export default function Theme({ children, themeName = 'enterprise' }) {
+    const theme = mergedThemes[themeName];
     const [curTheme, setTheme] = useState(theme);
     useEffect(() => {
         const handler = () => {
-            setTheme(theme);
+            setTheme(mergedThemes[themeName]);
         };
         themeChangeCallbacks.add(handler);
         return () => {
             themeChangeCallbacks.delete(handler);
         };
     });
-
     return <ThemeProvider theme={curTheme}>{children}</ThemeProvider>;
 }
+
+export const baseThemeVar = (v) => ({ theme }) => theme['react-ui'].base[v];
+
+export const textColor = baseThemeVar('textColor');

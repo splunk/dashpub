@@ -53,12 +53,12 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
     console.log(`Generating ${dashboards.length} dashboards...`);
     // cleanup
     await remove(path.join(projectFolder, 'public/assets'));
-    await remove(path.join(projectFolder, 'api/data/_datasources.json'));
+    await remove(path.join(projectFolder, 'src/pages/api/data/_datasources.json'));
     await remove(path.join(projectFolder, 'src/dashboards'));
 
     // create required dirs
     await mkdirp(path.join(projectFolder, 'public/assets'));
-    await mkdirp(path.join(projectFolder, 'api/data'));
+    await mkdirp(path.join(projectFolder, 'src/pages/api/data'));
 
     let datasourcesManifest = {};
     let dashboardsManifest = {};
@@ -81,8 +81,8 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
         cli.action.stop();
     }
 
-    cli.action.start('Writing manfiest files...');
-    await writeFile(path.join(projectFolder, 'api/data/_datasources.json'), JSON.stringify(datasourcesManifest, null, 4), {
+    cli.action.start('Writing manifest files...');
+    await writeFile(path.join(projectFolder, 'src/pages/api/data/_datasources.json'), JSON.stringify(datasourcesManifest, null, 4), {
         encoding: 'utf-8',
     });
     await writeFile(path.join(projectFolder, 'src/_dashboards.json'), JSON.stringify(dashboardsManifest, null, 4), {

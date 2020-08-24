@@ -11,6 +11,7 @@ const chalk = require('chalk');
 const { updatePackageJson } = require('./pkgjson');
 const { writeDotenv } = require('./env');
 const { SPLUNK_UDF_APP } = require('./constants');
+const { initVercelProject } = require('./vercel');
 
 const toFolderName = projectName => projectName.toLowerCase().replace(/[\W_]+/g, '-');
 
@@ -22,23 +23,11 @@ Next steps:
 
 {yellow $} cd ${folderName}
 
-{gray 1) Setup the project with Now}
+{gray # Start developing}
 
-{yellow $} now
-{gray Follow the steps to set up the project}
+{yellow $} yarn dev
 
-{gray 2) Run locally}
-
-{yellow $} now dev --listen 3333
-
-{gray Open a browser at http://localhost:3333}
-
-{gray 3) Deploy to now.sh:}
-
-{yellow $} now --prod
-
-{gray 4) Push to github repository and set up the Now github integration}
-
+{gray Open a browser at http://localhost:3000}
 `;
 
 async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
@@ -53,7 +42,7 @@ async function initNewProject() {
         default: toFolderName(projectName),
     });
 
-    console.log('\nEnter information to access your dashbaords in Splunk Enterprise:');
+    console.log('\nEnter information to access your dashboards in Splunk Enterprise:');
 
     const splunkdUrl = await prompts.splunkdUrl();
     const splunkdUser = await prompts.splunkdUsername();
@@ -71,7 +60,7 @@ async function initNewProject() {
 
     const selectedDashboards = await prompts.selectDashboards(dashboards);
 
-    console.log(`\nCreating project in folder ${folderName}`);
+    console.log(`\nCreating project in ./${folderName}`);
     const srcFolder = path.join(__dirname, '..');
     const destFolder = path.join(process.cwd(), folderName);
     await fs.mkdir(destFolder);
@@ -83,23 +72,6 @@ async function initNewProject() {
     await updatePackageJson({ folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedDashboards }, { destFolder });
     await writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword }, { destFolder });
 
-    const nowSplunkdPasswordSecret = `udfpub-${folderName}-splunkd-password`;
-
-    await fs.writeFile(
-        path.join(destFolder, 'now.json'),
-        JSON.stringify(
-            {
-                env: {
-                    SPLUNKD_URL: splunkdUrl,
-                    SPLUNKD_USER: splunkdUser,
-                    SPLUNKD_PASSWORD: `@${nowSplunkdPasswordSecret}`,
-                },
-            },
-            null,
-            2
-        )
-    );
-
     await exec('yarn', ['install'], { cwd: destFolder });
     await generateDashboards(selectedDashboards, splunkdInfo, destFolder);
 
@@ -107,11 +79,11 @@ async function initNewProject() {
     await exec('git', ['add', '.'], { cwd: destFolder });
     await exec('git', ['commit', '-m', 'initialized udfpub project'], { cwd: destFolder });
 
-    if (await prompts.confirm(`Create now.sh secret [${nowSplunkdPasswordSecret}] for splunk password?`)) {
-        await exec('now', ['secret', 'add', nowSplunkdPasswordSecret, new Secret(splunkdPassword)]);
+    if (await prompts.confirm(`Setup Vercel project?`)) {
+        await initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUser, splunkdPassword });
+    } else {
+        console.log(postInitInstructions({ folderName }));
     }
-
-    console.log(postInitInstructions({ folderName }));
 }
 
 module.exports = {
