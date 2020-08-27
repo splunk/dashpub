@@ -1,8 +1,8 @@
 {
-    "name": "@splunkdlt/udfpub",
+    "name": "@splunkdlt/dashpub",
     "version": "0.0.1-alpha9",
     "bin": {
-        "udfpub": "./cli/cli.js"
+        "dashpub": "./cli/cli.js"
     },
     "dependencies": {
         "cli-ux": "^5.4.5",

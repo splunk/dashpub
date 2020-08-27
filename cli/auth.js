@@ -4,7 +4,7 @@ const { splunkdPassword } = require('./prompts');
 
 async function updatePassword() {
     const pkg = await getPackageJson();
-    const { user, url } = pkg.udfpub.splunkd;
+    const { user, url } = pkg.dashpub.splunkd;
 
     console.log(`Enter password for user ${user} at ${url}`);
     const password = await splunkdPassword(url, user);
@@ -24,7 +24,7 @@ async function ensureAuth() {
     }
 
     const pkg = await getPackageJson();
-    const { user, url } = pkg.udfpub.splunkd;
+    const { user, url } = pkg.dashpub.splunkd;
     return { username: user, url, password: process.env.SPLUNKD_PASSWORD };
 }
 

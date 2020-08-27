@@ -16,8 +16,8 @@ async function updatePackageJson(
     if (version != null) {
         pkg.version = version;
     }
-    const prev = pkg.udfpub || { splunkd: {} };
-    pkg.udfpub = {
+    const prev = pkg.dashpub || { splunkd: {} };
+    pkg.dashpub = {
         projectName: projectName || prev.projectName,
         splunkd: {
             url: splunkdUrl || prev.splunkd.url,

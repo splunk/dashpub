@@ -35,7 +35,7 @@ async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
 }
 
 async function initNewProject() {
-    console.log(`Welcome to UDFPUB, let's setup a new project.\n`);
+    console.log(`Welcome to DASHPUB, let's setup a new project.\n`);
 
     const projectName = await prompts.string('Project name:');
     const folderName = await prompts.string('Folder name:', {
@@ -77,7 +77,7 @@ async function initNewProject() {
 
     await exec('git', ['init'], { cwd: destFolder });
     await exec('git', ['add', '.'], { cwd: destFolder });
-    await exec('git', ['commit', '-m', 'initialized udfpub project'], { cwd: destFolder });
+    await exec('git', ['commit', '-m', 'initialized dashpub project'], { cwd: destFolder });
 
     if (await prompts.confirm(`Setup Vercel project?`)) {
         await initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUser, splunkdPassword });

@@ -32,7 +32,7 @@ Next steps:
 `;
 
 async function initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUser, splunkdPassword = process.env.SPLUNKD_PASSWORD }) {
-    const nowSplunkdPasswordSecret = `udfpub-${folderName}-splunkd-password`;
+    const nowSplunkdPasswordSecret = `dashpub-${folderName}-splunkd-password`;
     await fs.writeFile(
         path.join(destFolder, 'vercel.json'),
         JSON.stringify(

@@ -7,7 +7,7 @@ const { ensureAuth, updatePassword } = require('./auth');
 require('dotenv').config();
 
 const usage = () => {
-    console.error(`Usage: udfpub (init|update|auth) [...options]`);
+    console.error(`Usage: dashpub (init|update|auth) [...options]`);
     process.exit(1);
 };
 
@@ -28,10 +28,10 @@ async function main([cmd]) {
 
 async function loadProject() {
     const pkg = await getPackageJson();
-    if (!pkg.udfpub) {
-        throw new Error('This project does not seem to UDFPUB-generated. Missing udfpub section in package.json');
+    if (!pkg.dashpub) {
+        throw new Error('This project does not seem to dashpub-generated. Missing dashpub section in package.json');
     }
-    return pkg.udfpub;
+    return pkg.dashpub;
 }
 
 main(process.argv.slice(2)).catch(e => {
