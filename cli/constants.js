@@ -1,5 +1,5 @@
-const SPLUNK_UDF_APP = 'splunk-dashboard-app';
+const SPLUNK_DASHBOARDS_APP = 'splunk-dashboard-app';
 
 module.exports = {
-    SPLUNK_UDF_APP,
+    SPLUNK_DASHBOARDS_APP,
 };

@@ -10,7 +10,7 @@ const { generate } = require('./builddash');
 const chalk = require('chalk');
 const { updatePackageJson } = require('./pkgjson');
 const { writeDotenv } = require('./env');
-const { SPLUNK_UDF_APP } = require('./constants');
+const { SPLUNK_DASHBOARDS_APP } = require('./constants');
 const { initVercelProject } = require('./vercel');
 
 const toFolderName = projectName => projectName.toLowerCase().replace(/[\W_]+/g, '-');
@@ -21,7 +21,7 @@ const postInitInstructions = ({ folderName }) => chalk`
 
 Next steps:
 
-{yellow $} cd ${folderName}
+{yellow $} cd ./${folderName}
 
 {gray # Start developing}
 
@@ -31,7 +31,7 @@ Next steps:
 `;
 
 async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
-    await generate(SPLUNK_UDF_APP, selectedDashboards, splunkdInfo, destFolder);
+    await generate(SPLUNK_DASHBOARDS_APP, selectedDashboards, splunkdInfo, destFolder);
 }
 
 async function initNewProject() {
@@ -54,9 +54,9 @@ async function initNewProject() {
         password: splunkdPassword,
     };
 
-    cli.action.start('Loading dashbaords');
-    const dashboards = await splunkd.listDashboards(SPLUNK_UDF_APP, splunkdInfo);
-    cli.action.stop(`found ${dashboards.length} UDF dashboards`);
+    cli.action.start('Loading dashboards');
+    const dashboards = await splunkd.listDashboards(SPLUNK_DASHBOARDS_APP, splunkdInfo);
+    cli.action.stop(`found ${dashboards.length} dashboards`);
 
     const selectedDashboards = await prompts.selectDashboards(dashboards);
 
