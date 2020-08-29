@@ -4,14 +4,15 @@
 
 ## Prerequisites
 
-Node.js 12+, NPM, Yarn
+-   Node.js 12+, NPM, Yarn
+-   [Vercel CLI](https://vercel.com/download) if you want to publish on Vercel
 
 ## Get started
 
 1. Install `dashpub` CLI globally
 
 ```sh-session
-$ npm i -g @splunkdlt/dashpub
+$ npm i -g @splunk/dashpub
 ```
 
 2. Initialize a new project
