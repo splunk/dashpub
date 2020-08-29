@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
 import ThemeProvider, { baseThemeVar } from '../theme';
+import { startAutoUpdateCheck } from '../autoupdate';
 
 const TITLE_SUFFIX = 'Splunk Dashboard';
 
@@ -36,6 +37,10 @@ export default function Page({
     baseUrl,
     children,
 }) {
+    useEffect(() => {
+        startAutoUpdateCheck();
+    }, []);
+
     return (
         <>
             <Head>

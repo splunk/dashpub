@@ -4,6 +4,9 @@ const DATASOURCES = require('./_datasources.json');
 const debug = require('debug')('datafn');
 debug.enabled = true;
 
+const USE_SNAPSHOT = process.env.USE_DATA_SNAPSHOTS;
+let SNAPSHOTS = USE_SNAPSHOT ? require('./_snapshot.json') : null;
+
 const qualifiedSearchString = (query) => (query.trim().startsWith('|') ? query : `search ${query}`);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -34,6 +37,22 @@ export default async (req, res) => {
     const resultMeta = {};
 
     try {
+        if (USE_SNAPSHOT) {
+            log('Looking for snapshot of datasource %s', id);
+            const data = SNAPSHOTS[id];
+
+            if (data) {
+                res.setHeader('cache-control', `s-maxage=${refresh}, stale-while-revalidate`);
+                const { columns, fields } = data;
+                res.json({ fields, columns, ...resultMeta });
+            } else {
+                log('Error: no snapshot for datasource %s found', id);
+                res.status(500);
+                res.json({ error: 'Failed to fetch data' });
+            }
+            return;
+        }
+
         log('Executing search for data fn', id);
         const SERVICE_PREFIX = `servicesNS/${encodeURIComponent(process.env.SPLUNKD_USER)}/${encodeURIComponent(app)}`;
         const r = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs`, {

@@ -3,11 +3,12 @@
 const { initNewProject, generateDashboards } = require('./init');
 const { getPackageJson } = require('./pkgjson');
 const { ensureAuth, updatePassword } = require('./auth');
+const { takeDataSnapshot, clearSnapshot } = require('./snapshot');
 
 require('dotenv').config();
 
 const usage = () => {
-    console.error(`Usage: dashpub (init|update|auth) [...options]`);
+    console.error(`Usage: dashpub (init|update|auth|snapshot) [...options]`);
     process.exit(1);
 };
 
@@ -21,6 +22,15 @@ async function main([cmd]) {
         const project = await loadProject();
         const splunkdInfo = await ensureAuth();
         await generateDashboards(project.dashboards, splunkdInfo, process.cwd());
+        if (project.settings.useDataSnapshots) {
+            await takeDataSnapshot(process.cwd(), project, splunkdInfo);
+        } else {
+            await clearSnapshot(process.cwd());
+        }
+    } else if (cmd === 'snapshot') {
+        const project = await loadProject();
+        const splunkdInfo = await ensureAuth();
+        await takeDataSnapshot(process.cwd(), project, splunkdInfo);
     } else {
         usage();
     }
