@@ -6,7 +6,7 @@ async function getPackageJson(folder = process.cwd()) {
 }
 
 async function updatePackageJson(
-    { folderName, version, projectName, splunkdUrl, splunkdUser, selectedDashboards },
+    { folderName, version, projectName, splunkdUrl, splunkdUser, selectedDashboards, settings },
     { destFolder = process.cwd() } = {}
 ) {
     const pkg = await getPackageJson(destFolder);
@@ -16,9 +16,16 @@ async function updatePackageJson(
     if (version != null) {
         pkg.version = version;
     }
-    const prev = pkg.udfpub || { splunkd: {} };
-    pkg.udfpub = {
+    const prev = pkg.dashpub || { splunkd: {} };
+    pkg.dashpub = {
         projectName: projectName || prev.projectName,
+        settings: Object.assign(
+            {
+                useDataSnapshots: false,
+            },
+            prev.settings,
+            settings
+        ),
         splunkd: {
             url: splunkdUrl || prev.splunkd.url,
             user: splunkdUser || prev.splunkd.user,

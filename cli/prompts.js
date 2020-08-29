@@ -31,8 +31,7 @@ const splunkdUrl = () =>
         .prompt({
             name: 'splunkdurl',
             message: 'Enter the splunkd URL of the splunk service you want to connect to:',
-            default: 'https://localhost:8089',
-            // default: 'https://my.splunkserver.com:8089',
+            default: 'https://my.splunkserver.com:8089',
 
             validate: async input => {
                 if (input === 'https://my.splunkserver.com:8089') {

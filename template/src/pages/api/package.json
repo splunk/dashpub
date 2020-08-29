@@ -1,0 +1,8 @@
+{
+    "name": "dashboards-api",
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+        "now-build": "cd .. && node scripts/compute-build-id.js"
+    }
+}

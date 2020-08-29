@@ -3,10 +3,12 @@ const qs = require('querystring');
 const DATASOURCES = require('./_datasources.json');
 const debug = require('debug')('datafn');
 debug.enabled = true;
-debug(debug.extend);
 
-const qualifiedSearchString = query => (query.trim().startsWith('|') ? query : `search ${query}`);
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const USE_SNAPSHOT = process.env.USE_DATA_SNAPSHOTS;
+let SNAPSHOTS = USE_SNAPSHOT ? require('./_snapshot.json') : null;
+
+const qualifiedSearchString = (query) => (query.trim().startsWith('|') ? query : `search ${query}`);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const MIN_REFRESH_TIME = 30;
 const agent = process.env.SPLUNKD_URL.startsWith('https')
@@ -28,10 +30,29 @@ export default async (req, res) => {
 
     const log = require('debug')(`debug:${id}`);
     log.enabled = true;
+
     const { search, app } = DATASOURCES[id];
+    let query = search.query;
     const refresh = Math.min(MIN_REFRESH_TIME, search.refresh || 0);
+    const resultMeta = {};
 
     try {
+        if (USE_SNAPSHOT) {
+            log('Looking for snapshot of datasource %s', id);
+            const data = SNAPSHOTS[id];
+
+            if (data) {
+                res.setHeader('cache-control', `s-maxage=${refresh}, stale-while-revalidate`);
+                const { columns, fields } = data;
+                res.json({ fields, columns, ...resultMeta });
+            } else {
+                log('Error: no snapshot for datasource %s found', id);
+                res.status(500);
+                res.json({ error: 'Failed to fetch data' });
+            }
+            return;
+        }
+
         log('Executing search for data fn', id);
         const SERVICE_PREFIX = `servicesNS/${encodeURIComponent(process.env.SPLUNKD_USER)}/${encodeURIComponent(app)}`;
         const r = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs`, {
@@ -46,7 +67,7 @@ export default async (req, res) => {
                 output_mode: 'json',
                 earliest_time: (search.queryParameters || {}).earliest,
                 latest_time: (search.queryParameters || {}).latest,
-                search: qualifiedSearchString(search.query),
+                search: qualifiedSearchString(query),
                 reuse_max_seconds_ago: refresh,
                 timeout: refresh * 2,
             }),
@@ -71,7 +92,7 @@ export default async (req, res) => {
                     },
                     agent,
                 }
-            ).then(r => r.json());
+            ).then((r) => r.json());
 
             const jobStatus = statusData.entry[0].content;
             if (jobStatus.isFailed) {
@@ -87,8 +108,9 @@ export default async (req, res) => {
 
         const resultsQs = qs.stringify({
             output_mode: 'json_cols',
-            count: 10000,
+            count: 50000,
             offset: 0,
+            search: search.postprocess,
         });
         const data = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs/${sid}/results?${resultsQs}`, {
             method: 'GET',
@@ -98,12 +120,12 @@ export default async (req, res) => {
                 )}`,
             },
             agent,
-        }).then(r => r.json());
+        }).then((r) => r.json());
 
         log('Retrieved count=%d results from job sid=%s for data fn id=%s', data.columns.length, sid, id);
         res.setHeader('cache-control', `s-maxage=${refresh}, stale-while-revalidate`);
         const { columns, fields } = data;
-        res.json({ fields, columns });
+        res.json({ fields, columns, ...resultMeta });
     } catch (e) {
         log('Error fetching data for data fn %s', id, e);
         res.status(500);
