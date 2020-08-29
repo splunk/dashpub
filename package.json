@@ -1,6 +1,6 @@
 {
-    "name": "@splunkdlt/dashpub",
-    "version": "0.0.1-alpha9",
+    "name": "@splunk/dashpub",
+    "version": "0.0.1-alpha1",
     "bin": {
         "dashpub": "./cli/cli.js"
     },
