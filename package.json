@@ -21,5 +21,8 @@
         "querystring": "^0.2.0",
         "sharp": "^0.25.2",
         "xmldoc": "^1.1.2"
+    },
+    "scripts": {
+        "update:license-report": "yarn licenses list > license_report.txt"
     }
 }
