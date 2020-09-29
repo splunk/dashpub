@@ -6,12 +6,21 @@ const { cli } = require('cli-ux');
 const path = require('path');
 
 const COMPONENT_CODE = `\
-import React from 'react';
-import Dashboard from '../../dashboard';
+import React, { lazy, Suspense } from 'react';
+import Loading from '../../components/loading';
+import NoSSR from '../../components/nossr';
 import definition from './definition.json';
 
-export default function() {
-    return <Dashboard definition={definition} />;
+const Dashboard = lazy(() => import('../../components/dashboard'));
+
+export default function () {
+    return (
+        <NoSSR>
+            <Suspense fallback={<Loading />}>
+                <Dashboard definition={definition} />
+            </Suspense>
+        </NoSSR>
+    );
 }
 `;
 
