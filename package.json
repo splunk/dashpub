@@ -1,10 +1,7 @@
 {
     "name": "@splunk/dashpub",
-    "version": "0.0.1-alpha1",
+    "version": "0.0.1-alpha2",
     "license": "UNLICENSED",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
-    },
     "bin": {
         "dashpub": "./cli/cli.js"
     },
