@@ -1,4 +1,4 @@
-import Document, { Main, Head, NextScript } from 'next/document';
+import Document, { Main, Html, Head, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <html lang="en">
+            <Html lang="en">
                 <Head>
                     <style
                         dangerouslySetInnerHTML={{
@@ -90,7 +90,7 @@ export default class MyDocument extends Document {
                     <Main />
                     <NextScript />
                 </body>
-            </html>
+            </Html>
         );
     }
 }

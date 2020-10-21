@@ -1,9 +1,12 @@
 {
     "name": "@splunk/dashpub",
-    "version": "0.0.1-alpha1",
-    "license": "UNLICENSED",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+    "version": "0.0.1-alpha4",
+    "license": "Apache-2.0",
+    "description": "Generate next.js apps to publish Splunk dashboards",
+    "homepage": "https://github.com/splunk/dashpub",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/splunk/dashpub.git"
     },
     "bin": {
         "dashpub": "./cli/cli.js"
