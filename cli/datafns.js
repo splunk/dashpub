@@ -18,7 +18,9 @@ const crypto = require('crypto');
 
 const makeId = ds => {
     const h = crypto.createHash('sha256');
-    h.write(ds.query);
+    if (ds.query) {
+        h.write(ds.query);
+    }
     if (ds.queryParameters) {
         if (ds.queryParameters.earliest) {
             h.write(ds.queryParameters.earliest);
@@ -92,6 +94,10 @@ async function generateCdnDataSource([key, ds], allDataSources) {
         };
     }
 
+    if (!settings.query) {
+        return null;
+    }
+
     const id = makeId(settings);
 
     const dataSourceManifest = [
@@ -118,7 +124,13 @@ async function generateCdnDataSource([key, ds], allDataSources) {
 }
 
 async function generateCdnDataSources(def, projectDir) {
-    const results = await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
+    const results = []; //await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
+    for (const e of Object.entries(def.dataSources || {})) {
+        const res = await generateCdnDataSource(e, def.dataSources);
+        if (res != null) {
+            results.push(res);
+        }
+    }
 
     const dsManifest = Object.fromEntries(results.map(r => r[0]));
     const dataSourceDefinition = Object.fromEntries(results.map(r => r[1]));
