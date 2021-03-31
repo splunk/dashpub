@@ -35,7 +35,7 @@
         "@splunk/visualizations": "20.4.0",
         "@splunk/visualizations-shared": "20.4.0",
         "fast-text-encoding": "^1.0.2",
-        "next": "^9.3.6",
+        "next": "^9.5.4",
         "prettier": "^2.0.5",
         "querystring": "^0.2.0",
         "react": "^16.13.1",
