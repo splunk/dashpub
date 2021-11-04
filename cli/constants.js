@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const SPLUNK_DASHBOARDS_APP = 'splunk-dashboard-app';
+const SPLUNK_DASHBOARDS_APP = 'search';
 
 module.exports = {
     SPLUNK_DASHBOARDS_APP,

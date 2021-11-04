@@ -17,19 +17,14 @@ limitations under the License.
 import React, { useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
-import ThemeProvider, { baseThemeVar } from '../theme';
 import { startAutoUpdateCheck } from '../autoupdate';
+import { SplunkThemeProvider, variables } from '@splunk/themes';
 
 const TITLE_SUFFIX = 'Splunk Dashboard';
 
-const THEME_MAP = {
-    light: 'enterprise',
-    dark: 'enterpriseDark',
-};
-
 const GlobalBackgroundStyle = createGlobalStyle`
     html, body {
-        background-color: ${(props) => props.backgroundColor || baseThemeVar('backgroundColor')(props)};
+        background-color: ${(props) => props.backgroundColor || variables.backgroundColor(props)};
     }
 `;
 
@@ -84,10 +79,10 @@ export default function Page({
                 )}
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <ThemeProvider themeName={THEME_MAP[theme]}>
+            <SplunkThemeProvider family="enterprise" colorScheme={theme}>
                 <GlobalBackgroundStyle backgroundColor={backgroundColor} />
                 {children}
-            </ThemeProvider>
+            </SplunkThemeProvider>
         </>
     );
 }

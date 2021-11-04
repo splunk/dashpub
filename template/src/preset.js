@@ -17,7 +17,6 @@ limitations under the License.
 import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
-import { applyTheme } from './theme';
 import { polyfillTextDecoder } from './polyfills';
 
 const fixRequestParams = (LazyComponent) => (props) => {
@@ -28,10 +27,7 @@ const fixRequestParams = (LazyComponent) => (props) => {
     return <LazyComponent {...props} />;
 };
 
-// mirrors preset flags that are added in default VisualizationPreset
-// https://cd.splunkdev.com/devplat/dashboard-framework/-/blob/0a4d0726f6eb0d95b1be6b9535eeb479db34dbe7/packages/dashboard-presets/src/VisualizationPresets.js#L56
-const fixPresetFlags = (LazyComponent) => {
-    // LazyComponent.showLastUpdated = true;
+const commonFlags = (LazyComponent) => {
     LazyComponent.showProgressBar = true;
     LazyComponent.showTitleAndDescription = true;
     LazyComponent.showLastUpdated = true;
@@ -39,14 +35,7 @@ const fixPresetFlags = (LazyComponent) => {
 };
 
 const lazyViz = (fn) => {
-    return lazy(() =>
-        fn().then((res) => {
-            if (res.themes) {
-                applyTheme(res.themes);
-            }
-            return res;
-        })
-    );
+    return lazy(fn);
 };
 
 const PRESET = {
@@ -60,32 +49,57 @@ const PRESET = {
         'drilldown.customUrl': DrilldownHandler,
     },
     visualizations: {
+        // legacy
         'abslayout.line': lazyViz(() => import('@splunk/dashboard-layouts/visualizations/ConnectedLine'), true),
-        'viz.area': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Area'))),
-        'viz.bar': fixPresetFlags(fixRequestParams(lazyViz(() => import('@splunk/dashboard-visualizations/Bar')))),
-        'viz.bubble': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Bubble'))),
-        'viz.choropleth.svg': fixPresetFlags(
+        'viz.area': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Area'))),
+        'viz.bar': commonFlags(fixRequestParams(lazyViz(() => import('@splunk/dashboard-visualizations/Bar')))),
+        'viz.bubble': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Bubble'))),
+        'viz.choropleth.svg': commonFlags(
             lazyViz(() => polyfillTextDecoder().then(() => import('@splunk/dashboard-visualizations/ChoroplethSvg')))
         ),
-        'viz.column': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Column'))),
+        'viz.column': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Column'))),
         'viz.ellipse': lazyViz(() => import('@splunk/dashboard-visualizations/Ellipse')),
-        'viz.fillergauge': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/FillerGauge'))),
-        'viz.geojson.us': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Choropleth'))),
-        'viz.geojson.world': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Choropleth'))),
+        'viz.fillergauge': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/FillerGauge'))),
+        'viz.geojson.us': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Choropleth'))),
+        'viz.geojson.world': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Choropleth'))),
         'viz.img': lazyViz(() => import('@splunk/dashboard-visualizations/Image'), true),
-        'viz.line': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Line'))),
+        'viz.line': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Line'))),
         'viz.markdown': lazyViz(() => import('@splunk/dashboard-visualizations/Markdown'), true),
-        'viz.markergauge': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/MarkerGauge'))),
-        'viz.pie': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Pie'))),
-        'viz.punchcard': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Punchcard'))),
-        'viz.radialgauge': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/RadialGauge'))),
+        'viz.markergauge': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/MarkerGauge'))),
+        'viz.pie': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Pie'))),
+        'viz.punchcard': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Punchcard'))),
+        'viz.radialgauge': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/RadialGauge'))),
         'viz.rectangle': lazyViz(() => import('@splunk/dashboard-visualizations/Rectangle')),
-        'viz.scatter': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Scatter'))),
-        'viz.singlevalue': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/SingleValue'))),
+        'viz.scatter': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/Scatter'))),
+        'viz.singlevalue': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/SingleValue'))),
         'viz.singlevalueicon': lazyViz(() => import('@splunk/dashboard-visualizations/SingleValueIcon')),
-        'viz.singlevalueradial': fixPresetFlags(lazyViz(() => import('@splunk/dashboard-visualizations/SingleValueRadial'))),
-        'viz.table': fixPresetFlags(fixRequestParams(lazyViz(() => import('@splunk/dashboard-visualizations/Table')))),
+        'viz.singlevalueradial': commonFlags(lazyViz(() => import('@splunk/dashboard-visualizations/SingleValueRadial'))),
+        'viz.table': commonFlags(fixRequestParams(lazyViz(() => import('@splunk/dashboard-visualizations/Table')))),
         'viz.text': lazyViz(() => import('@splunk/dashboard-visualizations/Text')),
+
+        // default splunk visualizations
+        'splunk.area': commonFlags(lazyViz(() => import('@splunk/visualizations/Area'))),
+        'splunk.bar': commonFlags(lazyViz(() => import('@splunk/visualizations/Bar'))),
+        'splunk.bubble': commonFlags(lazyViz(() => import('@splunk/visualizations/Bubble'))),
+        'splunk.choropleth.svg': commonFlags(lazyViz(() => import('@splunk/visualizations/ChoroplethSvg'))),
+        'splunk.column': commonFlags(lazyViz(() => import('@splunk/visualizations/Column'))),
+        'splunk.ellipse': commonFlags(lazyViz(() => import('@splunk/visualizations/Ellipse'))),
+        'splunk.fillergauge': commonFlags(lazyViz(() => import('@splunk/visualizations/FillerGauge'))),
+        'splunk.image': commonFlags(lazyViz(() => import('@splunk/visualizations/Image'))),
+        'splunk.line': commonFlags(lazyViz(() => import('@splunk/visualizations/Line'))),
+        'splunk.linkgraph': commonFlags(lazyViz(() => import('@splunk/visualizations/LinkGraph'))),
+        'splunk.markdown': commonFlags(lazyViz(() => import('@splunk/visualizations/Markdown'))),
+        'splunk.markergauge': commonFlags(lazyViz(() => import('@splunk/visualizations/MarkerGauge'))),
+        'splunk.parallelcoordinates': commonFlags(lazyViz(() => import('@splunk/visualizations/ParallelCoordinates'))),
+        'splunk.pie': commonFlags(lazyViz(() => import('@splunk/visualizations/Pie'))),
+        'splunk.punchcard': commonFlags(lazyViz(() => import('@splunk/visualizations/Punchcard'))),
+        'splunk.rectangle': commonFlags(lazyViz(() => import('@splunk/visualizations/Rectangle'))),
+        'splunk.sankey': commonFlags(lazyViz(() => import('@splunk/visualizations/Sankey'))),
+        'splunk.scatter': commonFlags(lazyViz(() => import('@splunk/visualizations/Scatter'))),
+        'splunk.singlevalue': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValue'))),
+        'splunk.singlevalueicon': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueIcon'))),
+        'splunk.singlevalueradial': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueRadial'))),
+        'splunk.table': commonFlags(lazyViz(() => import('@splunk/visualizations/Table'))),
     },
 };
 
