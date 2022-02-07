@@ -18,6 +18,7 @@ import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
 import { polyfillTextDecoder } from './polyfills';
+import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
 
 const fixRequestParams = (LazyComponent) => (props) => {
     if (props.dataSources.primary && !props.dataSources.primary.requestParams) {
@@ -100,6 +101,13 @@ const PRESET = {
         'splunk.singlevalueicon': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueIcon'))),
         'splunk.singlevalueradial': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueRadial'))),
         'splunk.table': commonFlags(lazyViz(() => import('@splunk/visualizations/Table'))),
+    },
+    inputs:{
+        'input.dropdown': DropdownInput,
+        'input.timerange': TimeRangeInput,
+        'input.text': TextInput,
+        'input.number': NumberInput,
+        'input.multiselect': MultiselectInput,
     },
 };
 

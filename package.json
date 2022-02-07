@@ -8,9 +8,7 @@
         "type": "git",
         "url": "https://github.com/splunk/dashpub.git"
     },
-    "bin": {
-        "dashpub": "./cli/cli.js"
-    },
+    "bin": "./cli/cli.js",
     "dependencies": {
         "cli-ux": "^5.4.5",
         "debug": "^4.1.1",
