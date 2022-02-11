@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const INTERNAL_LINK_PREFIX = '/en-US/app/splunk-dashboard-app/';
+const INTERNAL_LINK_PREFIX = '/en-US/app/search/';
 
 export default class DrilldownHandler {
     constructor(options = {}) {

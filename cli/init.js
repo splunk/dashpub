@@ -70,7 +70,7 @@ async function initNewProject() {
         password: splunkdPassword,
     };
 
-    cli.action.start('Loading dashboards');
+    cli.action.start(`Loading dashboards from ${SPLUNK_DASHBOARDS_APP} app`);
     const dashboards = await splunkd.listDashboards(SPLUNK_DASHBOARDS_APP, splunkdInfo);
     cli.action.stop(`found ${dashboards.length} dashboards`);
 
