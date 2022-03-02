@@ -17,14 +17,15 @@ limitations under the License.
 const fs = require('fs-extra');
 const path = require('path');
 
-async function writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword }, { destFolder = process.cwd() } = {}) {
-    console.log('Writing splunkd password to .env');
+async function writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword, splunkdToken }, { destFolder = process.cwd() } = {}) {
+    console.log('Writing splunkd credentials to .env');
     await fs.writeFile(
         path.join(destFolder, '.env'),
         [
             `SPLUNKD_URL=${splunkdUrl}`,
             `SPLUNKD_USER=${splunkdUser}`,
             `SPLUNKD_PASSWORD=${splunkdPassword}`,
+            `SPLUNKD_TOKEN=${splunkdToken}`,
             'BROWSER=none',
             '',
         ].join('\n'),
