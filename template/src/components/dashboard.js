@@ -97,7 +97,6 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
         return geoRegistry;
     }, []);
 
-    const testRef = useRef();
     useEffect(() => {
         const readyDep = registerScreenshotReadinessDep('DASH');
         const t = setTimeout(() => readyDep.ready(), 500);
@@ -105,14 +104,13 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
             clearTimeout(t);
             readyDep.remove();
         };
-    }, [testRef]);
+    }, []);
 
     return (
         <DashboardContextProvider geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
             <Suspense fallback={<Loading />}>
                 <SayCheese />
                 <DashboardCore
-                    ref={testRef}
                     preset={preset || defaultPreset}
                     definition={processedDef}
                     mode="view"

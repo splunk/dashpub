@@ -37,7 +37,8 @@ async function main([cmd]) {
     } else if (cmd === 'update') {
         const project = await loadProject();
         const splunkdInfo = await ensureAuth();
-        await generateDashboards(project.dashboards, splunkdInfo, process.cwd());
+        const app = project.app || "search"
+        await generateDashboards(project.dashboards, app, splunkdInfo, process.cwd());
         if (project.settings.useDataSnapshots) {
             await takeDataSnapshot(process.cwd(), project, splunkdInfo);
         } else {

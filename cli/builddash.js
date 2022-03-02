@@ -46,10 +46,10 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
     for (const viz of Object.values(newDash.visualizations || {})) {
         try {
             if (viz.type === 'viz.singlevalueicon') {
-                viz.options.icon = await downloadImage(viz.options.icon, 'icons', app, splunkdInfo, projectFolder);
+                viz.options.icon = await downloadImage(viz.options.icon, 'icons', splunkdInfo, projectFolder);
             }
             if (viz.type === 'viz.img') {
-                viz.options.src = await downloadImage(viz.options.src, 'images', app, splunkdInfo, projectFolder);
+                viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
             }
         } catch (e) {
             console.error(`Failed to download image ${viz.options.icon || viz.options.src}`, e);
@@ -60,7 +60,6 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
         newDash.layout.options.backgroundImage.src = await downloadImage(
             newDash.layout.options.backgroundImage.src,
             'images',
-            app,
             splunkdInfo,
             projectFolder
         );
