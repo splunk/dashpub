@@ -106,7 +106,7 @@ async function downloadImage(src, assetType, splunkdInfo, projectDir) {
     if (type === 'splunk-enterprise-kvstore') {
         const imgData = await splunkd(
             'GET',
-            `/servicesNS/nobody/${encodeURIComponent(constants.SPLUNK_DASHBOARDS_APP)/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(id)}`,
+            `/servicesNS/nobody/splunk-dashboard-studio/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(id)}`,
             splunkdInfo
         );
 
