@@ -52,7 +52,7 @@ const postInitInstructions = ({ folderName }) => chalk`
 
 async function initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUser, splunkdPassword = process.env.SPLUNKD_PASSWORD }) {
     const nowSplunkdPasswordSecret = `dashpub-${folderName}-splunkd-password`;
-
+    const nowSplunkdTokenSecret = `dashpub-${folderName}-splunkd-token`;
     cli.action.start('Creating vercel.json');
     await fs.writeFile(
         path.join(destFolder, 'vercel.json'),
@@ -63,6 +63,7 @@ async function initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUs
                     SPLUNKD_URL: splunkdUrl,
                     SPLUNKD_USER: splunkdUser,
                     SPLUNKD_PASSWORD: `@${nowSplunkdPasswordSecret}`,
+                    SPLUNKD_TOKEN: `@${nowSplunkdTokenSecret}`,
                 },
             },
             null,
@@ -72,6 +73,7 @@ async function initVercelProject({ folderName, destFolder, splunkdUrl, splunkdUs
     cli.action.stop();
 
     await exec('vercel', ['secret', 'add', nowSplunkdPasswordSecret, new Secret(splunkdPassword)]);
+    await exec('vercel', ['secret', 'add', nowSplunkdTokenSecret, new Secret(splunkdToken)]);
     await exec('git', ['add', '.'], { cwd: destFolder });
     await exec('git', ['commit', '-m', 'initialized vercel project'], { cwd: destFolder });
 
