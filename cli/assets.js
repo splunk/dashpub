@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 const { splunkd } = require('./splunkd');
+const { constants } = require('./constants');
 const { writeFile } = require('fs-extra');
 const sharp = require('sharp');
 const crypto = require('crypto');
@@ -81,7 +82,7 @@ async function storeImage(data, mimeType, { name = 'img', projectDir }) {
     return filename;
 }
 
-async function downloadImage(src, assetType, splunkdInfo, projectDir) {
+async function downloadImage(src, assetType, app, splunkdInfo, projectDir) {
     if (!src) {
         return src;
     }
@@ -105,7 +106,9 @@ async function downloadImage(src, assetType, splunkdInfo, projectDir) {
     if (type === 'splunk-enterprise-kvstore') {
         const imgData = await splunkd(
             'GET',
-            `/servicesNS/nobody/splunk-dashboard-studio/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(id)}`,
+            `/servicesNS/nobody/${encodeURIComponent(app)}/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(
+                id
+            )}`,
             splunkdInfo
         );
 

@@ -46,8 +46,8 @@ Next steps:
 {gray Open a browser at http://localhost:3000}
 `;
 
-async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
-    await generate(SPLUNK_DASHBOARDS_APP, selectedDashboards, splunkdInfo, destFolder);
+async function generateDashboards(selectedDashboards, app, splunkdInfo, destFolder) {
+    await generate(app, selectedDashboards, splunkdInfo, destFolder);
 }
 
 async function initNewProject() {
@@ -61,17 +61,35 @@ async function initNewProject() {
     console.log('\nEnter information to access your dashboards in Splunk Enterprise:');
 
     const splunkdUrl = await prompts.splunkdUrl();
-    const splunkdUser = await prompts.splunkdUsername();
-    const splunkdPassword = await prompts.splunkdPassword(splunkdUrl, splunkdUser);
+    const splunkdToken = await prompts.splunkdToken(splunkdUrl);
 
-    const splunkdInfo = {
-        url: splunkdUrl,
-        username: splunkdUser,
-        password: splunkdPassword,
-    };
+    let splunkdInfo, splunkdUser, splunkdPassword;
 
-    cli.action.start(`Loading dashboards from ${SPLUNK_DASHBOARDS_APP} app`);
-    const dashboards = await splunkd.listDashboards(SPLUNK_DASHBOARDS_APP, splunkdInfo);
+    if (!splunkdToken) {
+        splunkdUser = await prompts.splunkdUsername();
+        splunkdPassword = await prompts.splunkdPassword(splunkdUrl, splunkdUser);
+        splunkdInfo = {
+            url: splunkdUrl,
+            username: splunkdUser,
+            password: splunkdPassword,
+        };
+    } else {
+        splunkdInfo = {
+            url: splunkdUrl,
+            token: splunkdToken
+        }
+        splunkdUser = await splunkd.getUsername(splunkdInfo);
+        splunkdPassword = "";
+    }
+    cli.action.start(`Loading apps`);
+    const apps = await splunkd.listApps(splunkdInfo);
+    cli.action.stop(`found ${apps.length} apps`);
+
+    const selectedApp = await prompts.selectApp(apps);
+    console.log(selectedApp);
+
+    cli.action.start(`Loading dashboards from ${selectedApp} app`);
+    const dashboards = await splunkd.listDashboards(selectedApp, splunkdInfo);
     cli.action.stop(`found ${dashboards.length} dashboards`);
 
     const selectedDashboards = await prompts.selectDashboards(dashboards);
@@ -85,11 +103,11 @@ async function initNewProject() {
     const copyToDest = (p, opts) => fs.copy(path.join(srcFolder, p), path.join(destFolder, p), opts);
     await copyToDest('yarn.lock');
 
-    await updatePackageJson({ folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedDashboards }, { destFolder });
-    await writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword }, { destFolder });
+    await updatePackageJson({ folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards }, { destFolder });
+    await writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword, splunkdToken }, { destFolder });
 
     await exec('yarn', ['install'], { cwd: destFolder });
-    await generateDashboards(selectedDashboards, splunkdInfo, destFolder);
+    await generateDashboards(selectedDashboards, selectedApp, splunkdInfo, destFolder);
 
     await exec('git', ['init'], { cwd: destFolder });
     await exec('git', ['add', '.'], { cwd: destFolder });
