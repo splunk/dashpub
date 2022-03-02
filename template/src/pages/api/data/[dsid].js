@@ -29,8 +29,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const MIN_REFRESH_TIME = 60;
 const agent = process.env.SPLUNKD_URL.startsWith('https')
     ? new (require('https').Agent)({
-        rejectUnauthorized: false,
-    })
+          rejectUnauthorized: false,
+      })
     : undefined;
 
 export default async (req, res) => {
