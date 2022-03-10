@@ -40,7 +40,7 @@ export default function () {
 }
 `;
 
-async function generateDashboard({ name, targetName = name, app, projectFolder }, splunkdInfo) {
+async function generateDashboard({ name, targetName = name, app, projectFolder, dashboardTags=[] }, splunkdInfo) {
     const dash = await loadDashboard(name, app, splunkdInfo);
     const [dsManifest, newDash] = await generateCdnDataSources(dash, projectFolder);
     for (const viz of Object.values(newDash.visualizations || {})) {
@@ -85,7 +85,7 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
     await writeFile(path.join(dir, 'definition.json'), Buffer.from(JSON.stringify(newDash, null, 2), 'utf-8'));
     await writeFile(path.join(dir, 'index.js'), COMPONENT_CODE, 'utf-8');
 
-    return [dsManifest, { [name]: newDash.title }];
+    return [dsManifest, { [name]: {"title": newDash.title, "tags":dashboardTags} }];
 }
 
 async function generate(app, dashboards, splunkdInfo, projectFolder) {
@@ -102,15 +102,27 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
     let datasourcesManifest = {};
     let dashboardsManifest = {};
 
-    for (const dashboard of dashboards) {
+    // If older-style array then convert to object
+    dashboards = Array.isArray(dashboards) ? dashboards.reduce((a, v) => ({ ...a, [v]: {}}), {}) : dashboards
+
+    console.log(dashboards);
+    for (const dashboard in dashboards) {
+        console.log(dashboard);
         const targetName = dashboard;
         cli.action.start(`Generating dashboard ${dashboard}`);
+        let dashboardTags=[];
+        if (Object.keys(dashboards[dashboard]).includes("tags")) {
+            console.log("Found tags: " + dashboards[dashboard]['tags'].join(", "));
+            dashboardTags = dashboards[dashboard]['tags'];
+        }
+
         const [dsManifest, dashboardInfo] = await generateDashboard(
             {
                 name: dashboard,
                 targetName,
                 app,
                 projectFolder,
+                dashboardTags
             },
             splunkdInfo
         );
