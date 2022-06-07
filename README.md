@@ -2,6 +2,8 @@
 
 **EXPERIMENTAL** tool that creates a Next.js project for a given list of Splunk dashboards, optionally making the dashboards accessible to anyone using [Vercel](https://vercel.com). Search results are proxied through serverless functions, which handle authentication and efficient CDN caching.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsplunk%2Fdashpub&env=SPLUNKD_URL,SPLUNKD_USER,SPLUNKD_PASSWORD)
+
 ## Prerequisites
 
 -   Node.js 12+, NPM, Yarn
