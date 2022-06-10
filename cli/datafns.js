@@ -116,6 +116,7 @@ async function generateCdnDataSource([key, ds], allDataSources) {
             name: ds.name,
             options: {
                 uri: `/api/data/${id}`,
+                "enableSmartSources": true
             },
         },
     ];
