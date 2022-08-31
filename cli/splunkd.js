@@ -38,13 +38,27 @@ const splunkd = (
         },
         body,
         agent: url.startsWith('https:') ? noValidateHttpsAgent : undefined,
-    }).then(res => {
+    }).then(async res => {
         if (res.status > 299) {
-            throw new Error(`Splunkd responded with HTTP status ${res.status} requesting ${path}`);
+            const msg = await extractErrorMessage(res, `Splunkd responded with HTTP status ${res.status} requesting ${path}`);
+            throw new Error(msg);
         }
         return res.json();
     });
 };
+
+async function extractErrorMessage(response, defaultMsg) {
+    if (response.status === 404) {
+        return defaultMsg;
+    }
+    try {
+        const json = await response.json();
+        console.log(json);
+    } catch (e) {
+        // ignore
+    }
+    return defaultMsg;
+}
 
 const extractDashboardDefinition = xmlSrc => {
     const doc = new XmlDocument(xmlSrc);

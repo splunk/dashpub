@@ -104,7 +104,7 @@ async function generateCdnDataSource([key, ds], allDataSources) {
         id,
         {
             search: { ...settings, refresh: parseRefreshTime(ds.options.refresh) },
-            app: 'splunk-dashboard-app',
+            app: 'search',
             id,
         },
     ];
@@ -116,6 +116,7 @@ async function generateCdnDataSource([key, ds], allDataSources) {
             name: ds.name,
             options: {
                 uri: `/api/data/${id}`,
+                "enableSmartSources": true
             },
         },
     ];

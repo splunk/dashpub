@@ -22,6 +22,10 @@ import React, { Suspense, useMemo, useEffect, useRef } from 'react';
 import Loading from './loading';
 import defaultPreset from '../preset';
 import { SayCheese, registerScreenshotReadinessDep } from '../ready';
+import { testTileConfig } from '@splunk/visualization-context/MapContext';
+
+const mapTileConfig = { defaultTileConfig: testTileConfig };
+
 
 const PROD_SRC_PREFIXES = [
     // Add URL prefixes here that will be replaced with the page's current origin
@@ -97,7 +101,6 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
         return geoRegistry;
     }, []);
 
-    const testRef = useRef();
     useEffect(() => {
         const readyDep = registerScreenshotReadinessDep('DASH');
         const t = setTimeout(() => readyDep.ready(), 500);
@@ -105,14 +108,13 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
             clearTimeout(t);
             readyDep.remove();
         };
-    }, [testRef]);
+    }, []);
 
     return (
-        <DashboardContextProvider geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
+        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
             <Suspense fallback={<Loading />}>
                 <SayCheese />
                 <DashboardCore
-                    ref={testRef}
                     preset={preset || defaultPreset}
                     definition={processedDef}
                     mode="view"

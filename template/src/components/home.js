@@ -16,7 +16,7 @@ limitations under the License.
 
 import React from 'react';
 import styled from 'styled-components';
-import { textColor } from '../theme';
+import { variables } from '@splunk/themes';
 import dashboardManifest from '../_dashboards.json';
 
 const Wrapper = styled.div`
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
 const DashLink = styled.a`
     display: flex;
-    color: ${textColor};
+    color: ${variables.textColor};
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -51,7 +51,7 @@ const DashLink = styled.a`
 `;
 
 const Title = styled.h1`
-    color: ${textColor};
+    color: ${variables.textColor};
 `;
 
 export default function Home({ title = 'Dashboards' }) {
