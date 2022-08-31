@@ -31,16 +31,12 @@
         "@splunk/visualizations": "24.5.0",
         "@splunk/visualizations-shared": "24.5.0",
         "fast-text-encoding": "^1.0.2",
-        "lodash": "^4.17.21",
         "next": "^9.3.6",
-        "node-fetch": "2",
         "prettier": "^2.0.5",
-        "prop-types": "^15.8.1",
         "querystring": "^0.2.0",
         "react": "16.14.0",
         "react-dom": "16.14.0",
         "react-full-screen": "^0.2.4",
-        "react-is": "^17.0.2",
         "styled-components": "^5.0.0"
     },
     "resolutions": {
