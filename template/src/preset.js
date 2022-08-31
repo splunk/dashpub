@@ -100,6 +100,7 @@ const PRESET = {
         'splunk.singlevalue': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValue'))),
         'splunk.singlevalueicon': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueIcon'))),
         'splunk.singlevalueradial': commonFlags(lazyViz(() => import('@splunk/visualizations/SingleValueRadial'))),
+        'splunk.map': commonFlags(lazyViz(() => import('@splunk/visualizations/Map'))),
         'splunk.table': commonFlags(lazyViz(() => import('@splunk/visualizations/Table'))),
     },
     inputs:{
