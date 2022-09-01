@@ -17,7 +17,7 @@
         "dotenv": "^8.2.0",
         "execa": "^4.0.0",
         "fs-extra": "^9.0.0",
-        "inquirer": "^7.1.0",
+        "inquirer": "^7.3.3",
         "inquirer-checkbox-plus-prompt": "^1.0.1",
         "node-fetch": "^2.6.1",
         "prettier": "^1.19.1",

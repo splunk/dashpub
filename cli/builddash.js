@@ -48,7 +48,17 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
             if (viz.type === 'viz.singlevalueicon') {
                 viz.options.icon = await downloadImage(viz.options.icon, 'icons', splunkdInfo, projectFolder);
             }
+            if (viz.type === 'splunk.singlevalueicon') {
+                viz.options.icon = await downloadImage(viz.options.icon, 'icons', splunkdInfo, projectFolder);
+            }
             if (viz.type === 'viz.img') {
+                if (viz.options.src.match(/\$.*\$/g) )
+                    console.log(`Skipping image download due to token ${viz.options.src}`)
+                else{
+                    viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
+                }
+            }
+            if (viz.type === 'splunk.image') {
                 if (viz.options.src.match(/\$.*\$/g) )
                     console.log(`Skipping image download due to token ${viz.options.src}`)
                 else{
