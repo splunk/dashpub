@@ -49,7 +49,11 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
                 viz.options.icon = await downloadImage(viz.options.icon, 'icons', splunkdInfo, projectFolder);
             }
             if (viz.type === 'viz.img') {
-                viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
+                if (viz.options.src.match(/\$.*\$/g) )
+                    console.log(`Skipping image download due to token ${viz.options.src}`)
+                else{
+                    viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
+                }
             }
         } catch (e) {
             console.error(`Failed to download image ${viz.options.icon || viz.options.src}`, e);
