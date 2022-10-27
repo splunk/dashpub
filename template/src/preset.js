@@ -17,7 +17,6 @@ limitations under the License.
 import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
-//import { applyTheme } from './theme';
 import { polyfillTextDecoder } from './polyfills';
 
 const fixRequestParams = (LazyComponent) => (props) => {
