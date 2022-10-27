@@ -69,6 +69,12 @@ async function storeImage(data, mimeType, { name = 'img', projectDir }) {
                 .png()
                 .toBuffer();
             break;
+        case 'image/webp':
+            filename = `${name}.webp`;
+            optimzed = await sharp(data)
+                .webp({effort: 6})
+                .toBuffer();
+            break;
         case 'image/gif':
             filename = `${name}.gif`;
             break;
@@ -78,7 +84,6 @@ async function storeImage(data, mimeType, { name = 'img', projectDir }) {
 
     filename = `${shortHash(optimzed)}_${filename}`;
     await writeFile(path.join(projectDir, 'public/assets', filename), optimzed);
-
     return filename;
 }
 
@@ -106,7 +111,9 @@ async function downloadImage(src, assetType, splunkdInfo, projectDir) {
     if (type === 'splunk-enterprise-kvstore') {
         const imgData = await splunkd(
             'GET',
-            `/servicesNS/nobody/splunk-dashboard-studio/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(id)}`,
+            `/servicesNS/nobody/splunk-dashboard-studio/storage/collections/data/splunk-dashboard-${assetType}/${encodeURIComponent(
+                id
+            )}`,
             splunkdInfo
         );
 

@@ -80,7 +80,7 @@ function parseRefreshTime(refresh, defaultValue = 400) {
     return defaultValue;
 }
 
-async function generateCdnDataSource([key, ds], allDataSources) {
+async function generateCdnDataSource([key, ds], app, allDataSources) {
     let settings = ds.options;
 
     if (ds.type === 'ds.chain') {
@@ -104,7 +104,7 @@ async function generateCdnDataSource([key, ds], allDataSources) {
         id,
         {
             search: { ...settings, refresh: parseRefreshTime(ds.options.refresh) },
-            app: 'search',
+            app: app,
             id,
         },
     ];
@@ -116,6 +116,7 @@ async function generateCdnDataSource([key, ds], allDataSources) {
             name: ds.name,
             options: {
                 uri: `/api/data/${id}`,
+                "enableSmartSources": true
             },
         },
     ];
@@ -123,15 +124,14 @@ async function generateCdnDataSource([key, ds], allDataSources) {
     return [dataSourceManifest, dataSourceDefinition];
 }
 
-async function generateCdnDataSources(def, projectDir) {
+async function generateCdnDataSources(def, app, projectDir) {
     const results = []; //await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
     for (const e of Object.entries(def.dataSources || {})) {
-        const res = await generateCdnDataSource(e, def.dataSources);
+        const res = await generateCdnDataSource(e, app, def.dataSources);
         if (res != null) {
             results.push(res);
         }
     }
-
     const dsManifest = Object.fromEntries(results.map(r => r[0]));
     const dataSourceDefinition = Object.fromEntries(results.map(r => r[1]));
 
