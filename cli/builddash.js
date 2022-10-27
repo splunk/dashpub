@@ -42,7 +42,7 @@ export default function () {
 
 async function generateDashboard({ name, targetName = name, app, projectFolder, dashboardTags=[] }, splunkdInfo) {
     const dash = await loadDashboard(name, app, splunkdInfo);
-    const [dsManifest, newDash] = await generateCdnDataSources(dash, projectFolder);
+    const [dsManifest, newDash] = await generateCdnDataSources(dash, app, projectFolder);
     for (const viz of Object.values(newDash.visualizations || {})) {
         try {
             if (viz.type === 'viz.singlevalueicon') {
@@ -63,6 +63,13 @@ async function generateDashboard({ name, targetName = name, app, projectFolder, 
                     console.log(`Skipping image download due to token ${viz.options.src}`)
                 else{
                     viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
+                }
+            }
+            if (viz.type === 'splunk.choropleth.svg') {
+                if (viz.options.svg.match(/\$.*\$/g) )
+                    console.log(`Skipping image download due to token ${viz.options.svg}`)
+                else{
+                    viz.options.svg = await downloadImage(viz.options.svg, 'images', splunkdInfo, projectFolder);
                 }
             }
         } catch (e) {
