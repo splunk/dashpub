@@ -1,32 +1,56 @@
 {
-  "name": "@splunk/dashpub",
-  "version": "0.0.1-alpha5",
-  "license": "Apache-2.0",
-  "description": "Generate next.js apps to publish Splunk dashboards",
-  "homepage": "https://github.com/splunk/dashpub",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/splunk/dashpub.git"
+  "_from": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+  "_id": "@splunk/dashpub@0.0.1-alpha5",
+  "_inBundle": false,
+  "_integrity": "sha512-pYwpzldu80uiIaWZkPO4T1fdceY5zFBc9ACfmHrJbSbNEAHBi8j/Bgzvu/d+9kaEvoBiyoy83gaumzUGDjX92g==",
+  "_location": "/@splunk/dashpub",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+    "rawSpec": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+    "saveSpec": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+    "fetchSpec": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master"
   },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+  "_shasum": "d3df339f38d5f2763cd644b81ccdcf4330254d73",
+  "_spec": "https://github.com/livehybrid/dashpub/tarball/ws-rebase-splunk-master",
+  "_where": "/var/lib/cloud/instances/i-063756d8ebead1cff/scripts",
   "bin": {
-    "dashpub": "./cli/cli.js"
+    "dashpub": "cli/cli.js"
   },
+  "bugs": {
+    "url": "https://github.com/splunk/dashpub/issues"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "cli-ux": "^5.4.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "execa": "^4.0.0",
     "fs-extra": "^9.0.0",
-    "inquirer": "^7.1.0",
+    "inquirer": "^7.3.3",
     "inquirer-checkbox-plus-prompt": "^1.0.1",
-    "inquirer-search-list": "^1.2.6",
     "node-fetch": "^2.6.1",
     "prettier": "^1.19.1",
     "querystring": "^0.2.0",
     "sharp": "^0.29.2",
     "xmldoc": "^1.1.2"
   },
+  "deprecated": false,
+  "description": "Generate next.js apps to publish Splunk dashboards",
+  "homepage": "https://github.com/splunk/dashpub",
+  "license": "Apache-2.0",
+  "name": "@splunk/dashpub",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/splunk/dashpub.git"
+  },
   "scripts": {
     "update:license-report": "yarn licenses list > license_report.txt"
-  }
+  },
+  "version": "0.0.1-alpha5"
 }
