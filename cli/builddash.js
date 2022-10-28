@@ -65,13 +65,16 @@ async function generateDashboard({ name, targetName = name, app, projectFolder, 
                     viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
                 }
             }
-            if (viz.type === 'splunk.choropleth.svg') {
-                if (viz.options.svg.match(/\$.*\$/g) )
-                    console.log(`Skipping image download due to token ${viz.options.svg}`)
-                else{
-                    viz.options.svg = await downloadImage(viz.options.svg, 'images', splunkdInfo, projectFolder);
-                }
-            }
+           if (viz.type === 'splunk.choropleth.svg') {
+               if (viz.options.svg.match(/\$.*\$/g) )
+                   console.log(`Skipping image download due to token ${viz.options.svg}`)
+               else if (viz.options.svg.startsWith("data:image")) {
+                   console.log("Skipping because image is embedded as string")
+               }
+               else {
+                   viz.options.svg = await downloadImage(viz.options.svg, 'images', splunkdInfo, projectFolder);
+               }
+           }
         } catch (e) {
             console.error(`Failed to download image ${viz.options.icon || viz.options.src}`, e);
         }

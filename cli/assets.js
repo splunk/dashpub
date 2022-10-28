@@ -119,7 +119,15 @@ async function downloadImage(src, assetType, splunkdInfo, projectDir) {
 
         const [mimeType, data] = parseDataUri(imgData.dataURI);
         const filename = await storeImage(data, mimeType, { name: id, projectDir });
-        const newUri = `/assets/${filename}`;
+        // If the DASHPUB_FQDN env is set and its an SVG then return the link with FQDN prepended
+        if (process.env.DASHPUB_FQDN && mimeType=="image/svg+xml") {
+            var newUri = `${process.env.DASHPUB_FQDN}/assets/${filename}`;
+        } else if (mimeType=="image/svg+xml") {
+        // Else return the SVG XML content and embed into dash definition
+            var newUri = data.toString();
+        } else {
+            var newUri = `/assets/${filename}`;
+        }
         seenImages[src] = newUri;
         return newUri;
     }
