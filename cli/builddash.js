@@ -84,7 +84,6 @@ async function generateDashboard({ name, targetName = name, app, projectFolder, 
         newDash.layout.options.backgroundImage.src = await downloadImage(
             newDash.layout.options.backgroundImage.src,
             'images',
-            app,
             splunkdInfo,
             projectFolder
         );
