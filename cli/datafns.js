@@ -52,10 +52,12 @@ const units = {
 };
 
 function parseRefreshTime(refresh, dsDefaults, defaultValue = 400) {
-    if ((typeof(refresh)=="undefined") && (typeof(dsDefaults.options.refresh)!=="undefined")) {
+    var dsDefaultRefresh = false
+    if ((typeof(refresh)=="undefined") && (typeof(dsDefaults)=="object" && typeof(dsDefaults.options)=="object" && typeof(dsDefaults.options.refresh!=="undefined"))) {
         console.log("No refresh defined - Using dashboard default");
+        dsDefaultRefresh = dsDefaults.options.refresh
     }
-    refresh = refresh || dsDefaults.options.refresh
+    refresh = refresh || dsDefaultRefresh
     if (typeof refresh === 'number') {
         return refresh;
     }
@@ -127,7 +129,7 @@ async function generateCdnDataSource([key, ds], app, allDataSources, defaults) {
 }
 
 async function generateCdnDataSources(def, app, projectDir) {
-    const defaults = def.defaults.dataSources || {}
+    const defaults = (def.defaults || {}).dataSources || {}
     const results = []; //await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
     for (const e of Object.entries(def.dataSources || {})) {
         const res = await generateCdnDataSource(e, app, def.dataSources, defaults);
