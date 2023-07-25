@@ -26,7 +26,6 @@ import { testTileConfig } from '@splunk/visualization-context/MapContext';
 
 const mapTileConfig = { defaultTileConfig: testTileConfig };
 
-
 const PROD_SRC_PREFIXES = [
     // Add URL prefixes here that will be replaced with the page's current origin
 ];
@@ -111,17 +110,30 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
     }, []);
 
     return (
-        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
-            <Suspense fallback={<Loading />}>
-                <SayCheese />
-                <DashboardCore
-                    preset={preset || defaultPreset}
-                    definition={processedDef}
-                    mode="view"
-                    width={width}
-                    height={height}
-                />
-            </Suspense>
-        </DashboardContextProvider>
+        <>
+            <FullscreenLight
+                style={{
+                    position: 'fixed',
+                    zIndex: '2',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    color: 'black',
+                }}
+                onClick={() => toggleFullSceen()}
+            ></FullscreenLight>
+            <DashboardContextProvider
+                preset={preset || defaultPreset}
+                mapTileConfig={mapTileConfig}
+                geoRegistry={geoRegistry}
+                featureFlags={{ enableSvgHttpDownloader: true, enableSmartSourceDS: true }}
+            >
+                <Suspense fallback={<Loading />}>
+                    <SayCheese />
+                    <DashboardCore preset={preset || defaultPreset} definition={processedDef} mode="view" width={width} height={height} />
+                </Suspense>
+            </DashboardContextProvider>
+        </>
     );
 }
