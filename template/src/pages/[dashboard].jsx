@@ -12,7 +12,7 @@ export default function DashboardPage({ definition, dashboardId, baseUrl }) {
             description={definition.description}
             imageUrl={`/screens/${dashboardId}.png`}
             path={`/${dashboardId}`}
-            backgroundColor={definition.layout.options.backgroundColor}
+            backgroundColor={definition.layout.options.backgroundColor ? definition.layout.options.backgroundColor : '#000'}
             theme={definition.theme}
             baseUrl={baseUrl}
         >

@@ -109,6 +109,17 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
         };
     }, []);
 
+    const toggleFullSceen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            document.body.style.cursor = 'none';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
     return (
         <>
             <FullscreenLight
