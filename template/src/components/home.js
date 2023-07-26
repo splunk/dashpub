@@ -18,6 +18,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { variables } from '@splunk/themes';
 import dashboardManifest from '../_dashboards.json';
+import Chip from '@splunk/react-ui/Chip';
 
 const Wrapper = styled.div`
     width: 100vw;
@@ -37,7 +38,8 @@ const DashLink = styled.a`
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 280px;
+    width: 500px;
+
     height: 80px;
     border: 1px solid #eee;
     margin: 10px 10px 0 0;
@@ -59,8 +61,9 @@ export default function Home({ title = 'Dashboards' }) {
         <Wrapper>
             <Title>Dashboards</Title>
             {Object.keys(dashboardManifest).map((k) => (
-                <DashLink key={k} href={`/${k}`}>
-                    {dashboardManifest[k]}
+                <DashLink key={k} href={`/${k.includes('timelapse') ? 'timelapse?dashboard=' + k : k}`}>
+                    {dashboardManifest[k].replace(' - Demo', '')}&nbsp;
+                    {dashboardManifest[k].includes('Demo') ? <Chip>Demo</Chip> : <></>}
                 </DashLink>
             ))}
         </Wrapper>
