@@ -37,7 +37,17 @@ export default function Loading() {
     return (
         <Wrapper>
             <Inner>
-                <Msg>Loading...</Msg>
+                <div style={{ width: '600px', margin: 'auto' }}>
+                    {' '}
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        width="600px"
+                        style={{ margin: 'auto', align: 'center' }}
+                        src={require('../../public/video_inspector_running.mov')}
+                    />
+                </div>
             </Inner>
         </Wrapper>
     );

@@ -17,7 +17,10 @@ limitations under the License.
 import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
+import TestDataSource from '@splunk/datasources/TestDataSource';
 import { polyfillTextDecoder } from './polyfills';
+import { AbsoluteLayoutViewer } from '@splunk/dashboard-layouts';
+import { SetToken } from '@splunk/dashboard-event-handlers';
 import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
 
 const fixRequestParams = (LazyComponent) => (props) => {
@@ -41,13 +44,15 @@ const lazyViz = (fn) => {
 
 const PRESET = {
     layouts: {
-        absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayoutViewer')),
+        absolute: AbsoluteLayoutViewer,
     },
     dataSources: {
         'ds.cdn': CdnDataSource,
+        'ds.test': TestDataSource,
     },
     eventHandlers: {
         'drilldown.customUrl': DrilldownHandler,
+        'drilldown.setToken': SetToken,
     },
     visualizations: {
         // legacy
@@ -103,7 +108,7 @@ const PRESET = {
         'splunk.map': commonFlags(lazyViz(() => import('@splunk/visualizations/Map'))),
         'splunk.table': commonFlags(lazyViz(() => import('@splunk/visualizations/Table'))),
     },
-    inputs:{
+    inputs: {
         'input.dropdown': DropdownInput,
         'input.timerange': TimeRangeInput,
         'input.text': TextInput,

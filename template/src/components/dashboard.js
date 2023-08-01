@@ -15,17 +15,16 @@ limitations under the License.
 */
 
 import { DashboardContextProvider } from '@splunk/dashboard-context';
-import GeoRegistry from '@splunk/dashboard-context/GeoRegistry';
-import GeoJsonProvider from '@splunk/dashboard-context/GeoJsonProvider';
+import { GeoJsonProvider, GeoRegistry } from '@splunk/dashboard-context';
 import DashboardCore from '@splunk/dashboard-core';
 import React, { Suspense, useMemo, useEffect, useRef } from 'react';
 import Loading from './loading';
 import defaultPreset from '../preset';
 import { SayCheese, registerScreenshotReadinessDep } from '../ready';
 import { testTileConfig } from '@splunk/visualization-context/MapContext';
+import Fullscreen from '@splunk/react-icons/Fullscreen';
 
 const mapTileConfig = { defaultTileConfig: testTileConfig };
-
 
 const PROD_SRC_PREFIXES = [
     // Add URL prefixes here that will be replaced with the page's current origin
@@ -110,18 +109,44 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
         };
     }, []);
 
+    const toggleFullSceen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            document.body.style.cursor = 'none';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
     return (
-        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
-            <Suspense fallback={<Loading />}>
-                <SayCheese />
-                <DashboardCore
-                    preset={preset || defaultPreset}
-                    definition={processedDef}
-                    mode="view"
-                    width={width}
-                    height={height}
-                />
-            </Suspense>
-        </DashboardContextProvider>
+        <>
+            <Fullscreen
+                style={{
+                    position: 'fixed',
+                    zIndex: '2',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    color: 'black',
+                }}
+                onClick={() => toggleFullSceen()}
+            ></Fullscreen>
+            <DashboardContextProvider
+                preset={preset || defaultPreset}
+                mapTileConfig={mapTileConfig}
+                geoRegistry={geoRegistry}
+                initialDefinition={processedDef}
+                initialMode="view"
+                featureFlags={{ enableSvgHttpDownloader: true, enableSmartSourceDS: true }}
+            >
+                <Suspense fallback={<Loading />}>
+                    <SayCheese />
+                    <DashboardCore preset={preset || defaultPreset} width={width} height={height} />
+                </Suspense>
+            </DashboardContextProvider>
+        </>
     );
 }

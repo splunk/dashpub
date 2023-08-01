@@ -17,8 +17,9 @@ limitations under the License.
 const fs = require('fs');
 const path = require('path');
 const settings = Object.assign({}, require('./package.json').dashpub.settings);
+const withVideos = require('next-videos');
 
-module.exports = {
+module.exports = withVideos({
     webpack(config, { buildId, webpack }) {
         const snapshotPath = path.join(__dirname, 'src/pages/api/data/_snapshot.json');
         if (!fs.existsSync(snapshotPath)) {
@@ -40,4 +41,4 @@ module.exports = {
 
         return config;
     },
-};
+});
