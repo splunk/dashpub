@@ -1,0 +1,11 @@
+services:
+  dash:
+    build: .
+    ports:
+      - "3009:3000"
+    volumes:
+      - ./dashpub.json:/dashpub.json
+    environment:
+      DASHPUB_CONFIGFILE: "/dashpub.json"
+      DASHPUB_VERCEL: "n"
+      SPLUNKD_TOKEN: **TopSecret**

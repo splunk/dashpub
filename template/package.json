@@ -36,6 +36,7 @@
         "prettier": "^2.0.5",
         "querystring": "^0.2.0",
         "react": "16.14.0",
+        "react-bootstrap-icons": "^1.9.1",
         "react-dom": "16.14.0",
         "react-full-screen": "^0.2.4",
         "styled-components": "5.1.1"
@@ -69,7 +70,7 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "NODE_ENV=development next build",
         "start": "next start"
     },
     "eslintConfig": {

@@ -1,0 +1,11 @@
+{"dashpub": {
+        "projectName": "app",
+        "splunkd": {
+            "url": "https://192.168.0.222:8089"
+        },
+        "app": "etyd",
+        "dashboards": [
+            "highlevel"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+services:
+  dash:
+    build: .
+    ports:
+      - "3009:3000"
+    environment:
+      DASHPUB_VERCEL: "n"
+      DASHPUB_APP: "search"
+      DASHPUB_DASHBOARDS: "dashboard1,dashboard2"
+      DASHPUB_PROJECTNAME: "app"
+      DASHPUB_FOLDERNAME: "app"
+      SPLUNKD_URL: "https://localhost:8089"
+      SPLUNKD_TOKEN: **TopSecret**

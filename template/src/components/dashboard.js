@@ -1,4 +1,5 @@
 /*
+
 Copyright 2020 Splunk Inc. 
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,11 +48,11 @@ function updateAssetUrls(orig, { origin = window.location.origin } = {}) {
     };
     // Convert server-relative URLs to absolute URLs before rendering
     for (const viz of Object.values(def.visualizations)) {
-        if (viz.type === 'viz.singlevalueicon' && viz.options.icon) {
+        if (viz.type in ['viz.singlevalueicon','splunk.singlevalueicon'] && viz.options.icon) {
             viz.options.icon = normalizeImageUrl(viz.options.icon);
             images.add(viz.options.src);
         }
-        if (viz.type === 'viz.img' && viz.options.src) {
+        if (viz.type in ['viz.img','splunk.image'] && viz.options.src) {
             viz.options.src = normalizeImageUrl(viz.options.src);
             images.add(viz.options.src);
         }
@@ -63,7 +64,6 @@ function updateAssetUrls(orig, { origin = window.location.origin } = {}) {
     if (!def.layout.options.backgroundColor) {
         def.layout.options.backgroundColor = '#ffffff';
     }
-    delete def.theme;
     return [def, [...images].filter((img) => img != null)];
 }
 
@@ -111,7 +111,7 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
     }, []);
 
     return (
-        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }}>
+        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }} preset={defaultPreset}>
             <Suspense fallback={<Loading />}>
                 <SayCheese />
                 <DashboardCore

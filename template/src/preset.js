@@ -18,6 +18,8 @@ import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
 import { polyfillTextDecoder } from './polyfills';
+import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
+
 
 const fixRequestParams = (LazyComponent) => (props) => {
     if (props.dataSources.primary && !props.dataSources.primary.requestParams) {
@@ -31,6 +33,7 @@ const commonFlags = (LazyComponent) => {
     LazyComponent.showProgressBar = true;
     LazyComponent.showTitleAndDescription = true;
     LazyComponent.showLastUpdated = true;
+    // LazyComponent.backgroundColor = "#171d21";
     return LazyComponent;
 };
 
@@ -41,6 +44,7 @@ const lazyViz = (fn) => {
 const PRESET = {
     layouts: {
         absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayoutViewer')),
+        grid: lazyViz(() => import ('@splunk/dashboard-layouts/GridLayoutViewer')),
     },
     dataSources: {
         'ds.cdn': CdnDataSource,

@@ -1,0 +1,6 @@
+#!/bin/sh
+  echo "Remember to use 'app' as your app name"
+  dashpub init
+  cd /app
+  yarn build
+  touch /tmp/hasBuilt

@@ -54,7 +54,6 @@ const units = {
 function parseRefreshTime(refresh, dsDefaults, defaultValue = 400) {
     var dsDefaultRefresh = false
     if ((typeof(refresh)=="undefined") && (typeof(dsDefaults)=="object" && typeof(dsDefaults.options)=="object" && typeof(dsDefaults.options.refresh!=="undefined"))) {
-        console.log("No refresh defined - Using dashboard default");
         dsDefaultRefresh = dsDefaults.options.refresh
     }
     refresh = refresh || dsDefaultRefresh

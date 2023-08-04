@@ -59,11 +59,13 @@ async function generateDashboard({ name, targetName = name, app, projectFolder, 
                 }
             }
             if (viz.type === 'splunk.image') {
-                if (viz.options.src.match(/\$.*\$/g) )
+               if (viz.options.src.match(/\$.*\$/g) )
                     console.log(`Skipping image download due to token ${viz.options.src}`)
-                else{
+               else if (viz.options.src.startsWith("data:image")) {
+                   console.log("Skipping because image is embedded as string")
+               } else {
                     viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
-                }
+               }
             }
            if (viz.type === 'splunk.choropleth.svg') {
                if (viz.options.svg.match(/\$.*\$/g) )
