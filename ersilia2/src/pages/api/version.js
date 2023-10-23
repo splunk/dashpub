@@ -14,8 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const SPLUNK_DASHBOARDS_APP = 'ersilia_TA_model';
-
-module.exports = {
-    SPLUNK_DASHBOARDS_APP,
+export default async (req, res) => {
+    res.setHeader('cache-control', `s-maxage=3600`);
+    res.json({
+        version: process.env.DASHPUB_BUILD_ID || 'dev',
+    });
 };

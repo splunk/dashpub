@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const SPLUNK_DASHBOARDS_APP = 'ersilia_TA_model';
-
-module.exports = {
-    SPLUNK_DASHBOARDS_APP,
-};
+export default function NoSSR({ children }) {
+    return process.browser ? children : null;
+}

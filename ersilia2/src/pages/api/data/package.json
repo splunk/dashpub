@@ -1,0 +1,9 @@
+{
+    "name": "dashboards-data-api",
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "debug": "^4.1.1",
+        "node-fetch": "^2.6.0"
+    }
+}

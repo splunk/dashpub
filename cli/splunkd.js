@@ -105,6 +105,31 @@ const listDashboards = async (
         }));
 };
 
+const listApps = async (
+    { url = process.env.SPLUNKD_URL, username = process.env.SPLUNKD_USER, password = process.env.SPLUNKD_PASSWORD } = {}
+) => {
+    const res = await splunkd(
+        'GET',
+        `/servicesNS/${encodeURIComponent(username)}/-/apps/local?${qs({
+            output_mode: 'json',
+            /* search: `(isDashboard=1 AND isVisible=1 AND (version=2 OR version=1))`, */
+        })}`,
+        {
+            url,
+            username,
+            password,
+        }
+    );
+
+    return res.entry
+        /*.filter(entry => entry.content.disabled == '0')*/
+        .map(entry => ({
+            name: entry.name,
+            label: entry.content.label,
+        }));
+};
+
+
 async function validateAuth({ url, user, password }) {
     try {
         await splunkd('GET', '/services/server/info', { url, username: user, password });
@@ -118,6 +143,7 @@ module.exports = {
     splunkd,
     loadDashboard,
     listDashboards,
+    listApps,
     validateAuth,
     qs,
 };

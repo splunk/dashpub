@@ -17,7 +17,7 @@ limitations under the License.
 const fs = require('fs-extra');
 const path = require('path');
 
-async function writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword }, { destFolder = process.cwd() } = {}) {
+async function writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword, selectedApp }, { destFolder = process.cwd() } = {}) {
     console.log('Writing splunkd password to .env');
     await fs.writeFile(
         path.join(destFolder, '.env'),

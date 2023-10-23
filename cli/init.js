@@ -26,7 +26,7 @@ const { generate } = require('./builddash');
 const chalk = require('chalk');
 const { updatePackageJson } = require('./pkgjson');
 const { writeDotenv } = require('./env');
-const { SPLUNK_DASHBOARDS_APP } = require('./constants');
+//const { SPLUNK_DASHBOARDS_APP } = require('./constants');
 const { initVercelProject } = require('./vercel');
 
 const toFolderName = projectName => projectName.toLowerCase().replace(/[\W_]+/g, '-');
@@ -46,8 +46,8 @@ Next steps:
 {gray Open a browser at http://localhost:3000}
 `;
 
-async function generateDashboards(selectedDashboards, splunkdInfo, destFolder) {
-    await generate(SPLUNK_DASHBOARDS_APP, selectedDashboards, splunkdInfo, destFolder);
+async function generateDashboards(app, selectedDashboards, splunkdInfo, destFolder) {
+    await generate(app, selectedDashboards, splunkdInfo, destFolder);
 }
 
 async function initNewProject() {
@@ -70,8 +70,14 @@ async function initNewProject() {
         password: splunkdPassword,
     };
 
-    cli.action.start(`Loading dashboards from ${SPLUNK_DASHBOARDS_APP} app`);
-    const dashboards = await splunkd.listDashboards(SPLUNK_DASHBOARDS_APP, splunkdInfo);
+    cli.action.start(`Listing Apps`);
+    const applist = await splunkd.listApps(splunkdInfo);
+    cli.action.stop(`Found: ${applist.length} apps`);
+
+    const selectedApp = await prompts.selectApps(applist);
+
+    cli.action.start(`Loading dashboards from ${selectedApp} app`);
+    const dashboards = await splunkd.listDashboards(selectedApp, splunkdInfo);
     cli.action.stop(`found ${dashboards.length} dashboards`);
 
     const selectedDashboards = await prompts.selectDashboards(dashboards);
@@ -85,11 +91,12 @@ async function initNewProject() {
     const copyToDest = (p, opts) => fs.copy(path.join(srcFolder, p), path.join(destFolder, p), opts);
     await copyToDest('yarn.lock');
 
-    await updatePackageJson({ folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedDashboards }, { destFolder });
-    await writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword }, { destFolder });
+    await updatePackageJson({ folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedDashboards, selectedApp }, { destFolder });
+    await writeDotenv({ splunkdUrl, splunkdUser, splunkdPassword, selectedApp }, { destFolder });
 
     await exec('yarn', ['install'], { cwd: destFolder });
-    await generateDashboards(selectedDashboards, splunkdInfo, destFolder);
+    //await generateDashboards(selectedApp, selectedDashboards, splunkdInfo, destFolder);
+    await generate(selectedApp, selectedDashboards, splunkdInfo, destFolder);
 
     await exec('git', ['init'], { cwd: destFolder });
     await exec('git', ['add', '.'], { cwd: destFolder });
@@ -104,5 +111,5 @@ async function initNewProject() {
 
 module.exports = {
     initNewProject,
-    generateDashboards,
+    //generateDashboards,
 };

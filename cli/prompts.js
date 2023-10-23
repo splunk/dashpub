@@ -136,6 +136,30 @@ const selectDashboards = dashboards =>
         })
         .then(({ dashboards }) => dashboards);
 
+        const selectApps = async applist => {
+            const selectedApp = await inquirer.prompt({
+              type: 'list',
+              name: 'apps',
+              message: 'Select the app containing the dashboards you want to publish.',
+              pageSize: 10,
+              highlight: true,
+              searchable: true,
+              choices: async (selected, input) => {
+                const search = (input || '').toLowerCase();
+                const matching = applist.filter(d => d.name.toLowerCase().includes(search) || d.label.toLowerCase().includes(search));
+                return matching.map(({ name, label }) => ({ name: `${label} [${name}]`, short: label, value: name }));
+              },
+              validate: selected => {
+                if (selected.length > 0) {
+                  return true;
+                }
+                throw new Error('Please select an app');
+              },
+            });
+            return selectedApp.apps; // Corrected: Return the selected app's name
+          };
+          
+
 module.exports = {
     string,
     confirm,
@@ -143,4 +167,5 @@ module.exports = {
     splunkdUsername,
     splunkdPassword,
     selectDashboards,
+    selectApps,
 };

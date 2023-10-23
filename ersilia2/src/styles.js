@@ -14,8 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const SPLUNK_DASHBOARDS_APP = 'ersilia_TA_model';
+import { createGlobalStyle } from 'styled-components';
 
-module.exports = {
-    SPLUNK_DASHBOARDS_APP,
-};
+export const GlobalStyle = createGlobalStyle`
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+`;
