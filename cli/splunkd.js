@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Splunk Inc. 
+Copyright 2020 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -29,7 +29,8 @@ const qs = obj =>
 const splunkd = (
     method,
     path,
-    { body, url = process.env.SPLUNKD_URL, username = process.env.SPLUNKD_USER, password = process.env.SPLUNKD_PASSWORD, token= process.env.SPLUNKD_TOKEN } = {}
+    { body, url = process.env.SPLUNKD_URL, username = process.env.SPLUNKD_USER, password = process.env.SPLUNKD_PASSWORD, token= process.env.SPLUNKD_TOKEN } = {},
+    returnJson = true
 ) => {
     const AUTH_HEADER = token ? `Bearer ${token}` : `Basic ${Buffer.from([username, password].join(':')).toString('base64')}`;
     return fetch(`${url}${path}`, {
@@ -44,7 +45,7 @@ const splunkd = (
             const msg = await extractErrorMessage(res, `Splunkd responded with HTTP status ${res.status} requesting ${path}`);
             throw new Error(msg);
         }
-        return res.json();
+        return returnJson ? res.json() : res;
     });
 };
 
