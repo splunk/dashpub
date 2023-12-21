@@ -23,6 +23,7 @@ import { Tag } from 'react-bootstrap-icons';
 
 import dynamic from 'next/dynamic';
 //import {CardLayout, Card, Chip, Button} from '../utils/react-ui';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export const CardLayout = dynamic(() => import('@splunk/react-ui/CardLayout'), { ssr: false });
 
@@ -43,7 +44,6 @@ export const Chip = dynamic(() => import('@splunk/react-ui/Chip'), { ssr: false 
 
 export const Button = dynamic(() => import('@splunk/react-ui/Button'), { ssr: false });
 
-import 'bootstrap/dist/css/bootstrap.css';
 
 const PageWrapper = styled.div`
     margin: 5%;

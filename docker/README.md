@@ -6,7 +6,7 @@ Due to the nature of how the production site is built, it is not recommended to 
 These options do not currently support "Tags", however this is currently in development and instructions will be updated here shortly.
 
 When using the docker-compose files, it is possible to change:
-`build: .` to `image: livehybrid/splunk-dashpub:beta` to use a pre-built image.  
+`build: .` to `image: livehybrid/splunk-dashpub:v0.0.3` to use a pre-built image.  
 
 Note: that this image is maintained by @livehybrid and not maintained by Splunk.
 
@@ -26,6 +26,7 @@ This method may not auto-recover on container failure, but should withstand rest
 ### Optional Environment variables for customisation
 | Variable | Required | Notes |
 | --- | --- | --- |
+| DASHPUB_BRANCH | N | Specific branch of dashpub CLI tool to install prior to execution - useful for development / testing work |  
 | DASHPUB_BUILD_ID | N | Numeric value used to assist browser caching, increment this number when rebuilding to ensure client machines reload the entire page. |  
 | DASHPUB_SCREENSHOTS | N | Set to `Y` to enable screenshots to be displayed on the front page. <br />*Note: This requires additional configuration and currently additional un-documented Docker services*. |  
 | DASHPUB_SCREENSHOT_EXT | N |  Used when `DASHPUB_SCREENSHOTS` is enabled, the image extension to look for when using screenshots. *Defaults to "png"* |

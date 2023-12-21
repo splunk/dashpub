@@ -76,7 +76,7 @@ class Img {
     }
 }
 
-function preloadImages(images) {
+function PreloadImages(images) {
     useEffect(() => {
         const readyDef = registerScreenshotReadinessDep(`IMGs[${images.length}]`);
         const imgs = images.map((src) => new Img(src));
@@ -91,7 +91,7 @@ function preloadImages(images) {
 
 export default function Dashboard({ definition, preset, width = '100vw', height = '100vh' }) {
     const [processedDef, images] = useMemo(() => updateAssetUrls(definition), [definition]);
-    preloadImages(images);
+    PreloadImages(images);
     // const geoRegistry = useMemo(() => {
     //     const geoRegistry = GeoRegistry.create();
     //     //geoRegistry.addDefaultProvider(new GeoJsonProvider());

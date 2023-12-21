@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node:20-bullseye
 COPY . /build
 RUN npm i -g /build --unsafe-perm
-RUN apk add git
+RUN apt-get update && apt-get install -y  git libvips
 RUN git config --global user.email "dashpub@yourdomain.com"
 RUN git config --global user.name "Splunk DashPub"
 
