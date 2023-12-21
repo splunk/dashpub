@@ -58,7 +58,7 @@
         "split-on-first": "3.0.0",
         "is-extendable": "0.1.1",
         "extend-shallow": "2.0.1"
-    },
+    }
     "scripts": {
         "dev": "next dev",
         "build": "NODE_ENV=development next build",

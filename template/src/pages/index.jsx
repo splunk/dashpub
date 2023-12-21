@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home({}) {
     return (
-        <Page title={ process.env.NEXT_PUBLIC_DASHPUBTITLE || "Dashboards"} theme="light">
-            <Homepage />
+        <Page title={process.env.NEXT_PUBLIC_DASHPUBTITLE || 'Dashboards'} theme="light">
+            <Homepage key="home" />
         </Page>
     );
 }

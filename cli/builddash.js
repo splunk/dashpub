@@ -118,7 +118,6 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
 
     console.log(dashboards);
     for (const dashboard in dashboards) {
-        console.log(dashboard);
         const targetName = dashboard;
         cli.action.start(`Generating dashboard ${dashboard}`);
         let dashboardTags=[];

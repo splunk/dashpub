@@ -74,7 +74,7 @@ const loadDashboard = (
     app,
     { url = process.env.SPLUNKD_URL, username = process.env.SPLUNKD_USER, password = process.env.SPLUNKD_PASSWORD, token=process.env.SPLUNKD_TOKEN } = {}
 ) =>
-    splunkd('GET', `/servicesNS/-/${encodeURIComponent(app)}/data/ui/views/${encodeURIComponent(name)}?output_mode=json`, {
+    splunkd('GET', `/servicesNS/nobody/${encodeURIComponent(app)}/data/ui/views/${encodeURIComponent(name)}?output_mode=json`, {
         url,
         username,
         password,

@@ -15,9 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { DashboardContextProvider } from '@splunk/dashboard-context';
-import GeoRegistry from '@splunk/dashboard-context/GeoRegistry';
-import GeoJsonProvider from '@splunk/dashboard-context/GeoJsonProvider';
+import { DashboardContextProvider, GeoRegistry, GeoJsonProvider } from '@splunk/dashboard-context';
 import DashboardCore from '@splunk/dashboard-core';
 import React, { Suspense, useMemo, useEffect, useRef } from 'react';
 import Loading from './loading';
@@ -26,7 +24,6 @@ import { SayCheese, registerScreenshotReadinessDep } from '../ready';
 import { testTileConfig } from '@splunk/visualization-context/MapContext';
 
 const mapTileConfig = { defaultTileConfig: testTileConfig };
-
 
 const PROD_SRC_PREFIXES = [
     // Add URL prefixes here that will be replaced with the page's current origin
@@ -48,11 +45,11 @@ function updateAssetUrls(orig, { origin = window.location.origin } = {}) {
     };
     // Convert server-relative URLs to absolute URLs before rendering
     for (const viz of Object.values(def.visualizations)) {
-        if (viz.type in ['viz.singlevalueicon','splunk.singlevalueicon'] && viz.options.icon) {
+        if (viz.type in ['viz.singlevalueicon', 'splunk.singlevalueicon'] && viz.options.icon) {
             viz.options.icon = normalizeImageUrl(viz.options.icon);
             images.add(viz.options.src);
         }
-        if (viz.type in ['viz.img','splunk.image'] && viz.options.src) {
+        if (viz.type in ['viz.img', 'splunk.image'] && viz.options.src) {
             viz.options.src = normalizeImageUrl(viz.options.src);
             images.add(viz.options.src);
         }
@@ -95,11 +92,14 @@ function preloadImages(images) {
 export default function Dashboard({ definition, preset, width = '100vw', height = '100vh' }) {
     const [processedDef, images] = useMemo(() => updateAssetUrls(definition), [definition]);
     preloadImages(images);
-    const geoRegistry = useMemo(() => {
-        const geoRegistry = GeoRegistry.create();
-        geoRegistry.addDefaultProvider(new GeoJsonProvider());
-        return geoRegistry;
-    }, []);
+    // const geoRegistry = useMemo(() => {
+    //     const geoRegistry = GeoRegistry.create();
+    //     //geoRegistry.addDefaultProvider(new GeoJsonProvider());
+    //     return geoRegistry;
+    // }, []);
+
+    const geoRegistry = GeoRegistry.create();
+    geoRegistry.addDefaultProvider(new GeoJsonProvider());
 
     useEffect(() => {
         const readyDep = registerScreenshotReadinessDep('DASH');
@@ -111,16 +111,16 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
     }, []);
 
     return (
-        <DashboardContextProvider mapTileConfig={mapTileConfig} geoRegistry={geoRegistry} featureFlags={{ enableSvgHttpDownloader: true }} preset={defaultPreset}>
+        <DashboardContextProvider
+            mapTileConfig={mapTileConfig}
+            geoRegistry={geoRegistry}
+            featureFlags={{ enableSvgHttpDownloader: true }}
+            preset={defaultPreset}
+            initialDefinition={processedDef}
+        >
             <Suspense fallback={<Loading />}>
                 <SayCheese />
-                <DashboardCore
-                    preset={preset || defaultPreset}
-                    definition={processedDef}
-                    mode="view"
-                    width={width}
-                    height={height}
-                />
+                <DashboardCore preset={preset || defaultPreset} mode="view" width={width} height={height} />
             </Suspense>
         </DashboardContextProvider>
     );
