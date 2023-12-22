@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Splunk Inc. 
+Copyright 2020 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ function parseDataUri(dataUri) {
 
 const seenImages = {};
 
-async function storeImage(data, mimeType, { name = 'img', projectDir }) {
+async function nameAndStoreImage(data, mimeType, { name = 'img', projectDir }) {
     let optimzed = data;
     let filename;
 
@@ -87,6 +87,11 @@ async function storeImage(data, mimeType, { name = 'img', projectDir }) {
     return filename;
 }
 
+async function storeImage(data, filename, {name = 'img', projectDir}) {
+    await writeFile(path.join(projectDir, 'public/assets', filename), data);
+    return filename;
+}
+
 async function downloadImage(src, assetType, splunkdInfo, projectDir) {
     if (!src) {
         return src;
@@ -118,13 +123,31 @@ async function downloadImage(src, assetType, splunkdInfo, projectDir) {
         );
 
         const [mimeType, data] = parseDataUri(imgData.dataURI);
-        const filename = await storeImage(data, mimeType, { name: id, projectDir });
+        const filename = await nameAndStoreImage(data, mimeType, { name: id, projectDir });
         // If the DASHPUB_FQDN env is set and its an SVG then return the link with FQDN prepended
         if (process.env.DASHPUB_FQDN && mimeType=="image/svg+xml") {
             var newUri = `${process.env.DASHPUB_FQDN}/assets/${filename}`;
         } else if (mimeType=="image/svg+xml") {
         // Else return the SVG XML content and embed into dash definition
             var newUri = data.toString();
+        } else {
+            var newUri = `/assets/${filename}`;
+        }
+        seenImages[src] = newUri;
+        return newUri;
+    }
+    if (type.includes('splunkd/__raw')) {
+        const imgData = await splunkd(
+            'GET',
+            type.split("splunkd/__raw")[1],
+            splunkdInfo,
+            returnJson=false
+        );
+        const orig_filename = type.split("/").pop()
+        const filename = await storeImage(await imgData.buffer(), orig_filename, { name: id, projectDir });
+        // If the DASHPUB_FQDN env is set and its an SVG then return the link with FQDN prepended
+        if (process.env.DASHPUB_FQDN) {
+            var newUri = `${process.env.DASHPUB_FQDN}/assets/${filename}`;
         } else {
             var newUri = `/assets/${filename}`;
         }
