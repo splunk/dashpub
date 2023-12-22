@@ -1,7 +1,9 @@
 FROM node:20-bullseye
 COPY . /build
 RUN npm i -g /build --unsafe-perm
-RUN apt-get update && apt-get install -y  git libvips
+RUN apt-get update && apt-get install -y  git libvips libvips-dev
+RUN cd /build && yarn add sharp --ignore-engines && yarn install && cd /
+
 RUN git config --global user.email "dashpub@yourdomain.com"
 RUN git config --global user.name "Splunk DashPub"
 

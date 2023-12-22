@@ -43,6 +43,9 @@
         "react-dom": "16.14.0",
         "styled-components": "5.3.11"
     },
+    "devDependencies": {
+        "eslint": "^8.0.0"
+    },
     "resolutions": {
         "@splunk/datasource-utils": "26.3.0",
         "@splunk/react-icons": "4.2.0",
