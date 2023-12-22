@@ -117,10 +117,11 @@ export default function Dashboard({ definition, preset, width = '100vw', height 
             featureFlags={{ enableSvgHttpDownloader: true }}
             preset={defaultPreset}
             initialDefinition={processedDef}
+            initialMode="view"
         >
             <Suspense fallback={<Loading />}>
                 <SayCheese />
-                <DashboardCore preset={preset || defaultPreset} mode="view" width={width} height={height} />
+                <DashboardCore preset={preset || defaultPreset} width={width} height={height} />
             </Suspense>
         </DashboardContextProvider>
     );
