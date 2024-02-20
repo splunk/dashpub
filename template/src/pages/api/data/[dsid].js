@@ -28,8 +28,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const MIN_REFRESH_TIME = 60;
 const agent = process.env.SPLUNKD_URL.startsWith('https')
     ? new (require('https').Agent)({
-        rejectUnauthorized: false,
-    })
+          rejectUnauthorized: false,
+      })
     : undefined;
 
 export default async (req, res) => {
@@ -70,7 +70,9 @@ export default async (req, res) => {
 
         log('Executing search for data fn', id);
         const SERVICE_PREFIX = `servicesNS/${encodeURIComponent(process.env.SPLUNKD_USER)}/${encodeURIComponent(app)}`;
-        const AUTH_HEADER = process.env.SPLUNKD_TOKEN ? `Bearer ${process.env.SPLUNKD_TOKEN}` : `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString('base64')}`;
+        const AUTH_HEADER = process.env.SPLUNKD_TOKEN
+            ? `Bearer ${process.env.SPLUNKD_TOKEN}`
+            : `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString('base64')}`;
 
         const r = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs`, {
             method: 'POST',
@@ -86,7 +88,7 @@ export default async (req, res) => {
                 reuse_max_seconds_ago: refresh,
                 timeout: refresh * 2,
             }),
-            agent,
+            agent: agent,
         });
 
         if (r.status > 299) {
@@ -101,7 +103,7 @@ export default async (req, res) => {
                 `${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs/${encodeURIComponent(sid)}?output_mode=json`,
                 {
                     headers: {
-                        Authorization: AUTH_HEADER
+                        Authorization: AUTH_HEADER,
                     },
                     agent,
                 }
@@ -128,7 +130,7 @@ export default async (req, res) => {
         const data = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs/${sid}/results?${resultsQs}`, {
             method: 'GET',
             headers: {
-                Authorization: AUTH_HEADER
+                Authorization: AUTH_HEADER,
             },
             agent,
         }).then((r) => r.json());
