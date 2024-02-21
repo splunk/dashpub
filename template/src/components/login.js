@@ -92,7 +92,7 @@ class Login extends Component {
 
         return (
             <PageWrapper>
-                <Title>Public Demo Dashboards</Title>
+                <Title>{process.env.NEXT_PUBLIC_DASHPUBTITLE || 'Dashboards'}</Title>
                 <SubTitle>Login</SubTitle>
                 <LoginForm onSubmit={handleSubmit}>
                     <ControlGroup label="Username">
