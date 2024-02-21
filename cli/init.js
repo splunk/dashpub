@@ -59,17 +59,18 @@ async function parseDashboardsAndTags(dashboards) {
     if (process.env.DASHPUB_DASHBOARDS) {
         const dashboardEntries = process.env.DASHPUB_DASHBOARDS.split(',');
         dashboardEntries.forEach((entry) => {
-            const [dashboard, tags] = entry.split(/\[(.*?)\]/).filter(Boolean); // Split and remove empty strings.
-            selectedDashboards.push(dashboard);
-            if (tags) {
-                dashboardTagMap[dashboard] = tags.split('|');
-            } else {
-                dashboardTagMap[dashboard] = []; // No tags for this dashboard.
+            const match = entry.match(/^([^[\]]+)(?:\[(.*?)\])?$/); // Match dashboard name optionally followed by [tags]
+            if (match) {
+                const dashboard = match[1];
+                const tags = match[2] ? match[2].split('|') : [];
+                selectedDashboards.push(dashboard);
+                dashboardTagMap[dashboard] = tags;
             }
         });
     } else {
-        selectedDashboards = await prompts.selectDashboards(dashboards); // Assuming this is a valid function call.
-        // You might need to adjust this to ensure it populates the dashboardTagMap correctly based on your prompts logic.
+        // Fallback to prompts if DASHPUB_DASHBOARDS is not defined
+        selectedDashboards = await prompts.selectDashboards(dashboards); // This will need to be adjusted based on how your prompts function is implemented.
+        // Ensure dashboardTagMap is populated based on prompts logic if needed.
     }
 
     return { selectedDashboards, dashboardTagMap };
