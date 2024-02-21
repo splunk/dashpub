@@ -63,6 +63,8 @@ async function parseDashboardsAndTags(dashboards) {
                 const dashboard = match[1].trim();
                 const tags = match[2] ? match[2].split('|').map((tag) => tag.trim()) : [];
                 selectedDashboards[dashboard] = { tags }; // Structure as per requirement
+            } else {
+                selectedDashboards[dashboard] = { tags: [] };
             }
         });
     } else {
@@ -147,7 +149,7 @@ async function initNewProject() {
         const dashboards = await splunkd.listDashboards(selectedApp, splunkdInfo);
         cli.action.stop(`found ${dashboards.length} dashboards`);
 
-        const selectedDashboards = await parseDashboardsAndTags(dashboards);
+        selectedDashboards = await parseDashboardsAndTags(dashboards);
         console.log('Selected Dashboards:', selectedDashboards);
     }
 
@@ -159,7 +161,7 @@ async function initNewProject() {
     await fs.copy(path.join(srcFolder, 'template'), destFolder, { recursive: true });
     //const copyToDest = (p, opts) => fs.copy(path.join(srcFolder, p), path.join(destFolder, p), opts);
     //await copyToDest('yarn.lock');
-
+    console.log(selectedDashboards);
     await updatePackageJson(
         { folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards },
         { destFolder }
