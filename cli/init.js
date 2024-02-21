@@ -53,7 +53,7 @@ async function generateDashboards(selectedDashboards, app, splunkdInfo, destFold
 }
 
 async function parseDashboardsAndTags(dashboards) {
-    let selectedDashboards = [];
+    let selectedDashboards = {};
 
     if (process.env.DASHPUB_DASHBOARDS) {
         const dashboardEntries = process.env.DASHPUB_DASHBOARDS.split(',');

@@ -25,6 +25,7 @@ async function updatePackageJson(
     { folderName, version, projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards, settings },
     { destFolder = process.cwd() } = {}
 ) {
+    console.log(selectedDashboards);
     const pkg = await getPackageJson(destFolder);
     if (folderName != null) {
         pkg.name = folderName;
