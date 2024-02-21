@@ -18,7 +18,7 @@ import React, { lazy } from 'react';
 import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
 import { polyfillTextDecoder } from './polyfills';
-//import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
+import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
 import { Preset } from '@splunk/dashboard-context';
 const fixRequestParams = (LazyComponent) => (props) => {
     if (props.dataSources.primary && !props.dataSources.primary.requestParams) {
