@@ -54,26 +54,23 @@ async function generateDashboards(selectedDashboards, app, splunkdInfo, destFold
 
 async function parseDashboardsAndTags(dashboards) {
     let selectedDashboards = [];
-    let dashboardTagMap = {};
 
     if (process.env.DASHPUB_DASHBOARDS) {
         const dashboardEntries = process.env.DASHPUB_DASHBOARDS.split(',');
         dashboardEntries.forEach((entry) => {
             const match = entry.match(/^([^[\]]+)(?:\[(.*?)\])?$/); // Match dashboard name optionally followed by [tags]
             if (match) {
-                const dashboard = match[1];
-                const tags = match[2] ? match[2].split('|') : [];
-                selectedDashboards.push(dashboard);
-                dashboardTagMap[dashboard] = tags;
+                const dashboard = match[1].trim();
+                const tags = match[2] ? match[2].split('|').map((tag) => tag.trim()) : [];
+                selectedDashboards[dashboard] = { tags }; // Structure as per requirement
             }
         });
     } else {
         // Fallback to prompts if DASHPUB_DASHBOARDS is not defined
-        selectedDashboards = await prompts.selectDashboards(dashboards); // This will need to be adjusted based on how your prompts function is implemented.
-        // Ensure dashboardTagMap is populated based on prompts logic if needed.
+        selectedDashboards = await prompts.selectDashboards(dashboards);
     }
 
-    return { selectedDashboards, dashboardTagMap };
+    return selectedDashboards;
 }
 
 async function initNewProject() {
@@ -150,9 +147,8 @@ async function initNewProject() {
         const dashboards = await splunkd.listDashboards(selectedApp, splunkdInfo);
         cli.action.stop(`found ${dashboards.length} dashboards`);
 
-        const { selectedDashboards, dashboardTagMap } = await parseDashboardsAndTags(dashboards);
+        const selectedDashboards = await parseDashboardsAndTags(dashboards);
         console.log('Selected Dashboards:', selectedDashboards);
-        console.log('Dashboard Tag Map:', dashboardTagMap);
     }
 
     console.log(`\nCreating project in ./${folderName}`);
