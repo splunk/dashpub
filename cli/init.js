@@ -52,7 +52,7 @@ async function generateDashboards(selectedDashboards, app, splunkdInfo, destFold
     await generate(app, selectedDashboards, splunkdInfo, destFolder);
 }
 
-async function parseDashboardsAndTagsEnv(dashboards) {
+async function parseDashboardsAndTags(dashboards) {
     let selectedDashboards = [];
     let dashboardTagMap = {};
 
