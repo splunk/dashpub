@@ -63,7 +63,7 @@ async function updateCustomViz(files, srcFolder, destFolder) {
     const presetFilePath = path.join(destFolder, 'src/preset.js');
     try {
         let customVizEntries = files.map(file => {
-            const componentName = file.replace('.js', '');
+            const componentName = file.replace('.jsx', '');
             fs.copy(path.join(srcFolder, file), path.join(destFolder,'src', 'custom_components', file));
             return `'custom.${componentName}': commonFlags(lazy(() => import('./custom_components/${componentName}'))),`;
         }).join('\n    ');
