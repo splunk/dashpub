@@ -58,6 +58,14 @@ function redirectToLogin(req: NextRequest, reason: string) {
 
 export async function middleware(req) {
     // Define the paths that don't require authentication
+
+    const authRequired = process.env.JWT_REQUIRED === 'true';
+
+    // If authentication is not required, allow all requests to proceed
+    if (!authRequired) {
+        return NextResponse.next();
+    }
+
     const publicPaths = ['/login', '/api/login'];
     const { pathname } = req.nextUrl;
 
@@ -77,7 +85,7 @@ export async function middleware(req) {
     }
     try {
         // Verify the token
-        const decoded = await verifyJwt(token, 'HelloWorldSecret');
+        const decoded = await verifyJwt(token, process.env.JWT_KEY || 'DefaultJWTKey');
         if (!decoded) {
             return redirectToLogin(req, 'jwtInvalid');
         }
@@ -85,7 +93,6 @@ export async function middleware(req) {
         return redirectToLogin(req, 'jwtError');
     }
 }
-
 export const config = {
-    matcher: ['/', '/((?!login|_next/static|_next/image|auth|favicon.ico|robots.txt|images|$).*)'],
+    matcher: ['/', '/((?!login|_next/static|_next/image|auth|favicon.ico|robots.txt|images|$).*)']
 };

@@ -48,6 +48,36 @@ Next steps:
 {gray Open a browser at http://localhost:3000}
 `;
 
+async function findCustomVizJsFilesInDirectory() {
+    const dirPath = process.env.DASHPUB_CUSTOM_VIZ_PATH;
+    try {
+        const files = await fs.readdir(dirPath);
+        return files.filter(file => file.endsWith('.jsx'));
+    } catch (error) {
+        console.error("Error reading directory:", error);
+        return [];
+    }
+}
+
+async function updateCustomViz(files, srcFolder, destFolder) {
+    const presetFilePath = path.join(destFolder, 'src/preset.js');
+    await fs.mkdir(path.join(destFolder,'custom_components'));
+    try {
+        let customVizEntries = files.map(file => {
+            const componentName = file.replace('.js', '');
+            fs.copy(path.join(srcFolder, file), path.join(destFolder,'custom_components', file));
+            return `'custom.${componentName}': commonFlags(lazy(() => import('./custom_components/${componentName}'))),`;
+        }).join('\n    ');
+
+        let data = await fs.readFile(presetFilePath, 'utf8');
+        data = data.replace(/const CUSTOM_VIZ = \{\};/, `const CUSTOM_VIZ = {\n    ${customVizEntries}\n};`);
+        await fs.writeFile(presetFilePath, data, 'utf8');
+        console.log('preset.js updated with custom viz files successfully');
+    } catch (error) {
+        console.error("Error updating preset.js:", error);
+    }
+}
+
 async function generateDashboards(selectedDashboards, app, splunkdInfo, destFolder) {
     await generate(app, selectedDashboards, splunkdInfo, destFolder);
 }
@@ -159,6 +189,11 @@ async function initNewProject() {
     await fs.mkdir(destFolder);
 
     await fs.copy(path.join(srcFolder, 'template'), destFolder, { recursive: true });
+
+    const jsFiles = await findCustomVizJsFilesInDirectory();
+    if (jsFiles.length > 0) {
+        await updateCustomViz(jsFiles, process.env.DASHPUB_CUSTOM_VIZ_PATH, destFolder);
+    }
     //const copyToDest = (p, opts) => fs.copy(path.join(srcFolder, p), path.join(destFolder, p), opts);
     //await copyToDest('yarn.lock');
     console.log(selectedDashboards);
