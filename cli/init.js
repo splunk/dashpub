@@ -61,11 +61,11 @@ async function findCustomVizJsFilesInDirectory() {
 
 async function updateCustomViz(files, srcFolder, destFolder) {
     const presetFilePath = path.join(destFolder, 'src/preset.js');
-    await fs.mkdir(path.join(destFolder,'custom_components'));
+    await fs.mkdir(path.join(destFolder,'src', 'custom_components'));
     try {
         let customVizEntries = files.map(file => {
             const componentName = file.replace('.js', '');
-            fs.copy(path.join(srcFolder, file), path.join(destFolder,'custom_components', file));
+            fs.copy(path.join(srcFolder, file), path.join(destFolder,'src', 'custom_components', file));
             return `'custom.${componentName}': commonFlags(lazy(() => import('./custom_components/${componentName}'))),`;
         }).join('\n    ');
 
