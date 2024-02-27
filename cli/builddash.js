@@ -40,9 +40,9 @@ export default function () {
 }
 `;
 
-async function generateDashboard({ name, targetName = name, app, projectFolder }, splunkdInfo) {
+async function generateDashboard({ name, targetName = name, app, projectFolder, dashboardTags=[] }, splunkdInfo) {
     const dash = await loadDashboard(name, app, splunkdInfo);
-    const [dsManifest, newDash] = await generateCdnDataSources(dash, projectFolder);
+    const [dsManifest, newDash] = await generateCdnDataSources(dash, app, projectFolder);
     for (const viz of Object.values(newDash.visualizations || {})) {
         try {
             if (viz.type === 'viz.singlevalueicon') {
@@ -59,12 +59,24 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
                 }
             }
             if (viz.type === 'splunk.image') {
-                if (viz.options.src.match(/\$.*\$/g) )
+               if (viz.options.src.match(/\$.*\$/g) )
                     console.log(`Skipping image download due to token ${viz.options.src}`)
-                else{
+               else if (viz.options.src.startsWith("data:image")) {
+                   console.log("Skipping because image is embedded as string")
+               } else {
                     viz.options.src = await downloadImage(viz.options.src, 'images', splunkdInfo, projectFolder);
-                }
+               }
             }
+           if (viz.type === 'splunk.choropleth.svg') {
+               if (viz.options.svg.match(/\$.*\$/g) )
+                   console.log(`Skipping image download due to token ${viz.options.svg}`)
+               else if (viz.options.svg.startsWith("data:image")) {
+                   console.log("Skipping because image is embedded as string")
+               }
+               else {
+                   viz.options.svg = await downloadImage(viz.options.svg, 'images', splunkdInfo, projectFolder);
+               }
+           }
         } catch (e) {
             console.error(`Failed to download image ${viz.options.icon || viz.options.src}`, e);
         }
@@ -84,7 +96,7 @@ async function generateDashboard({ name, targetName = name, app, projectFolder }
     await writeFile(path.join(dir, 'definition.json'), Buffer.from(JSON.stringify(newDash, null, 2), 'utf-8'));
     await writeFile(path.join(dir, 'index.js'), COMPONENT_CODE, 'utf-8');
 
-    return [dsManifest, { [name]: newDash.title }];
+    return [dsManifest, { [name]: {"title": newDash.title, "tags":dashboardTags} }];
 }
 
 async function generate(app, dashboards, splunkdInfo, projectFolder) {
@@ -101,15 +113,26 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
     let datasourcesManifest = {};
     let dashboardsManifest = {};
 
-    for (const dashboard of dashboards) {
+    // If older-style array then convert to object
+    dashboards = Array.isArray(dashboards) ? dashboards.reduce((a, v) => ({ ...a, [v]: {}}), {}) : dashboards
+
+    console.log(dashboards);
+    for (const dashboard in dashboards) {
         const targetName = dashboard;
         cli.action.start(`Generating dashboard ${dashboard}`);
+        let dashboardTags=[];
+        if (Object.keys(dashboards[dashboard]).includes("tags")) {
+            console.log("Found tags: " + dashboards[dashboard]['tags'].join(", "));
+            dashboardTags = dashboards[dashboard]['tags'];
+        }
+
         const [dsManifest, dashboardInfo] = await generateDashboard(
             {
                 name: dashboard,
                 targetName,
                 app,
                 projectFolder,
+                dashboardTags
             },
             splunkdInfo
         );

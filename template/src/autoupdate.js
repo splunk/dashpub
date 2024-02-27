@@ -19,7 +19,7 @@ const VERSION = process.env.DASHPUB_BUILD_ID || 'dev';
 export function startAutoUpdateCheck() {
     if (VERSION != null && VERSION !== 'dev') {
         console.log('Current version is', VERSION);
-        setInterval(performUpdateCheck, 30 * 60000);
+        setInterval(performUpdateCheck, 5 * 60000);
     }
 }
 

@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-const fetch = require('node-fetch');
 const qs = require('querystring');
 const DATASOURCES = require('./_datasources.json');
 const debug = require('debug')('datafn');
@@ -26,7 +25,7 @@ let SNAPSHOTS = USE_SNAPSHOT ? require('./_snapshot.json') : null;
 const qualifiedSearchString = (query) => (query.trim().startsWith('|') ? query : `search ${query}`);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const MIN_REFRESH_TIME = 30;
+const MIN_REFRESH_TIME = 60;
 const agent = process.env.SPLUNKD_URL.startsWith('https')
     ? new (require('https').Agent)({
           rejectUnauthorized: false,
@@ -49,7 +48,7 @@ export default async (req, res) => {
 
     const { search, app } = DATASOURCES[id];
     let query = search.query;
-    const refresh = Math.min(MIN_REFRESH_TIME, search.refresh || 0);
+    const refresh = Math.max(MIN_REFRESH_TIME, search.refresh || 60);
     const resultMeta = {};
 
     try {
@@ -71,12 +70,14 @@ export default async (req, res) => {
 
         log('Executing search for data fn', id);
         const SERVICE_PREFIX = `servicesNS/${encodeURIComponent(process.env.SPLUNKD_USER)}/${encodeURIComponent(app)}`;
+        const AUTH_HEADER = process.env.SPLUNKD_TOKEN
+            ? `Bearer ${process.env.SPLUNKD_TOKEN}`
+            : `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString('base64')}`;
+
         const r = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs`, {
             method: 'POST',
             headers: {
-                Authorization: `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString(
-                    'base64'
-                )}`,
+                Authorization: AUTH_HEADER,
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: qs.stringify({
@@ -87,7 +88,7 @@ export default async (req, res) => {
                 reuse_max_seconds_ago: refresh,
                 timeout: refresh * 2,
             }),
-            agent,
+            agent: agent,
         });
 
         if (r.status > 299) {
@@ -102,9 +103,7 @@ export default async (req, res) => {
                 `${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs/${encodeURIComponent(sid)}?output_mode=json`,
                 {
                     headers: {
-                        Authorization: `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString(
-                            'base64'
-                        )}`,
+                        Authorization: AUTH_HEADER,
                     },
                     agent,
                 }
@@ -131,9 +130,7 @@ export default async (req, res) => {
         const data = await fetch(`${process.env.SPLUNKD_URL}/${SERVICE_PREFIX}/search/jobs/${sid}/results?${resultsQs}`, {
             method: 'GET',
             headers: {
-                Authorization: `Basic ${Buffer.from([process.env.SPLUNKD_USER, process.env.SPLUNKD_PASSWORD].join(':')).toString(
-                    'base64'
-                )}`,
+                Authorization: AUTH_HEADER,
             },
             agent,
         }).then((r) => r.json());

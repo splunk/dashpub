@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Splunk Inc. 
+Copyright 2020 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -51,7 +51,12 @@ const units = {
     h: 3600000,
 };
 
-function parseRefreshTime(refresh, defaultValue = 400) {
+function parseRefreshTime(refresh, dsDefaults, defaultValue = 400) {
+    var dsDefaultRefresh = false
+    if ((typeof(refresh)=="undefined") && (typeof(dsDefaults)=="object" && typeof(dsDefaults.options)=="object" && typeof(dsDefaults.options.refresh!=="undefined"))) {
+        dsDefaultRefresh = dsDefaults.options.refresh
+    }
+    refresh = refresh || dsDefaultRefresh
     if (typeof refresh === 'number') {
         return refresh;
     }
@@ -80,9 +85,8 @@ function parseRefreshTime(refresh, defaultValue = 400) {
     return defaultValue;
 }
 
-async function generateCdnDataSource([key, ds], allDataSources) {
+async function generateCdnDataSource([key, ds], app, allDataSources, defaults) {
     let settings = ds.options;
-
     if (ds.type === 'ds.chain') {
         const base = allDataSources[ds.options.extend];
         if (!base) {
@@ -99,12 +103,11 @@ async function generateCdnDataSource([key, ds], allDataSources) {
     }
 
     const id = makeId(settings);
-
     const dataSourceManifest = [
         id,
         {
-            search: { ...settings, refresh: parseRefreshTime(ds.options.refresh) },
-            app: 'search',
+            search: { ...settings, refresh: parseRefreshTime(ds.options.refresh, defaults['ds.search']) },
+            app: app,
             id,
         },
     ];
@@ -124,15 +127,15 @@ async function generateCdnDataSource([key, ds], allDataSources) {
     return [dataSourceManifest, dataSourceDefinition];
 }
 
-async function generateCdnDataSources(def, projectDir) {
+async function generateCdnDataSources(def, app, projectDir) {
+    const defaults = (def.defaults || {}).dataSources || {}
     const results = []; //await Promise.all(Object.entries(def.dataSources || {}).map(e => generateCdnDataSource(e, def.dataSources)));
     for (const e of Object.entries(def.dataSources || {})) {
-        const res = await generateCdnDataSource(e, def.dataSources);
+        const res = await generateCdnDataSource(e, app, def.dataSources, defaults);
         if (res != null) {
             results.push(res);
         }
     }
-
     const dsManifest = Object.fromEntries(results.map(r => r[0]));
     const dataSourceDefinition = Object.fromEntries(results.map(r => r[1]));
 

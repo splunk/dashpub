@@ -19,7 +19,7 @@ import CdnDataSource from './datasource';
 import DrilldownHandler from './drilldown';
 import { polyfillTextDecoder } from './polyfills';
 import { DropdownInput, TimeRangeInput, MultiselectInput, TextInput, NumberInput } from '@splunk/dashboard-inputs';
-
+import { Preset } from '@splunk/dashboard-context';
 const fixRequestParams = (LazyComponent) => (props) => {
     if (props.dataSources.primary && !props.dataSources.primary.requestParams) {
         props.dataSources.primary.requestParams = { count: 100 };
@@ -32,6 +32,7 @@ const commonFlags = (LazyComponent) => {
     LazyComponent.showProgressBar = true;
     LazyComponent.showTitleAndDescription = true;
     LazyComponent.showLastUpdated = true;
+    // LazyComponent.backgroundColor = "#171d21";
     return LazyComponent;
 };
 
@@ -39,9 +40,26 @@ const lazyViz = (fn) => {
     return lazy(fn);
 };
 
+const deepMerge = (obj1, obj2) => {
+    const result = { ...obj1 }; // Start with a shallow copy of obj1
+
+    Object.keys(obj2).forEach((key) => {
+        if (obj1.hasOwnProperty(key) && typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+            // If both objects have the same key with object values, merge these objects recursively
+            result[key] = deepMerge(obj1[key], obj2[key]);
+        } else {
+            // Otherwise, just take the value from obj2
+            result[key] = obj2[key];
+        }
+    });
+
+    return result;
+};
+
 const PRESET = {
     layouts: {
         absolute: lazyViz(() => import('@splunk/dashboard-layouts/AbsoluteLayoutViewer')),
+        grid: lazyViz(() => import('@splunk/dashboard-layouts/GridLayoutViewer')),
     },
     dataSources: {
         'ds.cdn': CdnDataSource,
@@ -103,7 +121,7 @@ const PRESET = {
         'splunk.map': commonFlags(lazyViz(() => import('@splunk/visualizations/Map'))),
         'splunk.table': commonFlags(lazyViz(() => import('@splunk/visualizations/Table'))),
     },
-    inputs:{
+    inputs: {
         'input.dropdown': DropdownInput,
         'input.timerange': TimeRangeInput,
         'input.text': TextInput,
@@ -112,4 +130,12 @@ const PRESET = {
     },
 };
 
-export default PRESET;
+const CUSTOM_VIZ = {};
+
+const CUSTOM_PRESET = {
+    visualizations: CUSTOM_VIZ,
+};
+
+const MERGED_PRESET = deepMerge(PRESET, CUSTOM_PRESET);
+
+export default MERGED_PRESET;

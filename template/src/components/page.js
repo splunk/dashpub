@@ -19,7 +19,7 @@ import { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
 import { startAutoUpdateCheck } from '../autoupdate';
 import { SplunkThemeProvider, variables } from '@splunk/themes';
-
+import 'bootstrap/dist/css/bootstrap.css';
 const TITLE_SUFFIX = 'Splunk Dashboard';
 
 const GlobalBackgroundStyle = createGlobalStyle`
@@ -55,9 +55,7 @@ export default function Page({
     return (
         <>
             <Head>
-                <title>
-                    {title} - {TITLE_SUFFIX}
-                </title>
+                <title>{`${title} - ${TITLE_SUFFIX}`}</title>
                 {description && <meta name="description" content={description} />}
                 <meta name="author" content="Splunk" />
                 <meta property="og:title" content={`${title} - ${TITLE_SUFFIX}`} />

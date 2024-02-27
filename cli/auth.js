@@ -29,19 +29,20 @@ async function updatePassword() {
         splunkdUrl: url,
         splunkdUser: user,
         splunkdPassword: password,
+        splunkdToken: ""
     });
 
     return { username: user, password, url };
 }
 
 async function ensureAuth() {
-    if (!process.env.SPLUNKD_PASSWORD) {
+    if (!process.env.SPLUNKD_PASSWORD && !process.env.SPLUNKD_TOKEN) {
         return await updatePassword();
     }
 
     const pkg = await getPackageJson();
     const { user, url } = pkg.dashpub.splunkd;
-    return { username: user, url, password: process.env.SPLUNKD_PASSWORD };
+    return { username: user, url, password: process.env.SPLUNKD_PASSWORD, token: process.env.SPLUNKD_TOKEN };
 }
 
 module.exports = {

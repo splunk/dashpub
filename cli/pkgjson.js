@@ -22,9 +22,10 @@ async function getPackageJson(folder = process.cwd()) {
 }
 
 async function updatePackageJson(
-    { folderName, version, projectName, splunkdUrl, splunkdUser, selectedDashboards, settings },
+    { folderName, version, projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards, settings },
     { destFolder = process.cwd() } = {}
 ) {
+    console.log(selectedDashboards);
     const pkg = await getPackageJson(destFolder);
     if (folderName != null) {
         pkg.name = folderName;
@@ -46,6 +47,7 @@ async function updatePackageJson(
             url: splunkdUrl || prev.splunkd.url,
             user: splunkdUser || prev.splunkd.user,
         },
+        app: selectedApp,
         dashboards: selectedDashboards || prev.dashboards,
     };
 

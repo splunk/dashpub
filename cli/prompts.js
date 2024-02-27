@@ -23,6 +23,7 @@ const noValidateHttpsAgent = new (require('https').Agent)({
 });
 
 inquirer.registerPrompt('checkbox-plus', require('inquirer-checkbox-plus-prompt'));
+inquirer.registerPrompt('search-list', require('inquirer-search-list'));
 
 const string = (prompt, opts) =>
     inquirer
@@ -113,6 +114,24 @@ const splunkdPassword = (url, user) =>
         })
         .then(({ password }) => password);
 
+const splunkdToken = (url) =>
+    inquirer
+        .prompt({
+            type: 'password',
+            name: 'token',
+            message: 'Bearer Token: (Leave blank for username/password authentication)',
+            default: false
+//            async validate(pwd) {
+//                try {
+//                    await validateAuth({ url, user, password: pwd });
+//                } catch (e) {
+//                    throw new Error(`Failed to validate password: ${e.message}`);
+//                }
+//                return true;
+//            },
+        })
+        .then(({ token }) => token);
+
 const selectDashboards = dashboards =>
     inquirer
         .prompt({
@@ -136,11 +155,33 @@ const selectDashboards = dashboards =>
         })
         .then(({ dashboards }) => dashboards);
 
+const selectApp = apps =>
+    inquirer
+        .prompt({
+            type: 'search-list',
+            name: 'app',
+            message: 'Select which app contains your dashboard(s) to publish',
+            //pageSize: 20,
+            //highlight: true,
+            //searchable: true,
+            choices: apps.map(({ name, label }) => ({ name: `${label} [${name}]`, value: name }))
+//            choices: apps.map(({ name, label }) => ({ name: `${label} [${name}]`, value: name })),
+//            validate: selected => {
+ //               if (selected.length == 1) {
+  //                  return true;
+   //             }
+     //           throw new Error('Please select an app');
+      //      },
+        })
+        .then(({ app }) => app);
+
 module.exports = {
     string,
     confirm,
     splunkdUrl,
+    splunkdToken,
     splunkdUsername,
     splunkdPassword,
     selectDashboards,
+    selectApp,
 };
