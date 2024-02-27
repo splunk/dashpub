@@ -2,20 +2,30 @@ import React, { lazy, Suspense } from 'react';
 import Loading from '../components/loading';
 import NoSSR from '../components/nossr';
 import Page from '../components/page';
-import { format } from "util";
+
+//import {CloudViewOnlyPreset} from "@splunk/dashboard-presets";
+//import dynamic from "next/dynamic";
+
+//export const CloudViewOnlyPreset = dynamic(
+//  () => import("@splunk/dashboard-presets").then((lib) => lib.CloudViewOnlyPreset),
+//  { ssr: false, }
+//);
 
 const Dashboard = lazy(() => import('../components/dashboard'));
 
+//import CdnDataSource from '../datasource';
+
+//const presets = {...CloudViewOnlyPreset, ...{dataSources:{"ds.cdn":"CdnDataSource"}}}
+
 export default function DashboardPage({ definition, dashboardId, baseUrl }) {
-    const imageUrl = format("/%s/%s.%s", process.env.NEXT_PUBLIC_DASHPUBSCREENSHOTDIR || "screens" , dashboardId, process.env.NEXT_PUBLIC_DASHPUBSCREENSHOTEXT || "png");
     return (
         <Page
             title={definition.title || 'Dashboard'}
             description={definition.description}
-            imageUrl={imageUrl}
+            imageUrl={`/screenshot/${dashboardId}.jpg`}
             path={`/${dashboardId}`}
-            backgroundColor={definition.layout.options.backgroundColor}
-            theme={definition.theme}
+            //  backgroundColor={"#171d21"}
+            theme={definition.theme || 'light'}
             baseUrl={baseUrl}
         >
             <NoSSR>
