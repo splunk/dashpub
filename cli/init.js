@@ -61,7 +61,6 @@ async function findCustomVizJsFilesInDirectory() {
 
 async function updateCustomViz(files, srcFolder, destFolder) {
     const presetFilePath = path.join(destFolder, 'src/preset.js');
-    await fs.mkdir(path.join(destFolder,'src', 'custom_components'));
     try {
         let customVizEntries = files.map(file => {
             const componentName = file.replace('.js', '');
