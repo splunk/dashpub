@@ -6,12 +6,10 @@ export default async function handler(req, res) {
         return res.status(405).end('Method Not Allowed');
     }
     const { username, password } = req.body;
-    console.log(username);
-    console.log(process.env);
     // Replace this logic with your actual authentication logic
     if (username === process.env.JWT_USERNAME && password === process.env.JWT_PASSWORD) {
         const user = { username: username };
-        const expireHours = 6;
+        const expireHours = process.env.JWT_EXPIRY || 6;
         // Generate JWT token
         const token = jwt.sign(user, process.env.JWT_KEY || 'DefaultJWTKey', { expiresIn: expireHours + 'h' });
 
