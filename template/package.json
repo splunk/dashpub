@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "license": "UNLICENSED",
     "dependencies": {
+        "eslint-config-next": "^14.1.0",
         "@babel/runtime": "^7.23.6",
         "@splunk/charting-bundle": "25.11.0",
         "@splunk/dashboard-context": "26.3.0",
@@ -33,7 +34,6 @@
         "bootstrap": "^5.3.2",
         "crypto-js": "^4.2.0",
         "decode-uri-component": "0.4.1",
-        "eslint-config-react-app": "^7.0.1",
         "fast-text-encoding": "^1.0.6",
         "next": "^12",
         "query-string": "^8.1.0",
@@ -43,10 +43,12 @@
         "react-dom": "16.14.0",
         "styled-components": "5.3.11",
         "jsonwebtoken": "^9.0.2",
-        "cookies-next": "^4.1.1"
+        "cookies-next": "^4.1.1",
+        "typescript": "^5.3.3"
     },
     "devDependencies": {
-        "eslint": "^8.0.0"
+        "eslint": "^8.0.0",
+        "@babel/plugin-proposal-private-property-in-object": "*"
     },
     "resolutions": {
         "@splunk/datasource-utils": "26.3.0",
@@ -71,7 +73,21 @@
         "start": "next start"
     },
     "eslintConfig": {
-        "extends": "react-app"
+        "env": {
+            "es6": true
+        },
+        "ignorePatterns": ["src/node_modules"],
+        "extends": [
+            "eslint:recommended", "next"
+        ],
+        "rules": {
+            "react/display-name": "warn",
+            "no-unused-vars": "warn",
+            "no-undef": "warn",
+            "no-empty": "warn",
+            "react-hooks/exhaustive-deps": "warn",
+            "no-prototype-builtins": "warn"
+        }
     },
     "browserslist": {
         "production": [

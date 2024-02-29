@@ -17,7 +17,7 @@ limitations under the License.
 
 import { DashboardContextProvider, GeoRegistry, GeoJsonProvider } from '@splunk/dashboard-context';
 import DashboardCore from '@splunk/dashboard-core';
-import React, { Suspense, useMemo, useEffect, useRef } from 'react';
+import React, { Suspense, useMemo, useEffect } from 'react';
 import Loading from './loading';
 import defaultPreset from '../preset';
 import { SayCheese, registerScreenshotReadinessDep } from '../ready';

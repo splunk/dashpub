@@ -9,7 +9,7 @@ async function verifyJwt(token, secret) {
     }
 
     const header = JSON.parse(atob(parts[0]));
-    const payload = JSON.parse(atob(parts[1]));
+    // const payload = JSON.parse(atob(parts[1]));
     const signature = parts[2];
 
     // Ensure the algorithm is HS256 (as an example)

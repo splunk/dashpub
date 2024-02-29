@@ -75,7 +75,7 @@ class AllTags extends Component {
     render() {
         const { tagClick, uniqueTags, selectedTag } = this.props;
 
-        if (uniqueTags.length == 0) {
+        if (uniqueTags.length === 0) {
             return null;
         }
         const TagTitle = styled.span`
@@ -126,9 +126,9 @@ class Home extends Component {
 
     componentDidMount() {
         let tagList = [];
-        Object.keys(dashboardManifest).map((k) => {
+        Object.keys(dashboardManifest).forEach((k) => {
             let dashboard = dashboardManifest[k];
-            dashboard.tags.map((tag) => {
+            dashboard.tags.forEach((tag) => {
                 tagList.push(tag);
             });
         });

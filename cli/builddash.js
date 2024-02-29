@@ -29,7 +29,7 @@ import definition from './definition.json';
 
 const Dashboard = lazy(() => import('../../components/dashboard'));
 
-export default function () {
+export default function DashboardContainer() {
     return (
         <NoSSR>
             <Suspense fallback={<Loading />}>
@@ -116,7 +116,6 @@ async function generate(app, dashboards, splunkdInfo, projectFolder) {
     // If older-style array then convert to object
     dashboards = Array.isArray(dashboards) ? dashboards.reduce((a, v) => ({ ...a, [v]: {}}), {}) : dashboards
 
-    console.log(dashboards);
     for (const dashboard in dashboards) {
         const targetName = dashboard;
         cli.action.start(`Generating dashboard ${dashboard}`);

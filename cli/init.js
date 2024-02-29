@@ -195,7 +195,6 @@ async function initNewProject() {
     }
     //const copyToDest = (p, opts) => fs.copy(path.join(srcFolder, p), path.join(destFolder, p), opts);
     //await copyToDest('yarn.lock');
-    console.log(selectedDashboards);
     await updatePackageJson(
         { folderName, version: '1.0.0', projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards },
         { destFolder }

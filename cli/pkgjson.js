@@ -25,7 +25,6 @@ async function updatePackageJson(
     { folderName, version, projectName, splunkdUrl, splunkdUser, selectedApp, selectedDashboards, settings },
     { destFolder = process.cwd() } = {}
 ) {
-    console.log(selectedDashboards);
     const pkg = await getPackageJson(destFolder);
     if (folderName != null) {
         pkg.name = folderName;
@@ -51,6 +50,13 @@ async function updatePackageJson(
         dashboards: selectedDashboards || prev.dashboards,
     };
 
+    const customDeps = process.env.DASHPUB_CUSTOM_DEPS ? JSON.parse(process.env.DASHPUB_CUSTOM_DEPS) : [];
+
+    customDeps.forEach(dep => {
+            for (const [packageName, version] of Object.entries(dep)) {
+                pkg.dependencies[packageName] = version;
+            }
+    });
     await fs.writeFile(path.join(destFolder, 'package.json'), JSON.stringify(pkg, null, 4));
 }
 

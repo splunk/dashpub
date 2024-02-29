@@ -7,8 +7,8 @@ import useSplunkTheme from '@splunk/themes/useSplunkTheme';
 import { format } from "util";
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default function Home({}) {
-    const { textColor, textGray, focusColor } = useSplunkTheme();
+export default function Home() {
+    const { focusColor } = useSplunkTheme();
     const Footer = styled.p`
         color: ${focusColor};
         text-align:center;
@@ -21,7 +21,7 @@ export default function Home({}) {
             imageUrl={imageUrl}
             baseUrl={process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null}>
             <Homepage key="home" />
-            { process.env.NEXT_PUBLIC_DASHPUBFOOTER!="false" ?
+            { process.env.NEXT_PUBLIC_DASHPUBFOOTER!=="false" ?
             <Footer align="center">
                 {process.env.NEXT_PUBLIC_DASHPUBFOOTER || "Hosted Splunk Dashboards" }
                 {process.env.NEXT_PUBLIC_DASHPUBHOSTEDBY ? <> by <Link to={process.env.NEXT_PUBLIC_DASHPUBHOSTEDURL || '#'} openInNewContext="">{process.env.NEXT_PUBLIC_DASHPUBHOSTEDBY}</Link> </> : " "}

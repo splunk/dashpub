@@ -44,7 +44,6 @@ export default function Page({
     backgroundColor,
     imageUrl,
     imageSize = { width: 700, height: 340 },
-    path,
     baseUrl,
     children,
 }) {

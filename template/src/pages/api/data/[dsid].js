@@ -32,7 +32,7 @@ const agent = process.env.SPLUNKD_URL.startsWith('https')
       })
     : undefined;
 
-export default async (req, res) => {
+const dataResp = async (req, res) => {
     const id = req.query.dsid;
     debug('Looking up datasource ID %o', id);
 
@@ -145,3 +145,4 @@ export default async (req, res) => {
         res.json({ error: 'Failed to fetch data' });
     }
 };
+export default dataResp;

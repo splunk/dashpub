@@ -24,6 +24,8 @@ then
     echo "Configuring dashpub with Env variables"
     dashpub init
     cd /app
+    yarn add typescript
+    yarn add --dev typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @next/eslint-plugin-next
     yarn build
     touch /tmp/hasBuilt
   elif [ -z "${DASHPUB_CONFIGFILE}" ];
@@ -33,6 +35,8 @@ then
     echo "Configuring dashpub"
     dashpub init
     cd /app
+    yarn add typescript
+    yarn add --dev typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @next/eslint-plugin-next
     yarn build
     touch /tmp/hasBuilt
   fi

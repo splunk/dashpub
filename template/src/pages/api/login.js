@@ -1,4 +1,4 @@
-import { getCookies, getCookie, setCookie, deleteCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {

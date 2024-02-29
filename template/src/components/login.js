@@ -17,7 +17,6 @@ limitations under the License.
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { variables } from '@splunk/themes';
-import dashboardManifest from '../_dashboards.json';
 
 import User from '@splunk/react-icons/enterprise/User';
 import Key from '@splunk/react-icons/Key';
@@ -46,25 +45,6 @@ const SubTitle = styled.h2`
 `;
 
 class Login extends Component {
-    handleTagClick = (tag) => {
-        this.setState({ selectedTag: tag });
-    };
-    state = {
-        uniqueTags: [],
-        selectedTag: '',
-    };
-
-    componentDidMount() {
-        let tagList = [];
-        Object.keys(dashboardManifest).map((k) => {
-            let dashboard = dashboardManifest[k];
-            dashboard.tags.map((tag) => {
-                tagList.push(tag);
-            });
-        });
-        const uniqueTags = Array.from(new Set(tagList));
-        this.setState({ uniqueTags: uniqueTags });
-    }
 
     render() {
         const handleSubmit = async (event) => {
@@ -113,7 +93,6 @@ class Login extends Component {
                             name="password"
                             inline
                             type="password"
-                            value={this.state.value}
                             onChange={this.handleChange}
                             placeholder="*******"
                             startAdornment={
